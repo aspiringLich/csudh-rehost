@@ -1,0 +1,187 @@
+<html>
+
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/convertmass.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:09 GMT -->
+<head><title>Converting Masses</title>
+
+<script language="javascript">
+//global variables
+theanswer=0
+which=0
+function clear(){
+	zeroout()
+	document.forms[1].first.value=""
+	document.forms[1].second.value=0
+	document.forms[1].third.value=0
+
+}
+
+function zeroout(){
+	document.forms[0].first.value=""
+	document.forms[0].second.value=""
+	document.forms[0].third.value=""
+	document.forms[0].fourth.value=""
+	which=0
+}
+function begin(){
+	zeroout()
+	var lb=Math.ceil(1000*Math.random())/100
+	var oz=Math.ceil(1000*(16*lb))/1000
+	var gram=Math.ceil(1000*(453.6*lb))/1000
+	var mg=Math.ceil(1000*(1000*gram))/1000
+	var kg=Math.ceil(100*gram)/100000
+
+//decide whether to display metric or English
+	var d=Math.ceil(2*Math.random())
+	if (d==1){english(lb,oz,gram,mg,kg)}
+	if(d==2){metric(lb,oz,gram,mg,kg)
+}}
+function english(lb,oz,gram,mg,kg){
+	which=1
+//decide to display lb or ounces
+	var d=Math.ceil(2*Math.random())
+	if (d==1){
+		document.forms[0].first .value=lb
+		document.forms[0].second.value="pounds"}
+	if (d==2) {
+		document.forms[0].first .value=oz
+		document.forms[0].second.value="ounces"}
+
+//decide what the unknown is to be
+	var d=Math.ceil(3*Math.random())
+	if (d==1){
+		document.forms[0].fourth.value="grams"
+		theanswer=gram}
+	if(d==2){
+		document.forms[0].fourth.value="milligrams"
+		theanswer=mg}
+	if(d==3) {
+		document.forms[0].fourth.value="kilograms"
+		theanswer=kg}
+	document.forms[0].third.focus()
+	document.forms[0].third.select()
+}
+function metric(lb,oz,gram,mg,kg){
+//decide on unknown lb or ounces
+	var d=Math.ceil(2*Math.random())
+	if (d==1){
+		theanswer=lb
+		document.forms[0].second.value="pounds"}
+	if (d==2){
+		theanswer=oz
+		document.forms[0].second.value="ounces"}
+//decide what the known is to be
+	var d=Math.ceil(3*Math.random())
+	if (d==1){
+		document.forms[0].fourth.value="grams"
+		document.forms[0].third.value=gram}
+	if (d==2){
+		document.forms[0].fourth.value="milligrams"
+		document.forms[0].third.value=mg}
+	if (d==3) {
+		document.forms[0].fourth.value="kilograms"
+		document.forms[0].third.value=kg}
+	document.forms[0].first .focus()
+	document.forms[0].first .select()
+}
+function answer(form){
+	if (which==1){
+		if (form.third.value>.99*theanswer &
+		form.third.value<1.01*theanswer){
+		document.forms[1].first.value="correct"
+		document.forms[1].second.value++
+		document.forms[1].third.value++}
+	else {
+		document.forms[1].first.value="incorrect"
+		document.forms[1].second.value++}}
+	else {
+		if (form.first.value>.99*theanswer &
+		form.first.value<1.01*theanswer){
+		document.forms[1].first.value="correct"
+		document.forms[1].second.value++
+		document.forms[1].third.value++}
+		else {
+		document.forms[1].first.value="incorrect"
+		document.forms[1].second.value++}}
+}	
+</script>
+</head>
+<body onLoad=clear()>
+<h2>Converting Masses</h2>
+This page provides drill and practice in converting mass measures between
+the English (pounds and ounces) and the metric (grams, etc). It will help you
+with both your math skills and you understanding of both systems of measure.
+<h4>Usage</h4>
+<ul>
+<li>To begin-press "New Problem" and values will appear in three of the cells.
+<li>Put the appropriate numerical value in the empty cell and press "Check Answer."
+<li>The results will appear in the second table, along with your running score.
+<li>If your answer is incorrect, you should redo and resubmit it.
+</ul>
+<form method="post">
+<table border=4>
+<tr>
+<td><input type="text" name="first" size=8></td>
+<td><input type="text" name="second" size=8></td>
+<td><b>equals</td>
+<td><input type="text" name="third" size=8></td>
+<td><input type="text" name="fourth" size=8></td>
+</tr>
+<tr>
+<td><input type="button" value="New Problem" onClick=begin()></td>
+<td><input type="button" value="Check Answer" onClick=answer(this.form)></td>
+</tr>
+</table>
+</form>
+<br>
+<form method=post>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name="first" size=12></td>
+<td align=center><input type="text" name="second" size=4 ></td>
+<td align=center><input type="text" name="third" size=4 ></td>
+</tr>
+</table>
+</form>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/convertmass.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:09 GMT -->
+</html>
+
+
+
+
+
+
+
+
+
+
+

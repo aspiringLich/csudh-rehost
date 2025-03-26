@@ -1,0 +1,167 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/massmoles.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:09 GMT -->
+<head><title>Mass and moles</title>
+<script language=javascript>
+//globals
+theanswer=0
+//This function clears all values in both tables on loading the page
+function fresh(){
+	document.forms[0].first.value=""
+	document.forms[0].second.value=""
+	document.forms[0].third.value=""
+	document.forms[1].results.value=""
+	document.forms[1].total.value=0
+	document.forms[1].correct.value=0
+}
+//This function clears the first table
+function zeroout(){
+	document.forms[0].first.value=""
+	document.forms[0].second.value=""
+	document.forms[0].third.value=""
+}
+
+//This is the function started when "New Problem" is pushed	
+//This function first clears all old values using zeroout()
+//The three variables(mass,moles and gfw) are then determined, using Math.random() to 
+//generate gfw and mass and a ratio to generate moles. 
+function begin(){
+	zeroout()
+	for (var f=0;f<100;f++){
+	var gfw=Math.pow(500,Math.random())
+	if (gfw>24 & gfw<400){break}}
+	var mass=Math.pow(1000,Math.random())
+	var moles=mass/gfw
+//The three variables are then converted to three significant figures.
+	gfw=Math.round(100*gfw)/100
+	mass=Math.round(100*mass)/100
+	if (moles>1){moles=Math.round(100*moles)/100}
+	else {moles=Math.round(1000*moles)/1000}
+//Control is then passed to one of three other functions to display the
+//problem-again using Math.random()
+	var start=(Math.random())
+	if (start<.33){ first(gfw,mass,moles)}
+	else {if (start<.67){second(gfw,mass,moles)}
+	else {third(gfw,mass,moles)}
+}}
+//This function displays gfw and mass in the table with moles left blank
+function first(a,b,c){
+	document.forms[0].first.value=a
+	document.forms[0].second.value=b
+	theanswer=document.forms[0].third.value
+	document.forms[0].third.value=""
+//The following places the cursor in the empty cell for convenience
+	document.forms[0].third.focus()
+	document.forms[0].third.select()
+	}
+//This function displays gfw and moles in the table and leaves mass blank
+function second(a,b,c){
+	document.forms[0].first.value=a
+	theanswer=document.forms[0].second.value
+	document.forms[0].second.value=""
+	document.forms[0].third.value=c
+//The following places the cursor in the empty cell for convenience
+	document.forms[0].second.focus()
+	document.forms[0].second.select()
+	}
+//This function displays mass and moles and leaves gfw blank
+function third(a,b,c){
+	theanswer=document.forms[0].first.value
+	document.forms[0].first.value=""
+	document.forms[0].second.value=b
+	document.forms[0].third.value=c
+//The following places the cursor in the empty cell for convenience
+	document.forms[0].first.focus()
+	document.forms[0].first.select()
+	}
+// This is the "Check Answer Function
+//This function checks for correctness by simply seeing if a/b is within 1%
+//of c. The results are then posted to the second table. If you change the
+//relationship between a and b, above, make sure you change this also.
+function answer(form){
+	var M=((1.0*form.second.value)/(1.0*form.first.value))
+	if (M>.99*form.third.value & M<1.01*form.third.value){	
+	document.forms[1].results.value="correct"
+	document.forms[1].total.value++
+	document.forms[1].correct.value++}
+	else {
+	document.forms[1].results.value="incorrect"
+	document.forms[1].total.value++}
+}
+</script>
+</head>
+<body onLoad="fresh()">
+<h2>Mass, Moles and GFW</h2>
+This page permits practice with the relationships between mass, moles and the GFW.
+When you press "New Problem", values will appear in two of the windows. Enter the
+missing value and press "Check Answer". The results will appear in the second
+table.
+<h3>Hints</h3>
+<ul>
+<li>Redo any problems you get incorrect and resubmit the new results.
+<li>You may press "New Problem" rather than answer the one displayed.
+</ul>
+<br>
+<hr>
+<form>
+<table border=4>
+<tr>
+<TD ALIGN=CENTER><b>GFW</td>
+<td align=center><b>Mass</td>
+<td align=center><b>Moles</td>
+</tr>
+<tr>
+<td align=center><input type="text" name="first" size=8 ></td>
+<td align=center><input type="text" name="second" size=8 ></td>
+<td align=center><input type="text" name="third" size=8 ></td>
+</tr>
+<tr>
+<td><input type="button" value="New Problem" onClick=begin()></td>
+<td><input type="button" value="Check Answer" onClick=answer(this.form)></td>
+</tr>
+</table>
+</form>
+<br>
+<form>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name="results" size=12></td>
+<td align=center><input type="text" name="total" size=4 ></td>
+<td align=center><input type="text" name="correct" size=4 ></td>
+</tr>
+</table>
+</form>
+<br><br>
+<P><HR>
+
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/massmoles.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:09 GMT -->
+</html>

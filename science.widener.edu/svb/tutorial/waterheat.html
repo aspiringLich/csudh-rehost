@@ -1,0 +1,132 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/waterheat.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:16 GMT -->
+<head>
+<script language=javascript>
+function fresh(){
+	document.forms[0].mass.value=""
+	document.forms[0].heat.value=""
+	document.forms[0].Ti.value=""
+	document.forms[0].Tf.value=""
+	document.forms[1].results.value=""
+	document.forms[1].total.value=0
+	document.forms[1].correct.value=0
+	}
+function begin(){
+	document.forms[1].results.value=""	
+	first=Math.pow(100,Math.random())
+	second=first
+	while(Math.abs(first-second)<10){second=Math.pow(20,Math.random())}
+	r=Math.random()
+	if (r>.5){
+		var Ti=first
+		var Tf=second}
+	else{
+		var Ti=second
+		var Tf=first}
+	Ti=Math.round(10*Ti)/10
+	Tf=Math.round(10*Tf)/10
+	var mass=Math.round(10*(Math.pow(1000,Math.random())))/10
+	var q=Math.round(4.184*mass*(Tf-Ti))
+	display(mass,q,Ti,Tf)
+}
+function answer(form){
+	document.forms[1].total.value++
+	test=0
+	if(option==1){response=form.mass.value}
+	if(option==2){response=form.heat.value}
+	if(option==3){response=form.Ti.value}
+	if(option==4){response=form.Tf.value}
+	if(Math.abs(response)>.95*Math.abs(theanswer) & 	Math.abs(response)<1.05*Math.abs(theanswer)){	
+	document.forms[1].results.value="correct"
+	document.forms[1].correct.value++}
+	else {
+	document.forms[1].results.value="incorrect"}
+}
+function display(mass,q,Ti,Tf){
+	document.forms[0].mass.value=mass
+	document.forms[0].heat.value=q
+	document.forms[0].Ti.value=Ti
+	document.forms[0].Tf.value=Tf
+	option=Math.ceil(4*Math.random())
+	if (option==1){theanswer=document.forms[0].mass.value
+	document.forms[0].mass.value=""}
+	if (option==2){theanswer=document.forms[0].heat.value
+	document.forms[0].heat.value=""}
+	if (option==3){theanswer=document.forms[0].Ti.value
+	document.forms[0].Ti.value=""}
+	if(option==4){theanswer=document.forms[0].Tf.value
+	document.forms[0].Tf.value=""}
+}
+</script>
+</head>
+<body onLoad="fresh()">
+<h2>Temperature changes and heat</h2>
+This page deals with heat changes accompanying temperature changes for water. The problems
+are randomly generated when you press the "New Problem" button. When you do so, enough data to
+solve the problem will appear. Fill in the missing cell and press "Check Answer." The results are displayed in the second table which will
+tell you whether you got the correct answer or not and keeps a running total of your score.
+If you get a question wrong, you should redo and recheck your answer. Getting new problems is just a matter of 
+pressing the "New Problem" button at any time. 
+<form method=post>
+<table border=4>
+<tr>
+<TD ALIGN=CENTER><b>Mass(g)</td>
+<td align=center><b>q(Joules)</sup></td>
+<td align=center><b>T<sub>i</sub></td>
+<td align=center><b>T<sub>f</sub></td>
+</tr>
+<tr>
+<td align=center><input type="text" name=mass size=8 ></td>
+<td align=center><input type="text" name=heat size=8 ></td>
+<td align=center><input type="text" name=Ti size=8 ></td>
+<td align=center><input type="text" name=Tf size=8 ></td>
+</tr>
+<tr>
+<td><input type="button" value="New Problem" onClick=begin()></td>
+<td><input type="button" value="Check Answer" onClick=answer(this.form)></td>
+</tr>
+</table>
+</form>
+<br>
+<form method=post>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input name=total type="text" size=4 ></td>
+<td align=center><input name=correct type="text" size=4 ></td>
+</tr>
+</table>
+</form><br>
+ <br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/waterheat.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:16 GMT -->
+</html>

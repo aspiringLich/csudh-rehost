@@ -1,0 +1,24 @@
+HTTrack3.49-2 launched on Mon, 18 Dec 2023 17:54:27 at science.widener.edu/svb/tutorial/index.html
+(httrack science.widener.edu/svb/tutorial/index.html )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+17:54:30	Warning: 	Note: due to https://science.widener.edu remote robots.txt rules, links beginning with these path will be forbidden: /cgi-bin, /svb/msdg/parking (see in the options to disable this)
+17:57:04	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/phrelationscsn7.html (from https://science.widener.edu/svb/tutorial/index.html)
+17:57:05	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/raoultslaw-1csn7.html (from https://science.widener.edu/svb/tutorial/index.html)
+17:57:05	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/raoultslaw-2csn7.html (from https://science.widener.edu/svb/tutorial/index.html)
+17:57:07	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/calckcsn7.html (from https://science.widener.edu/svb/tutorial/index.html)
+17:57:07	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/advcalckcsn7.html (from https://science.widener.edu/svb/tutorial/index.html)
+17:57:07	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/qvskcsn7.html (from https://science.widener.edu/svb/tutorial/index.html)
+17:57:07	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/kckpcsn7.html (from https://science.widener.edu/svb/tutorial/index.html)
+17:57:07	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/eandkcsn7.html (from https://science.widener.edu/svb/tutorial/index.html)
+17:58:54	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/numberconvertn7.js (from https://science.widener.edu/svb/tutorial/wavefreqcsn7.html)
+17:58:55	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/formationheadings.html (from https://science.widener.edu/svb/tutorial/startformheats.html)
+17:58:55	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/formationbuttons.html (from https://science.widener.edu/svb/tutorial/startformheats.html)
+17:58:55	Error: 	"Not Found" (404) at link https://science.widener.edu/svb/tutorial/hybrid/index.html (from https://science.widener.edu/svb/tutorial/hybrid/hybridization.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 4 minutes 28 seconds : 267 links scanned, 254 files written (1587633 bytes overall) [1691939 bytes received at 6313 bytes/sec], 67.0 requests per connection
+(12 errors, 1 warnings, 0 messages)

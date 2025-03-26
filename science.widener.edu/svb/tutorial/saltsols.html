@@ -1,0 +1,224 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/saltsols.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:50 GMT -->
+<head><title>Solutions of Slightly Soluble Salts</title>
+<script>
+ans= new Array()
+function clear(){
+	document.forms[0].compound.value=""
+	document.forms[0].ksp.value=""
+	document.forms[0].molar.value=""
+	document.forms[0].gram.value=""
+	document.forms[0].cation.value=""
+	document.forms[0].anion.value=""
+
+	document.forms[1].results.value=""
+	document.forms[1].total.value=0
+	document.forms[1].correct.value=0
+}
+function zeroout(){
+	document.forms[0].compound.value=""
+	document.forms[0].ksp.value=""
+	document.forms[0].molar.value=""
+	document.forms[0].gram.value=""
+	document.forms[0].cation.value=""
+	document.forms[0].anion.value=""
+
+}
+function data(cmpd,gfw,K,cation,anion){
+	this.cmpd=cmpd
+	this.gfw=gfw
+	this.K=K
+	this.cation=cation
+	this.anion=anion
+}
+c1=new data("AgCl",143,1.8e-10,1,1)
+c2=new data("BaCO3",197,5.1e-9,1,1)
+c3=new data("CaF2",78,5.3e-9,1,2)
+c4=new data("FeS",88,6e-19,1,1)
+c5=new data("PbCrO4",323,2.8e-19,1,1)
+c6=new data("Fe(OH)3",107,4e-38,1,3)
+c7=new data("LiF",26,3.8e-3,1,1)
+c8=new data("Co(OH)2",93,1.6e-15,1,2)
+c9=new data("TlBr",284,3.4e-6,1,1)
+c10=new data("Mg(OH)2",58,1.8e-11,1,2)
+
+function choose(){
+	zeroout()
+	g=Math.random()
+	if (g<.1){calculate(c1)}
+	else {if (g<.2) {calculate(c2)}
+	else {if (g<.3) {calculate(c3)}
+	else {if (g<.4) {calculate(c4)}
+	else {if (g<.5) {calculate(c5)}
+	else {if (g<.6) {calculate(c6)}
+	else {if (g<.7) {calculate(c7)}
+	else {if (g<.8) {calculate(c8)}
+	else {if (g<.9) {calculate(c9)}
+	else {calculate(c10)}}}}}}}}}
+}
+
+function calculate(a){
+	var f=a["cation"] + a["anion"]
+	if (f==2){var s=Math.sqrt(a["K"])}
+	else {if (f==3){s=Math.pow((a["K"]/4),.3333)}
+	else {s=Math.pow((a["K"]/27),.25)        }}
+	cat=a["cation"]*s
+	ani=a["anion"]*s
+	gs=.1*s*a["gfw"]
+	document.forms[0].elements[0].value=a["cmpd"]
+	number(a["K"],s,gs,cat,ani)
+
+}
+
+function answer(){
+	test=0
+	document.forms[1].total.value++
+	if (document.forms[0].ksp.value>.99*ans[1] &
+	document.forms[0].ksp.value<1.01*ans[1])test++
+	if (document.forms[0].molar.value>.99*ans[2] &
+	document.forms[0].molar.value<1.01*ans[2])test++
+	if (document.forms[0].gram.value>.99*ans[3] &
+	document.forms[0].gram.value<1.01*ans[3])test++
+	if (document.forms[0].cation.value>.99*ans[4] &
+	document.forms[0].cation.value<1.01*ans[4])test++
+	if (document.forms[0].anion.value>.99*ans[5] &
+	document.forms[0].anion.value<1.01*ans[5])test++
+	
+	if (test==5){
+	document.forms[1].results.value="Correct"
+	document.forms[1].correct.value++}
+	else{document.forms[1].results.value="Incorrect"}
+
+}
+function number(x,b,c,d,f){
+	for (var i=1;i<50;i++){
+		x=x*10
+		if (x>100){
+		x=Math.round(x)/100 + "e-" + (i-2)
+		break}}
+	for (var i=1;i<50;i++){
+		b=b*10
+		if (b>100){
+		b=Math.round(b)/100 + "e-" + (i-2)
+		break}}
+	for (var i=1;i<50;i++){
+		c=c*10
+		if (c>100){
+		c=Math.round(c)/100 + "e-" + (i-2)
+		break}}
+	for (var i=1;i<50;i++){
+		d=d*10
+		if (d>100){
+		d=Math.round(d)/100 + "e-" + (i-2)
+		break}}
+	for (var i=1;i<50;i++){
+		f=f*10
+		if (f>100){
+		f=Math.round(f)/100 + "e-" + (i-2)
+		break}}
+	display(x,b,c,d,f)
+}
+function display(x,b,c,d,f){
+	
+	document.forms[0].ksp.value=""
+	document.forms[0].molar.value=""
+	document.forms[0].gram.value=""
+	document.forms[0].cation.value=""
+	document.forms[0].anion.value=""
+
+	h=Math.random()
+	if (h<.2){document.forms[0].ksp.value=x}
+	else {if (h<.4){document.forms[0].molar.value=b}
+	else {if (h<.6){document.forms[0].gram.value=c}
+	else {if (h<.8) {document.forms[0].cation.value=d}
+	else {document.forms[0].anion.value=f}}}}
+	ans[1]=x
+	ans[2]=b
+	ans[3]=c
+	ans[4]=d
+	ans[5]=f
+	
+}
+
+</script>
+</head>
+<body onLoad=clear()>
+<h2>Solutions of Slightly Soluble Salts</h2>
+This page let's you practice the fundamental calculations for solutions of slightly soluble salts.
+When you press "New Problem," the name of a chemical species will appear
+in the first cell and a value in one of the other cells. You must fill the remaining
+empty four cells correctly. Then, press "Check Answer". Results appear in the second table. In order to
+use this page, you need a table of slightly soluble salts and their Ksp values. If the
+compound which appears in the first cell is not in your table, press "New Problem" to
+get a new compound. 
+<h4>Hints</h4>
+<ul>
+<li><b>Molar Sol.</b> is how many moles of the compound will dissolve per liter.
+<li><b>Gram Sol.</b> is how many grams of the compound will dissolve in 100mL of water.
+<li><b>[cation]</b> and <b>[anion]</b> are the molarities of the cation and anion in the saturated solution.
+</ul>
+<form method="post">
+<table border=4>
+<tr>
+<td align=center><b>Compound</td>
+<td align=center><b>Ksp</td>
+<td align=center><b>Molar Sol.</td>
+<td align=center><b>Gram Sol.</td>
+<td align=center><b>[cation]</td>
+<td align=center><b>[anion]</td>
+</tr>
+<tr>
+<td><input type="text" name="compound" size =12></td>
+<td align=center><input type="text" name="ksp" size =8></td>
+<td><input type="text" name="molar" size =8></td>
+<td><input type="text" name="gram" size =8></td>
+<td><input type="text" name="cation" size =8></td>
+<td><input type="text" name="anion" size =8></td>
+</tr>
+<tr>
+<td><input type="button" value="New Problem" onClick=choose()></td>
+<td><input type="button" value="Check Answer" onClick=answer()></td>
+</tr>
+</table>
+</form>
+<br><br>
+<form method="post">
+<table border=4>
+<tr>
+<td><b>Results</td>
+<td><b>Total</td><td><b>Correct</td></tr>
+<tr><td><input type="text" name="results" size=12></td>
+<td align=center><input type="text"  name="total" size=4 ></td>
+<td align=center><input type="text"  name="correct" size=4 ></td>
+</tr>
+</table>
+</form><br>
+ <br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/saltsols.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:50 GMT -->
+</html>

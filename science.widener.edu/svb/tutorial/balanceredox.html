@@ -1,0 +1,246 @@
+</html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/balanceredox.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:55 GMT -->
+<head><Title>Balancing reactions</Title>
+<script>
+function clear(){
+	for (var i=0;i<9;i++){
+	document.forms[1].elements[i].value=""}
+	document.forms[2].elements[0].value=""
+}
+function cleanse(){
+	clear()
+	document.forms[2].elements[1].value=0
+	document.forms[2].elements[2].value=0
+}
+function MakeArray(n){
+	this.length=n
+	for (var i=1;i<=n;i++){
+	this[i]= 0}
+}
+function equation(c1,c2,c3,c4,c5,c6,c7,c8,n){
+	this.c1=c1
+	this.c2=c2
+	this.c3=c3
+	this.c4=c4
+	this.c5=c5
+	this.c6=c6
+	this.c7=c7
+	this.c8=c8
+	this.n=n
+}
+rxn=new MakeArray(33);
+coeffs=new MakeArray(33)
+rxn[1]=new equation("H<sub>2</sub>S + ","MNO<sub>4</sub><sup>-</sup> + ","H<sup>+</sup> => ","S + ","Mn<sup>2</sup><sup>+</sup>+ ","H<sub>2</sub>O","","",6)
+coeffs[1]=new equation(5,2,6,5,2,8,"","")
+rxn[2]=new equation("Cr<sub>2</sub>O<sub>7</sub><sup>2-</sup> +","Br<sup>-</sup> + ","H<sup>+</sup> => ","Cr<sup>3+</sup> +","Br<sub>2</sub> + ","H<sub>2</sub>O","","",6)
+coeffs[2]=new equation(1,6,14,2,3,7,"","")
+rxn[3]=new equation("MnO<sub>4</sub><sup>-</sup> +","AsO<sub>3</sub><sup>3-</sup> + ","H<sub>2</sub>O =>","MnO<sub>2</sub> + ","AsO<sub>4</sub><sup>3-</sup> +","OH<sup>-</sup>","","",6)
+coeffs[3]=new equation(2,3,1,2,3,2,"","")
+rxn[4]=new equation("Cr<sub>2</sub>O<sub>7</sub><sup>2-</sup> +","C<sub>2</sub>H<sub>3</sub>OCl + ","H<sup>+</sup> =>","Cr<sup>3+</sup> + ","CO<sub>2</sub> + ","Cl<sub>2</sub> +","H<sub>2</sub>O","",7)
+coeffs[4]=new equation(3,2,24,6,4,1,15,"")
+rxn[5]=new equation("Cu + ","HNO<sub>3</sub> <=>","Cu(NO<sub>3</sub>)<sub>2</sub> + ","NO + ","H<sub>2</sub>O","","","",5)
+coeffs[5]=new equation(3,8,3,2,4,"","","")
+rxn[6]=new equation("Zn + ","CuSO<sub>4</sub> =>","ZnSO<sub>4</sub> +"," Cu","","","","",4)
+coeffs[6]=new equation(1,1,1,1,"","","","")
+rxn[7]=new equation("Zn + ","H<sub>2</sub>SO<sub>4</sub> =>","ZnSO<sub>4</sub> + ","H<sub>2</sub>","","","","",4)
+coeffs[7]=new equation(1,1,1,1,"","","","")
+rxn[8]=new equation("K<sub>2</sub>Cr<sub>2</sub>O<sub>7</sub> +","KI + ","H<sub>2</sub>SO<sub>4</sub> =>","Cr<sub>2</sub>(SO<sub>4</sub>)<sub>3</sub> + ","I<sub>2</sub>+ ","K<sub>2</sub>SO<sub>4</sub> + ","H<sub>2</sub>O","",7)
+coeffs[8]=new equation(1,6,7,1,3,4,7,"")
+rxn[9]=new equation("KMnO<sub>4</sub> + ","KCl +","H<sub>2</sub>SO<sub>4</sub> => ","MnSO<sub>4</sub> + ","Cl<sub>2</sub>+ ","K<sub>2</sub>SO<sub>4</sub> +","H<sub>2</sub>O","",7)
+coeffs[9]=new equation(2,10,8,2,5,6,8,"")
+rxn[10]=new equation("KClO<sub>3</sub> + ","KBr +","H<sub>2</sub>SO<sub>4</sub> => ","KCl + "," Br<sub>2</sub> +","K<sub>2</sub>SO<sub>4</sub> + ","H<sub>2</sub>O","",7)
+coeffs[10]=new equation(1,6,3,1,3,3,3,"")
+rxn[11]=new equation("KMnO<sub>4</sub> +","H<sub>2</sub>O<sub>2</sub> + ","H<sub>2</sub>SO<sub>4</sub> =>","MnSO<sub>4</sub> + ","O<sub>2</sub> +","K<sub>2</sub>SO<sub>4</sub> + ","H<sub>2</sub>O","",7)
+coeffs[11]=new equation(2,5,3,2,5,1,8,"")
+rxn[12]=new equation("MnO<sub>2</sub> + ","KCl +","H<sub>2</sub>SO<sub>4</sub> => ","MnSO<sub>4</sub> +","Cl<sub>2</sub> + ","K<sub>2</sub>SO<sub>4</sub> +","H<sub>2</sub>O","",7)
+coeffs[12]=new equation(1,2,2,1,1,1,2,"")
+rxn[13]=new equation("Ag + ","HNO<sub>3</sub> =>","AgNO<sub>3</sub> + ","NO + ","H<sub>2</sub>O","","","",5)
+coeffs[13]=new equation(3,4,3,1,2,"","","")
+rxn[14]=new equation("PbO<sub>2</sub> + ","SnSO<sub>4</sub> +","H<sub>2</sub>SO<sub>4</sub> => ","PbSO<sub>4</sub> +","Sn(SO<sub>4</sub>)<sub>2</sub> + ","H<sub>2</sub>O","","",6)
+coeffs[14]=new equation(1,1,2,1,1,2,"","")
+rxn[15]=new equation("KMnO<sub>4</sub> + ","H<sub>2</sub>C<sub>2</sub>O<sub>4</sub> + ","H<sub>2</sub>SO<sub>4</sub> => "," MnSO<sub>4</sub> +","CO<sub>2</sub> + "," K<sub>2</sub>SO<sub>4</sub> + ","H<sub>2</sub>O","",7)
+coeffs[15]=new equation(2,5,3,2,10,1,8,"")
+rxn[16]=new equation("H<sub>2</sub>O<sub>2</sub> +","HNO<sub>2</sub> => ","HNO<sub>3</sub> + "," H<sub>2</sub>O","","","","",4)
+coeffs[16]=new equation(1,1,1,1,"","","","")
+rxn[17]=new equation("Fe + ","CUSO<sub>4</sub> =>","FeSO<sub>4</sub> + ","Cu","","","","",4)
+coeffs[17]=new equation(1,1,1,1,"","","","")
+rxn[18]=new equation("Fe(SO<sub>4</sub>)<sub>3</sub> + ","KI =>","FeSO<sub>4</sub> + "," I<sub>2</sub> +","K<sub>2</sub>SO<sub>4</sub>","","","",5)
+coeffs[18]=new equation(2,2,2,1,1,"","","")
+rxn[19]=new equation("KClO<sub>4</sub> +","H<sub>3</sub>ASO<sub>3</sub> => ","KCl +","H<sub>3</sub>AsO<sub>4</sub>","","","","",4)
+coeffs[19]=new equation(1,4,1,4,"","","","")
+rxn[20]=new equation("H<sub>2</sub>S + ","KClO => ","S + ","KCl +","H<sub>2</sub>O","","","",5)
+coeffs[20]=new equation(1,1,1,1,1,"","","")
+rxn[21]=new equation("CH<sub>2</sub>O + ","Ag<sub>2</sub>O +","OH<sup>-</sup> => ","Ag + ","HCO<sub>2</sub><sup>-</sup> +","H<sub>2</sub>O","","",6)
+coeffs[21]=new equation(1,1,1,2,1,1,"","")
+rxn[22]=new equation("C<sub>2</sub>H<sub>2</sub> + ","MnO<sub>4</sub><sup>-</sup> + ","H<sup>+</sup> =>","CO<sub>2</sub> + ","Mn<sub>2</sub><sup>+</sup> +","H<sub>2</sub>O","","",6)
+coeffs[22]=new equation(1,2,6,2,2,4,"","")
+rxn[23]=new equation("C<sub>2</sub>H<sub>3</sub>OCl +","Cr<sub>2</sub>O<sub>7</sub><sup>2-</sup> + ","H<sup>+</sup> =>","CO<sub>2</sub> + ","Cl<sub>2</sub> + ","Cr<sup>3+</sup> +","H<sub>2</sub>O","",7)
+coeffs[23]=new equation(2,3,24,4,1,6,15,"")
+rxn[24]=new equation("Ag<sup>+</sup> + ","AsH<sub>3</sub> +","H<sub>2</sub>O => ","Ag +"," H<sub>3</sub>AgO<sub>3</sub> +","H<sup>+</sup>","","",6)
+coeffs[24]=new equation(6,1,3,6,1,6,"","")
+rxn[25]=new equation("OH<sup>-</sup> + ","CN<sup>-</sup> +","Fe(CN)<sub>6</sub><sup>3-</sup> => ","CNO<sup>-</sup> +","Fe(CN)<sub>6</sub><sup>4-</sup> + ","H<sub>2</sub>O","","",6)
+coeffs[25]=new equation(2,1,2,1,2,1,"","")
+rxn[26]=new equation("C<sub>2</sub>H<sub>4</sub>O +","NO<sub>3</sub><sup>-</sup> +","H<sup>+</sup> => ","NO +","C<sub>2</sub>H<sub>4</sub>O<sub>2</sub> +","H<sub>2</sub>O","","",6)
+coeffs[26]=new equation(3,2,2,2,3,1,"","")
+rxn[27]=new equation("Zn + ","H<sup>+</sup> + ","NO<sub>3</sub>=> ","Zn<sup>2+</sup> + ","NH<sub>4</sub><sup>+</sup> +","H<sub>2</sub>O","","",6)
+coeffs[27]=new equation(4,10,1,4,1,3,"","")
+rxn[28]=new equation("S<sub>2</sub>O<sub>3</sub><sup>2-</sup> +","I<sub>2</sub> =>","S<sub>4</sub>O<sub>6</sub><sup>2</sup><sup>-</sup> +","I<sup>-</sup>","","","","",4)
+coeffs[28]=new equation(2,1,1,2,"","","","")
+rxn[29]=new equation("IO<sub>3</sub><sup>-</sup> + ","I<sup>-</sup> + ","H<sup>+</sup> => ","I<sub>2</sub>+ ","H<sub>2</sub>O","","","",5)
+coeffs[29]=new equation(1,5,6,3,3,"","","")
+rxn[30]=new equation("Cu + ","H<sub>2</sub>SO<sub>4</sub> =>","CuSO<sub>4</sub> + ","SO<sub>2</sub> + ","H<sub>2</sub>O","","","",5)
+coeffs[30]=new equation(1,2,1,1,2,"","","")
+rxn[31]=new equation("Zn + ","Fe<sup>3+</sup> =>","Fe<sup>2+</sup> + ","Zn<sup>2+</sup>","","","","",4)
+coeffs[31]=new equation(1,2,2,1,"","","","")
+rxn[32]=new equation("ClO<sup>-</sup> + ","Cl<sup>-</sup> +","ClO<sub>3</sub>","","","","","",4)
+coeffs[32]=new equation(3,2,1,"","","","","")
+
+function start(){
+clear()
+var i=Math.round(33*Math.random())
+if (i<1){i=1}
+if (i>32){i=32}
+document.forms[1].elements[5].value=i
+a=rxn[i]["c1"]
+b=rxn[i]["c2"]
+c=rxn[i]["c3"]
+d=rxn[i]["c4"]
+e=rxn[i]["c5"]
+f=rxn[i]["c6"]
+g=rxn[i]["c7"]
+h=rxn[i]["c8"]
+k=rxn[i]["n"]
+tryit(a,b,c,d,e,f,g,h,k)
+document.forms[1].elements[0].value=coeffs[i]["c1"]
+document.forms[1].elements[1].value=coeffs[i]["c2"]
+document.forms[1].elements[2].value=coeffs[i]["c3"]
+document.forms[1].elements[3].value=coeffs[i]["c4"]
+document.forms[1].elements[4].value=coeffs[i]["c5"]
+document.forms[1].elements[5].value=coeffs[i]["c6"]
+document.forms[1].elements[6].value=coeffs[i]["c7"]
+document.forms[1].elements[7].value=coeffs[i]["c8"]
+document.forms[1].elements[8].value=coeffs[i]["n"]
+}
+
+function tryit(a,b,c,d,e,f,g,h,k)    {
+useit=new MakeArray(8)
+useit[1]=a
+useit[2]=b
+useit[3]=c
+useit[4]=d
+useit[5]=e
+useit[6]=f
+useit[7]=g
+useit[8]=h
+parent.frames[0].document.clear();
+parent.frames[0].document.open();
+parent.frames[0].document.writeln ("<html>");
+parent.frames[0].document.writeln ("<head>");
+parent.frames[0].document.writeln ("</head>");
+parent.frames[0].document.writeln ("<body bgcolor = FFFFFF ");
+parent.frames[0].document.writeln ("<font size=+1><b>");
+parent.frames[0].document.writeln ("<form>");
+parent.frames[0].document.writeln ("<table>");
+for (var i=1;i<=k;i++){
+parent.frames[0].document.write ("<input type=text size=2>");
+parent.frames[0].document.write(useit[i])}
+parent.frames[0].document.writeln ("</table>")
+parent.frames[0].document.writeln ("</form>")
+parent.frames[0].document.forms[0].elements[0].focus();
+parent.frames[0].document.forms[0].elements[0].select();
+parent.frames[0].document.writeln ("<br>")
+parent.frames[0].document.writeln ("</font>");
+parent.frames[0].document.close();
+}
+function answer(){
+document.forms[2].elements[1].value++
+var tally=0
+var g=document.forms[1].elements[4].value
+for(var f=0;f<g;f++){
+if (parent.frames[0].document.forms[0].elements[f].value==document.forms[1].elements[f].value){
+	tally++}}
+if (tally==g){
+	document.forms[2].elements[0].value="correct"
+	document.forms[2].elements[2].value++}
+	else{document.forms[2].elements[0].value="incorrect"}
+}
+</script>
+</head>
+<BODY onLoad="cleanse()">
+<h3>Balancing Oxidation Reduction Reactions</h3>
+This page is an exercise in balancing oxidation reactions. When you press "New Reaction," a
+ reaction will appear in the top frame on this page. In front of each chemical species will be an empty cell.
+Put the proper coefficient in each cell and then press "Check Answer". The results appear in the
+table. Hints:
+<ul>
+<li>Use only the smallest set of <b>integer</b> coefficients.
+<li>Use <b>TAB</b> to move between cells.
+<li>If you get a question wrong, you should redo it. However, you may press "New Reaction" at any time.
+</ul><br> 
+<form>
+<table>
+<input type=button value="New Reaction" onClick="start()">
+<input type=button value="Check Answer" onClick="answer()">
+</table>
+</form>
+<form>
+<table>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+<input type="hidden" size=2>
+</table>
+</form>
+<form>
+<table border=4>
+<tr>
+<td><b>Results</b></td></tr>
+<tr>
+<td><input type="text" size=12></td>
+</tr>
+<tr><td><b>Total Done</b></td>
+<td><b>Total Correct</b></td></tr>
+<tr>
+<td align=center><input type="text" size=3></td>
+<td align=center><input type="text" size=3></td>
+<tr>
+</table>
+</form>
+
+
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="tutorial.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of Prof. George Wiger (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  1/5 /96 .<P>
+
+Last Updated: Sunday, February 09, 1997 13:31:27
+
+
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/balanceredox.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:55 GMT -->
+</html>

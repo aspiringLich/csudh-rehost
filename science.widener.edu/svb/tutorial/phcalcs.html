@@ -1,0 +1,176 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/phcalcs.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:48 GMT -->
+<head><title>pH Calculations</title>
+<script>
+function clear(){
+	document.forms[1].first.value=""
+	document.forms[1].second.value=0
+	document.forms[1].third.value=0
+}
+function display(pH,pOH,H,OH){
+	document.forms[1].first.value=""
+//Chooses which problem to display and then puts cursor in the first
+//empty cell
+	var k=Math.random()
+	if (k<.25){
+		document.forms[0].first.value=pH
+		document.forms[0].second.value=""
+		document.forms[0].third.value=""
+		document.forms[0].fourth.value=""
+		document.forms[0].second.focus()
+		document.forms[0].second.select()
+	}
+	else {if (k<.5){
+		document.forms[0].first.value=""
+		document.forms[0].second.value=pOH
+		document.forms[0].third.value=""
+		document.forms[0].fourth.value=""
+		document.forms[0].first.focus()
+		document.forms[0].first.select()
+}
+	else {if (k<.75){
+		document.forms[0].first.value=""
+		document.forms[0].second.value=""
+		document.forms[0].third.value=H
+		document.forms[0].fourth.value=""
+		document.forms[0].first.focus()
+		document.forms[0].first.select()
+}
+	else {document.forms[0].first.value=""
+		document.forms[0].second.value=""
+		document.forms[0].third.value=""
+		document.forms[0].fourth.value=OH	
+		document.forms[0].first.focus()
+		document.forms[0].first.select()
+}
+	}}}
+//Generates the starting values(pH,pOH)
+function values(){
+//Generates value with three significant figures
+	var start=Math.pow(14,Math.random())
+	start=Math.round(100*start)/100
+//chooses start to be pH or pOH
+	f=Math.random()
+	if (f>.5){var pH=start}
+	else {pH=14.00-start}
+	var pOH=14.00-pH
+//Separates the orders and mantissas of the logs
+	var CH1=pOH-Math.floor(pOH)
+//Calculates the coefficent for H and converts to three sig figures
+	var CH2=Math.pow(10,CH1)
+	var CH2=Math.round(100*CH2)/100
+//Calculates the coefficent for OH to 3 sig figures
+	var COH2=Math.round(1000/CH2)/100
+	var H=CH2+"e-"+Math.floor(pH+1)
+	var OH=COH2+"e-"+Math.floor(pOH+1)
+//Passes the numbers to the display function
+	display(pH,pOH,H,OH)	
+}
+//Clears the table		
+function zeroout(form){
+	for (var i=0;i<4;i++){
+	form.elements[i].value=""}
+}
+//Checks the answers by seeing how the various pairs compare
+function answer(form){
+	var H=Math.pow(10,-(1.0*form.first.value))
+	var OH=Math.pow(10,-(1.0*form.second.value))
+	if (  1.0*form.first.value + 1.0*form.second.value>13.95 &
+		1.0*form.first.value + 1.0*form.second.value<14.05 &
+		form.third.value>.95*H &
+		form.third.value<1.05*H &
+		form.fourth.value>.95*OH &
+		form.fourth.value<1.05*OH){
+		document.forms[1].first.value="correct"
+		document.forms[1].second.value++
+		document.forms[1].third.value++}
+	else {document.forms[1].first.value="incorrect"
+		document.forms[1].second.value++}
+}
+//clears all the windows
+
+	
+	
+</script>
+</head>
+<body onLoad=clear()>
+<h2>pH, pOH, [H<sup>+</sup>] and [OH<sup>-</sup>]</h2>
+This page is a drill and practice exercise in basic pH calculations. When
+you press "New Problem" a value will appear in one of the windows. You must
+properly fill in the other three windows. Pressing "Check Answer" does so and
+returns the result in the second table. If you get a problem incorrect, you
+should retry it until it is correct. Use the "e" notation to enter numbers
+in scientific notation:<br>
+<h4>Hints</h4>
+<ul>
+<li>Use <b>TAB</b> to move between cells
+<li>1.2*10<sup>-3</sup> would be entered 1.2e-3
+<li>"Clear" clears all the entries, including your results
+</ul><hr>
+<h3>Problems</h3>
+<form method="post">
+<table border=4>
+<tr>
+<td align=center><b>pH</td>
+<td align=center><b>pOH</td>
+<td align=center><b>[H<sup>+</sup>]</td>
+<td align=center><b>[OH<sup>-</sup>]</td>
+</tr>
+<tr>
+<td><input type="text" name=first size=8></td>
+<td><input type="text" name=second size=8></td>
+<td><input type="text" name=third size=12></td>
+<td><input type="text" name=fourth size=12></td>
+</tr>
+<td><input type="button" value="New Problem" onClick=values()></td>
+<td><input type="button" value="Check Answer" onClick=answer(this.form)></td>
+<td><input type="button" value="clear" onClick=zeroout(this.form)></td>
+</tr>
+</table>
+</form><br>
+<form method=post>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=first size=12></td>
+<td align=center><input name=second type="text" size=4 ></td>
+<td align=center><input name=third type="text" size=4 ></td>
+</tr>
+</table>
+</form><br>
+ <br>
+
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<a href="https://science.widener.edu/~svanbram/chem145/chem145.html">a</a>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+
+
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/phcalcs.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:48 GMT -->
+</html>

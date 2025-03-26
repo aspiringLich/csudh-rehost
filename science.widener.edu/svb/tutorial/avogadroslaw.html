@@ -1,0 +1,155 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/avogadroslaw.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:47 GMT -->
+<head>
+<title>Avogadros Law</title>
+<script language="javascript">
+function clear(){
+for (var i=0;i<6;i++){
+	document.forms[0].elements[i].value=""}
+	document.forms[2].elements[0].value=""
+}
+function cleanse(){
+clear()
+document.forms[2].elements[1].value=0
+document.forms[2].elements[2].value=0
+}
+function begin(){
+//clear()
+//first calculate three values,V1,V2 and n1
+var V1=Math.round(100*Math.pow(10,Math.random()))/100
+var V2=Math.round(100*Math.pow(10,Math.random()))/100
+var n1=Math.round(1000*Math.random())/1000
+//calculate P2
+var n2=Math.round(10*V2*(n1/V1))/10
+//Pass the values to the display function
+display (n1,V1,n2,V2)
+}
+function display(n1,V1,n2,V2){
+if (Math.random()>.5){
+	V1=Math.round(1e3*V1)
+	dimv1="mL"}
+else{dimv1="L"}
+if (Math.random()>.5){
+	V2=Math.round(1e3*V2)
+	dimv2="mL"}
+else{dimv2="L"}
+document.forms[0].elements[0].value=n1
+document.forms[0].elements[1].value=V1
+document.forms[0].elements[2].value=dimv1
+document.forms[0].elements[3].value=n2
+document.forms[0].elements[4].value=V2
+document.forms[0].elements[5].value=dimv2
+//go to the function which blanks a cell and sets problem
+problem()
+}
+whichone=0
+theanswer=0
+function problem(){
+h=2
+while(h==2){
+	h=Math.floor(5*Math.random())
+	}
+theanswer=document.forms[0].elements[h].value
+document.forms[0].elements[h].value=""
+whichone=h
+document.forms[0].elements[h].focus()
+document.forms[0].elements[h].select()
+}
+function answer(){
+document.forms[2].elements[1].value++
+var h=whichone
+if (theanswer<1.05*document.forms[0].elements[h].value &
+	theanswer>.95*document.forms[0].elements[h].value)
+{ 
+	document.forms[2].elements[0].value="correct"
+	document.forms[2].elements[2].value++}
+	else {
+	document.forms[2].elements[0].value="incorrect"}
+}
+</script>
+</head>
+<body onLoad=cleanse()>
+<h2>Avogadro's Law</h2>
+Avogadro's Law states that under conditions of constant pressure and temperature, there is
+a direct relationship between the volume and number of moles for an ideal gas. When you press
+"New Problem", all but one of the cells will fill. The cursor will be in the
+empty cell. Calculate the missing quantity, paying close attention to all of the
+dimensions, enter it in the cell and press "Check Answer". Results appear in the second
+table where running totals are also kept. If you get a problem wrong, you should redo it.<br>
+<form>
+<table border=4>
+<tr>
+<td><b>n1</b></td>
+<td><b>V1</b></td>
+<td></td>
+<td></td>
+<td><b>n2</b></td>
+<td><b>V2</b></td>
+<td></td>
+</tr>
+<tr>
+<td><input type=text size =4></td>
+<td><input type=text size =4></td>
+<td><input type=text size =2></td>
+<td></td>
+<td><input type=text size =4></td>
+<td><input type=text size =4></td>
+<td><input type=text size =2></td>
+</tr>
+</table>
+</form>
+<form>
+<table>
+<tr>
+<td><input type=button value="New Problem" onClick=begin()>
+<td><input type=button value="Check Answer" onClick=answer()>
+</tr>
+</table>
+</form>
+<form>
+<table border=4>
+<tr>
+<td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td align=center><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" size=12></td>
+<td align=center><input type="text" size=4 ></td>
+<td align=center><input type="text" size=4 ></td>
+</tr>
+</table>
+</form>
+<br><br>
+ 
+ 
+
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/avogadroslaw.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:47 GMT -->
+</html>

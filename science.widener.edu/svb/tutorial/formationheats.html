@@ -1,0 +1,985 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/formationheats.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:55 GMT -->
+<head>
+<title>Heats of Formation</title>
+<script>
+//globals
+j=0
+tried=0
+corrt=0
+totl=0
+num=0
+theanswer=0
+gtotal=0
+function clear(){
+        document.forms[0].results.value=""
+        document.forms[0].total.value=totl
+        document.forms[0].correct.value=corrt
+}
+function MakeArray(n){
+        this.length=n
+        for (var i=1;i<=n;i++){
+
+        this[i]= 0}
+
+}
+function dataset(name,formula,phase,heat){
+        this.name=name
+
+        this.formula=formula
+
+        this.phase=phase
+
+        this.heat=heat
+
+        }
+function rxn(reagents,products,heat){
+        this.reagents=reagents
+
+        this.products=products
+
+        this.heat=heat
+
+}
+which=new MakeArray(100)
+heats=new MakeArray(500)
+for(j=1;j<=500;j++){heats[j]=""}
+
+//start aluminum
+heats[1]=new dataset("aluminum chloride","AlCl<SUB>3</SUB>","solid",-705.6)  
+heats[2]=new dataset("dialuminum trichloride","Al<SUB>2</SUB>Cl<SUB>6</SUB>","solid",-1291) 
+heats[3]=new dataset("aluminum trifluoride", "AlF<SUB>3</SUB>","solid",-1504)         
+heats[4]=new dataset("aluminum oxide","Al<SUB>2</SUB>O<SUB>3</SUB>","solid",-1676)
+heats[5]=new dataset("aluminum phosphate","AlPO<SUB>4</SUB>","solid",-1734)
+heats[6]=new dataset("aluminum hydroxide","Al(OH)<SUB>3</SUB>","solid",-1276)        
+heats[7]=new dataset("aluminum sulfate","Al<SUB>2</SUB>(SO<SUB>4</SUB>)<SUB>3</SUB>","solid",-3441)
+heats[8]=new dataset("")
+heats[9]=new dataset("")
+heats[10]=new dataset("")
+heats[11]=new dataset("")
+heats[12]=new dataset("")
+heats[13]=new dataset("")
+heats[14]=new dataset("")
+heats[15]=new dataset("")
+heats[16]=new dataset("")
+//start barium         
+heats[17]=new dataset("barium carbonate","BaCO<SUB>3</SUB>","solid",-1216)       
+heats[18]=new dataset("barium chloride","BaC1<SUB>2</SUB>","solid",-858.1)     
+heats[19]=new dataset("barium fluoride","BaF<SUB>2</SUB>","solid",-1209)    
+heats[20]=new dataset("barium oxide","BaO","solid",-548.1)
+heats[21]=new dataset("barium hydroxide","Ba(OH)<SUB>2</SUB>","solid",-946)        
+heats[22]=new dataset("barium nitrate","Ba(NO<SUB>3</SUB>)<SUB>2</SUB>","solid",-992)
+heats[23]=new dataset("barium sulfate","BaSO<SUB>4</SUB>","solid",-1473)
+heats[24]=new dataset("")
+heats[25]=new dataset("")
+heats[26]=new dataset("")
+heats[27]=new dataset("")
+heats[28]=new dataset("")
+heats[29]=new dataset("")
+heats[30]=new dataset("")
+heats[31]=new dataset("")
+//start boron
+heats[32]=new dataset("boron trichloride","BCl<SUB>3</SUB>","liquid",-427.2)         
+heats[33]=new dataset("boron trifluoride","BF<SUB>3</SUB>","gas",-1137)
+heats[34]=new dataset("diborane","B<sub>2</sub>H<SUB>6</SUB>","gas",36)
+heats[35]=new dataset("boron oxide","B<sub>2</sub>O<SUB>3</SUB>","solid",-1273)
+heats[36]=new dataset("boric acid","H<SUB>3</SUB>BO<SUB>3</SUB>","solid",-1094)
+heats[37]=new dataset("sodium borohydride","NaBH4","solid",-183)
+heats[38]=new dataset("bromine trifluoride","BrF<SUB>3</SUB>","gas",- 255.6)    
+heats[39]=new dataset("")
+heats[40]=new dataset("")
+heats[41]=new dataset("")
+heats[42]=new dataset("")
+heats[43]=new dataset("")
+//start cadmium
+heats[44]=new dataset("cadmium oxide","CdO","solid",-258)
+heats[45]=new dataset("cadmium chloride","CdCl<SUB>2</SUB>","solid",-391)
+heats[46]=new dataset("")
+heats[47]=new dataset("")
+heats[48]=new dataset("")
+heats[49]=new dataset("")
+heats[50]=new dataset("")
+//start calcium
+heats[51]=new dataset("calcium carbonate","CaC0<SUB>3</SUB>","solid",-1207)             
+heats[52]=new dataset("calcium chloride","CaC1<sub>2</sub>","solid",-795.8)
+heats[53]=new dataset("calcium fluoride","CaF<sub>2</sub>","solid",-1220)               
+heats[54]=new dataset("calcium nitrate","Ca(NO<SUB>3</SUB>)<sub>2</sub>","solid",-938.4)         
+heats[55]=new dataset("calcium oxide","CaO","solid",-635.1)             
+heats[56]=new dataset("calcium hydroxide","Ca(OH)<sub>2</sub>","solid",-986.1)           
+heats[57]=new dataset("calcium phosphate","Ca<SUB>3</SUB>(PO<SUB>4</SUB>)<sub>2</sub>","solid",-4121)           
+heats[58]=new dataset("calcium sulfate","CaSO<SUB>4</SUB>","solid",-1434)             
+heats[59]=new dataset("")
+heats[60]=new dataset("")
+heats[61]=new dataset("")
+heats[62]=new dataset("")
+heats[63]=new dataset("")
+heats[64]=new dataset("")
+heats[65]=new dataset("")
+heats[66]=new dataset("")
+heats[67]=new dataset("")
+heats[68]=new dataset("")
+//start carbon
+heats[69]=new dataset("carbon tetrachloride","CCl<SUB>4</SUB>","liquid",-135.4)         
+heats[70]=new dataset("carbon dioxide","CO<sub>2</sub>","gas",-393.3)
+heats[71]=new dataset("carbon monoxide","CO","gas",-110.5)       
+heats[72]=new dataset("phosgene","COCl<sub>2</sub>","gas",-220.9)        
+heats[73]=new dataset("carbon disulfide","CS<sub>2</sub>","liquid",89.70) 
+heats[74]=new dataset("methane","CH<sub>4</sub>","gas",-74.81)
+heats[75]=new dataset("formaldehyde","CH<sub>2</sub>O","gas",-94.98)
+heats[76]=new dataset("methanol","CH<sub>4</sub>OH","gas",-201.2)
+heats[77]=new dataset("methanol","CH<sub>4</sub>OH","liquid",-238.6)
+heats[78]=new dataset("ethanol","C<SUB>2</SUB>H<SUB>6</SUB>O","liquid",-277.4)
+heats[79]=new dataset("ethane","C<SUB>2</SUB>H<SUB>6</SUB>","gas",-84.94)
+heats[80]=new dataset("acetylene","C<SUB>2</SUB>H<SUB>2</SUB>",-84.68)
+heats[81]=new dataset("propane","C<SUB>3</SUB>H<SUB>8</SUB>","gas",-103.8)
+heats[82]=new dataset("butane","C<SUB>4</SUB>H<SUB>10</SUB>","gas",-125.7)
+heats[83]=new dataset("benzene","C<SUB>6</SUB>H<SUB>6</SUB>","liquid",48.99)
+heats[84]=new dataset("acetone","(CH<SUB>3</SUB>)<SUB>2</SUB>CO","liquid",-247.6)
+heats[85]=new dataset("acetic acid","CH<SUB>3</SUB>COOH","liquid",-484.1)
+heats[86]=new dataset("methylamine","CH<SUB>3</SUB>NH<SUB>2</SUB>","gas",-23)
+heats[87]=new dataset("methyl chloride","CH<SUB>3</SUB>Cl","gas",-80.8)
+heats[88]=new dataset("dichloromethane","CH<SUB>2</SUB>Cl<SUB>2</SUB>","liquid",-121)
+heats[88]=new dataset("chloroform","CHCl<SUB>3</SUB>","liquid",-134.5)
+heats[89]=new dataset("")
+heats[90]=new dataset("")
+heats[91]=new dataset("")
+heats[92]=new dataset("")
+heats[93]=new dataset("")
+heats[94]=new dataset("")
+heats[95]=new dataset("")
+heats[96]=new dataset("")
+heats[97]=new dataset("")
+heats[98]=new dataset("")
+heats[99]=new dataset("")
+heats[100]=new dataset("")
+heats[101]=new dataset("")
+heats[102]=new dataset("")
+heats[103]=new dataset("")
+heats[104]=new dataset("")
+heats[105]=new dataset("")
+heats[106]=new dataset("")
+heats[107]=new dataset("")
+heats[108]=new dataset("")
+heats[109]=new dataset("")
+heats[110]=new dataset("")
+heats[111]=new dataset("")
+heats[112]=new dataset("")
+heats[113]=new dataset("")
+heats[114]=new dataset("")
+heats[115]=new dataset("")
+heats[116]=new dataset("")
+heats[117]=new dataset("")
+heats[118]=new dataset("")
+heats[119]=new dataset("")
+heats[120]=new dataset("")
+//start chlorine
+heats[121]=new dataset("chlorine trifluoride","ClF<SUB>3</SUB>","gas",-163.2)             
+heats[122]=new dataset("chlorine dioxide","ClO<sub>2</sub>","gas",103)                 
+heats[123]=new dataset("")
+heats[124]=new dataset("")
+heats[125]=new dataset("")
+heats[126]=new dataset("")
+heats[127]=new dataset("")
+heats[128]=new dataset("")
+heats[129]=new dataset("")
+heats[130]=new dataset("")
+heats[131]=new dataset("")
+heats[132]=new dataset("")
+heats[133]=new dataset("")
+heats[134]=new dataset("")
+heats[135]=new dataset("")
+heats[136]=new dataset("")
+heats[137]=new dataset("")
+heats[138]=new dataset("")
+heats[139]=new dataset("")
+heats[140]=new dataset("")
+//start copper
+heats[141]=new dataset("cupric oxide","CuO","solid",-157.3)           
+heats[142]=new dataset("copper(II)hydoxide","Cu(OH)<sub>2</sub>","solid",-450)
+heats[143]=new dataset("")
+heats[144]=new dataset("")
+heats[145]=new dataset("")
+heats[146]=new dataset("")
+heats[147]=new dataset("")
+heats[148]=new dataset("")
+heats[149]=new dataset("")
+heats[150]=new dataset("")
+heats[151]=new dataset("")
+heats[152]=new dataset("")
+heats[153]=new dataset("")
+heats[154]=new dataset("")
+heats[155]=new dataset("")
+heats[156]=new dataset("")
+heats[157]=new dataset("")
+//start hydrogen
+heats[158]=new dataset("hydrogen bromide","HBr","gas",-36.40)
+heats[159]=new dataset("hydrogen chloride","HCl","gas",-92.31)     
+heats[160]=new dataset("hydrogen cyanide","HCN","gas",135)              ;
+heats[161]=new dataset("hydrogen fluoride","HF","gas",-271.1)          
+heats[162]=new dataset("hydrogen iodide","HI","gas",26.48)            
+heats[163]=new dataset("hydrogen nitrate","HNO<SUB>3</SUB>","liquid",-173.2)        
+heats[164]=new dataset("water","H<SUB>2</SUB>O","gas",-241.8)
+heats[165]=new dataset("water","H<sub>2</sub>O","liquid",-285.8)
+heats[166]=new dataset("hydrogen peroxide","H<sub>2</sub>O<sub>2</sub>","gas",-136.1)
+heats[167]=new dataset("hydrogen peroxide","H<sub>2</sub>O<sub>2</sub>","liquid",-187.8)
+heats[168]=new dataset("hydrogen sulfide","H<sub>2</sub>S","gas",-20.63)
+heats[169]=new dataset("hydrogen sulfate","H<sub>2</sub>SO<SUB>4</SUB>","liquid",-814.0)
+heats[170]=new dataset("")
+heats[171]=new dataset("")
+heats[172]=new dataset("")
+heats[173]=new dataset("")
+heats[174]=new dataset("")
+heats[175]=new dataset("")
+heats[176]=new dataset("")
+heats[177]=new dataset("")
+heats[178]=new dataset("")
+heats[179]=new dataset("")
+//start iron
+heats[180]=new dataset("iron(II)carbonate","FeCO<SUB>3</SUB>","solid",-740.6)
+heats[181]=new dataset("iron(III)chloride","FeC1<SUB>3</SUB>","solid",-399.5)           
+heats[182]=new dataset("iron(II)oxide","FeO","solid",-272)             
+heats[183]=new dataset("iron(III)oxide","Fe<sub>2</sub>O<SUB>3</SUB>","solid",-824.2)         
+heats[184]=new dataset("magnetite","Fe<SUB>3</SUB>O<SUB>4</SUB>","solid",-1118)           
+heats[185]=new dataset("iron(III)hydroxide","Fe(OH)<SUB>3</SUB>","solid",-823)       
+heats[186]=new dataset("")
+heats[187]=new dataset("")
+heats[188]=new dataset("")
+heats[189]=new dataset("")
+heats[190]=new dataset("")
+heats[191]=new dataset("")
+heats[192]=new dataset("")
+heats[193]=new dataset("")
+heats[194]=new dataset("")
+heats[195]=new dataset("")
+heats[196]=new dataset("")
+heats[197]=new dataset("")
+heats[198]=new dataset("")
+heats[199]=new dataset("")
+heats[200]=new dataset("")
+//start lead
+heats[201]=new dataset("lead(II)iodide","PbI<sub>2</sub>","solid",-175.5)      
+heats[202]=new dataset("lead(IV)oxide","PbO<sub>2</sub>","solid",-277)          
+heats[203]=new dataset("lead(II)sulfate","PbSO<SUB>4</SUB>","solid",-919.9)      
+heats[204]=new dataset("")
+heats[205]=new dataset("")
+heats[206]=new dataset("")
+heats[207]=new dataset("")
+heats[208]=new dataset("")
+heats[209]=new dataset("")
+heats[210]=new dataset("")
+heats[211]=new dataset("")
+heats[212]=new dataset("")
+heats[213]=new dataset("")
+heats[214]=new dataset("")
+heats[215]=new dataset("")
+heats[216]=new dataset("")
+heats[217]=new dataset("")
+heats[218]=new dataset("")
+//start lithium
+heats[219]=new dataset("lithium chloride","LiCl","solid",-408.6)        
+heats[220]=new dataset("lithium hydroxide","LiOH","solid",-484.9)        
+heats[221]=new dataset("lithium nitrate","LiNO<SUB>3</SUB>","solid",-483)               
+heats[222]=new dataset("")
+heats[223]=new dataset("")
+heats[224]=new dataset("")
+heats[225]=new dataset("")
+heats[226]=new dataset("")
+heats[227]=new dataset("")
+heats[228]=new dataset("")
+heats[229]=new dataset("")
+heats[230]=new dataset("")
+heats[231]=new dataset("")
+heats[232]=new dataset("")
+heats[233]=new dataset("")
+heats[234]=new dataset("")
+heats[235]=new dataset("")
+heats[236]=new dataset("")
+//start magnesium
+heats[237]=new dataset("magnesium chloride","MgCl<sub>2</sub>","solid",-641.3)                 
+heats[238]=new dataset("magnesium carbonate","MgCO<SUB>3</SUB>","solid",-1096)      
+heats[239]=new dataset("magnesium fluoride","MgF<sub>2</sub>","solid",-1124)        
+heats[240]=new dataset("magnesium oxide","MgO","solid",-601.7)        
+heats[241]=new dataset("magnesium hydroxide","Mg(OH)<sub>2</sub>","solid",-924.7)               
+heats[242]=new dataset("magnesium sulfate","MgSO<SUB>4</SUB>","solid",-1285)        
+heats[243]=new dataset("")
+heats[244]=new dataset("")
+heats[245]=new dataset("")
+heats[246]=new dataset("")
+heats[247]=new dataset("")
+heats[248]=new dataset("")
+heats[249]=new dataset("")
+heats[250]=new dataset("")
+heats[251]=new dataset("")
+heats[252]=new dataset("")
+heats[253]=new dataset("")
+heats[254]=new dataset("")
+heats[255]=new dataset("")
+heats[256]=new dataset("")
+heats[257]=new dataset("")
+//start manganese
+heats[258]=new dataset("manganese(IV)oxide","MnO<sub>2</sub>","solid",-520)        
+heats[259]=new dataset("")
+heats[260]=new dataset("")
+heats[261]=new dataset("")
+heats[262]=new dataset("")
+heats[263]=new dataset("")
+heats[264]=new dataset("")
+heats[265]=new dataset("")
+heats[266]=new dataset("")
+heats[267]=new dataset("")
+heats[268]=new dataset("")
+heats[269]=new dataset("")
+heats[270]=new dataset("")
+heats[271]=new dataset("")
+heats[272]=new dataset("")
+heats[273]=new dataset("")
+//start mercury
+heats[274]=new dataset("mercury(II)oxide","HgO","solid",-90.83) 
+heats[275]=new dataset("")
+heats[276]=new dataset("")
+heats[277]=new dataset("")
+heats[278]=new dataset("")
+heats[279]=new dataset("")
+heats[280]=new dataset("")
+heats[281]=new dataset("")
+heats[282]=new dataset("")
+heats[283]=new dataset("")
+heats[284]=new dataset("")
+heats[285]=new dataset("")
+heats[286]=new dataset("")
+heats[287]=new dataset("")
+//start nitrogen
+heats[288]=new dataset("nitrogen trifluoride","NF<SUB>3</SUB>","gas",-124.7)
+heats[289]=new dataset("ammonia","NH<SUB>3</SUB>","gas",-46.11)    
+heats[290]=new dataset("ammonium bromide","NH<SUB>4</SUB>Br","solid",-270.8) 
+heats[291]=new dataset("ammonium chloride","NH<SUB>4</SUB>C1","solid",-314.4)            
+heats[292]=new dataset("ammonium bicarbonate","NH<SUB>4</SUB>HCO<SUB>3</SUB>","solid",-849.4)          
+heats[293]=new dataset("ammonium iodide","NH<SUB>4</SUB>I","solid",-201.4) 
+heats[294]=new dataset("ammonium nitrate","NH<SUB>4</SUB>NO<SUB>3</SUB>","solid",-365.6)           
+heats[295]=new dataset("ammonium nitrite","NH<SUB>4</SUB>NO<SUB>2</SUB>","solid",-339.9)          
+heats[296]=new dataset("ammonium sulfate","(NH<SUB>4</SUB>)<sub>2</sub>SO<SUB>4</SUB>","solid",-1181)          
+heats[297]=new dataset("hydrazine","N<sub>2</sub>H<SUB>4</SUB>","gas",95.40)
+heats[298]=new dataset("nitrogen monoxide","NO","gas",90.25)
+heats[299]=new dataset("nitrous oxide","N<sub>2</sub>O","gas",82.05)     
+heats[300]=new dataset("nitrogen dioxide","NO<sub>2</sub>","gas",33.18)     
+heats[301]=new dataset("dinitrogen tetroxide","N<sub>2</sub>O<SUB>4</SUB>","gas",9.16)      
+heats[302]=new dataset("dinitrogen pentoxide","N<sub>2</sub>O<SUB>5</SUB>","gas",11.3)     
+heats[303]=new dataset("nitrosyl bromide","NOBr","gas",82.17)    
+heats[304]=new dataset("nitrosyl chloride","NOCl","gas",51.71)
+heats[305]=new dataset("")
+heats[306]=new dataset("")
+heats[307]=new dataset("")
+heats[308]=new dataset("")
+heats[309]=new dataset("")
+heats[310]=new dataset("")
+heats[311]=new dataset("")
+heats[312]=new dataset("")
+heats[313]=new dataset("")
+heats[314]=new dataset("")
+//start oxygen
+heats[315]=new dataset("ozone","O<SUB>3</SUB>","gas",142.7)           
+heats[316]=new dataset("oxygen difluoride","OF<sub>2</sub>","gas",24.5)
+heats[317]=new dataset("")
+heats[318]=new dataset("")
+heats[319]=new dataset("")
+heats[320]=new dataset("")
+heats[321]=new dataset("")
+heats[322]=new dataset("")
+heats[323]=new dataset("")
+heats[324]=new dataset("")
+heats[325]=new dataset("")
+heats[326]=new dataset("")
+//start phosphorus
+heats[327]=new dataset("phosphorus trichloride","PCl<SUB>3</SUB>","gas",-287.0)                
+heats[328]=new dataset("phosphorus pentachloride","PCl<SUB>5</SUB>","gas",-374.9)                  
+heats[329]=new dataset("phosphene","PH<SUB>3</SUB>","gas",5.4)              
+heats[330]=new dataset("tetraphosphorus decoxide","P<SUB>4</SUB>O<SUB>10</SUB>","solid",-2984)
+heats[331]=new dataset("")
+heats[332]=new dataset("")
+heats[333]=new dataset("")
+heats[334]=new dataset("")
+heats[335]=new dataset("")
+heats[336]=new dataset("")
+heats[337]=new dataset("")
+heats[338]=new dataset("")
+heats[339]=new dataset("")
+heats[340]=new dataset("")
+//start potassium
+heats[341]=new dataset("potassium bromide","KBr","solid",-393.8)                
+heats[342]=new dataset("potassium cyanide","KCN","solid",-113)
+heats[343]=new dataset("potassium chloride","KCl","solid",-436.7)                
+heats[344]=new dataset("potassium chlorate","KClO<SUB>3</SUB>","solid",-397.7)                
+heats[345]=new dataset("potassium perchlorate","KCIO<SUB>4</SUB>","solid",-432.8)                
+heats[346]=new dataset("potassium fluoride","KF","solid",-567.3)
+heats[347]=new dataset("potassium iodide","KI","solid",-327.9)                  
+heats[348]=new dataset("potassium nitrate","KNO<SUB>3</SUB>","solid",-494.6)                
+heats[349]=new dataset("potassium hydroxide","KOH","solid",-424.8)                  
+heats[350]=new dataset("potassium sulfate","K<sub>2</sub>SO4","solid",-1438)                  
+heats[351]=new dataset("")
+heats[352]=new dataset("")
+heats[353]=new dataset("")
+heats[354]=new dataset("")
+heats[355]=new dataset("")
+heats[356]=new dataset("")
+heats[357]=new dataset("")
+heats[358]=new dataset("")
+heats[359]=new dataset("")
+heats[360]=new dataset("")
+//start silicon
+heats[361]=new dataset("silane","SiH<SUB>4</SUB>","gas",34)                               
+heats[362]=new dataset("silicon dioxide","SiO<sub>2</sub>(quartz)","solid",-910.9)                     
+heats[363]=new dataset("")
+heats[364]=new dataset("")
+heats[365]=new dataset("")
+heats[366]=new dataset("")
+heats[367]=new dataset("")
+heats[368]=new dataset("")
+heats[369]=new dataset("")
+heats[370]=new dataset("")
+heats[371]=new dataset("")
+heats[372]=new dataset("")
+//start silver
+heats[373]=new dataset("silver bromide","AgBr","solid",-100.4)                      
+heats[374]=new dataset("silver chloride","AgC1","solid",-127.1)              
+heats[375]=new dataset("silver iodide","AgI","solid",-61.84)                     
+heats[376]=new dataset("silver nitrate","AgNO<SUB>3</SUB>","solid",-124.4)                 
+heats[377]=new dataset("silver oxide","Ag<sub>2</sub>O","solid",-31.0)                           
+heats[378]=new dataset("silver sulfate","Ag<sub>2</sub>SO<SUB>4</SUB>","solid",- 715.9)                                      
+heats[379]=new dataset("")
+heats[380]=new dataset("")
+heats[381]=new dataset("")
+heats[382]=new dataset("")
+heats[383]=new dataset("")
+heats[384]=new dataset("")
+heats[385]=new dataset("")
+heats[386]=new dataset("")
+heats[387]=new dataset("")
+heats[388]=new dataset("")
+//start sodium
+heats[389]=new dataset("sodium bromide","NaBr","solid",-361.1)                            
+heats[390]=new dataset("sodium carbonate","Na<sub>2</sub>CO<SUB>3</SUB>","solid",-1131)             
+heats[391]=new dataset("sodium bicarbonate","NaHCO<SUB>3</SUB>","solid",-950.8)           
+heats[392]=new dataset("sodium chloride","NaCl","solid",-411.1)                                          
+heats[393]=new dataset("sodium chlorate","NaClO<SUB>3</SUB>","solid",-365.8)            
+heats[394]=new dataset("sodium perchlorate","NaC1O<SUB>4</SUB>","solid",-383.3)                          
+heats[395]=new dataset("sodium fluoride","NaF","solid",-573.70)                                          
+heats[396]=new dataset("sodium iodide","NaI","solid",-287.8)               
+heats[397]=new dataset("sodium nitrate","NaNO<SUB>3</SUB>","solid",-467.9)                                        
+heats[398]=new dataset("sodium peroxide","Na<sub>2</sub>O<sub>2</sub>","solid",-510.9)                           
+heats[399]=new dataset("sodium hydroxide","NaOH","solid",-425.6)              
+heats[400]=new dataset("sodium dihydrogenphosphate","NaH<sub>2</sub>PO<SUB>4</SUB>","solid",-1537)            
+heats[401]=new dataset("sodium hydrogenphosphate","Na<sub>2</sub>HPO<SUB>4</SUB>","solid",-1748)            
+heats[402]=new dataset("sodium phosphate","Na<SUB>3</SUB>PO<SUB>4</SUB>","solid",-1917)                            
+heats[403]=new dataset("sodium hydrogensulfate","NaHSO<SUB>4</SUB>","solid",-1125)                                        
+heats[404]=new dataset("sodium thiosulfate","Na<sub>2</sub>S<sub>2</sub>O<SUB>3</SUB>","solid",-1123)                             
+heats[405]=new dataset("")
+heats[406]=new dataset("")
+heats[407]=new dataset("")
+heats[408]=new dataset("")
+heats[409]=new dataset("")
+heats[410]=new dataset("")
+heats[411]=new dataset("")
+heats[412]=new dataset("")
+heats[413]=new dataset("")
+heats[414]=new dataset("")
+heats[415]=new dataset("")
+heats[416]=new dataset("")
+heats[417]=new dataset("")
+heats[418]=new dataset("")
+heats[419]=new dataset("")
+//start sulfur
+heats[420]=new dataset("Sulfur dioxide","SO<sub>2</sub>","gas",-296.6)
+heats[421]=new dataset("Hydrogen sulfate","H<sub>2</sub>SO<sub>4</sub>","liquid",-811.7)
+heats[422]=new dataset("Sulfur trioxide","SO<sub>3</sub>","gas",-395)
+heats[423]=new dataset("","S<sub>2</sub>Cl<sub>2</sub>","gas",-18.4)                   
+heats[424]=new dataset("sulfur hexafluoride","SF<SUB>6</SUB>","gas",-1209)                                 
+heats[425]=new dataset("sulfur dioxide","SO<sub>2</sub>","gas",-296.8)             
+heats[426]=new dataset("")
+heats[427]=new dataset("")
+heats[428]=new dataset("")
+heats[429]=new dataset("")
+heats[430]=new dataset("")
+heats[431]=new dataset("")
+heats[432]=new dataset("")
+heats[433]=new dataset("")
+heats[434]=new dataset("")
+heats[435]=new dataset("")
+heats[436]=new dataset("")
+heats[437]=new dataset("")
+heats[438]=new dataset("")
+heats[439]=new dataset("")
+heats[440]=new dataset("")
+//start tin
+heats[441]=new dataset("tin(IV)chloride","SnCl<SUB>4</SUB>","liquid",-511.3)           
+heats[442]=new dataset("tin(II)oxide","SnO","solid",-286)
+heats[443]=new dataset("tin(IV)oxide","SnO<sub>2</sub>","solid",-580.7) 
+heats[444]=new dataset("")
+heats[445]=new dataset("")
+heats[446]=new dataset("")
+heats[447]=new dataset("")
+heats[448]=new dataset("")
+heats[449]=new dataset("")
+heats[450]=new dataset("")
+heats[451]=new dataset("")
+heats[452]=new dataset("")
+heats[453]=new dataset("")
+heats[454]=new dataset("")
+heats[455]=new dataset("")
+heats[456]=new dataset("")
+heats[457]=new dataset("")
+//start titanium
+heats[458]=new dataset("titanium tetrachloride","TiCl<SUB>4</SUB>","gas",-763.2)
+heats[459]=new dataset("titanium tetrachloride","TiCl<SUB>4</SUB>","liquid",-804.2)           
+heats[460]=new dataset("titanium dioxide","TiO<sub>2</sub>","solid",-944.7)             
+heats[461]=new dataset("")
+heats[462]=new dataset("")
+heats[463]=new dataset("")
+heats[464]=new dataset("")
+heats[465]=new dataset("")
+heats[466]=new dataset("")
+heats[467]=new dataset("")
+heats[468]=new dataset("")
+heats[469]=new dataset("")
+heats[470]=new dataset("")
+heats[471]=new dataset("")
+heats[472]=new dataset("")
+heats[473]=new dataset("")
+//start uranium
+heats[474]=new dataset("uranium hexafluoride","UF<SUB>6</SUB>","solid",-2197) 
+heats[475]=new dataset("uranium(IV)oxide","UO<sub>2</sub>","solid",-1085)
+heats[476]=new dataset("")
+heats[477]=new dataset("")
+heats[478]=new dataset("")
+heats[479]=new dataset("")
+heats[480]=new dataset("")
+heats[481]=new dataset("")
+heats[482]=new dataset("")
+heats[483]=new dataset("")
+heats[484]=new dataset("")
+heats[485]=new dataset("")
+heats[486]=new dataset("")
+heats[487]=new dataset("")
+heats[488]=new dataset("")
+heats[489]=new dataset("")
+heats[490]=new dataset("")
+heats[491]=new dataset("")
+heats[492]=new dataset("")
+heats[493]=new dataset("")
+heats[494]=new dataset("")
+heats[495]=new dataset("")
+heats[496]=new dataset("")
+heats[497]=new dataset("")
+heats[498]=new dataset("")
+heats[499]=new dataset("")
+heats[500]=new dataset("")
+reaction=new MakeArray(200)
+reaction[1]=new rxn("CH<SUB>4</SUB>(g) + 2O<sub>2</sub>(g)","CO<sub>2</sub>(g) + 2H<sub>2</sub>O(g)",0)
+reaction[2]=new rxn("CH<SUB>4</SUB> + 3/2O<sub>2</sub>(g)","CO(g) + 2H<sub>2</sub>O(g)",0)
+reaction[3]=new rxn("C<sub>3</sub>H<SUB>8</SUB>(g) + 5O<sub>2</sub>(g)","3CO<sub>2</sub>(g) + 4H<sub>2</sub>O(g)",0)
+reaction[4]=new rxn("C<SUB>2</SUB>H<SUB>4</SUB>(g) + 3O<sub>2</sub>(g)","2CO<sub>2</sub>(g) + 2H<sub>2</sub>O(g)",0)
+reaction[5]=new rxn("C<SUB>2</SUB>H<SUB>4</SUB>(g) + 3O<sub>2</sub>(g)","2CO(g) + 2H<sub>2</sub>O(g)",0)
+reaction[6]=new rxn("C<sub>2</sub>H<SUB>2</SUB>(g) + 3/2O<sub>2</sub>(g)","2CO(g) + H<sub>2</sub>O(g)",0)
+reaction[7]=new rxn("C<sub>2</sub>H<SUB>2</SUB>(g) + 3O<sub>2</sub>(g)","2CO<sub>2</sub>(g) + 2H<sub>2</sub>O(g)",0)
+reaction[8]=new rxn("C<sub>2</sub>H<SUB>6</SUB>(g) + 5/2O<sub>2</sub>(g)","2CO(g) + 3H<sub>2</sub>O(g)",0)
+reaction[9]=new rxn("C<sub>2</sub>H<SUB>6</SUB>(g) + 7/2O<sub>2</sub>(g)","2CO<sub>2</sub>(g) + 3H<sub>2</sub>O(g)",0)
+reaction[10]=new rxn("C<sub>3</sub>H<SUB>8</SUB>(g) + 7/2O<sub>2</sub>(g)","3CO(g) + 4H<sub>2</sub>O(g)",0)
+reaction[11]=new rxn("C<sub>4</sub>H<SUB>10</SUB>(g) + 13/2O<sub>2</sub>(g)","4CO<sub>2</sub>(g) + 5H<sub>2</sub>O(g)",0)
+reaction[12]=new rxn("C<sub>4</sub>H<SUB>10</SUB>(g) + 9/2O<sub>2</sub>(g)","4CO(g) + 2H<sub>2</sub>O(g)",-800)
+reaction[13]=new rxn("C<sub>6</sub>H<SUB>6</SUB>(l) + 15/2O<sub>2</sub>(g)","6CO<sub>2</sub>(g) + 3H<sub>2</sub>O(g)",0)
+reaction[14]=new rxn("C<sub>6</sub>H<SUB>6</SUB>(l) + 3/2O<sub>2</sub>(g)","C(g) + 3H<sub>2</sub>O(g)",0)
+reaction[15]=new rxn("3H<sub>2</sub>(g) + N<sub>2</sub>(g)","2NH<sub>3</sub>",0) 
+reaction[16]=new rxn("2H<sub>2</sub>S(g) + O<sub>2</sub>(g)","2S(s) + 2H<sub>2</sub>O(g)",0) 
+reaction[17]=new rxn("HBr(g) + CH<sub>3</sub>OH(g)"," H<sub>2</sub>O(g) + CH<sub>3</sub>Br",0)
+reaction[18]=new rxn("Cl<sub>2</sub>(g) +  H<sub>2</sub>C=CH<sub>2</sub>(g)" ,"C<sub>2</sub>H<sub>4</sub>Cl<sub>2</sub>",0)
+reaction[19]=new rxn("H<sub>2</sub>(g) + CO(g)","H<sub>2</sub>C=0(g)",0)
+reaction[20]=new rxn("H<sub>2</sub>(g) + CO<sub>2</sub>(g)","H<sub>2</sub>C0<sub>2</sub>(g)",0)
+reaction[21]=new rxn("Br<sub>2</sub>(g) + CO(g)","Br<sub>2</sub>C=O(g)",0)
+reaction[22]=new rxn("Cl<sub>2</sub>(g) + CO(g)","Cl<sub>2</sub>C=O(g)",0)
+reaction[23]=new rxn("C(s) +  H<sub>2</sub>O(g)","H<sub>2</sub>C=O(g)",0)
+reaction[24]=new rxn("C<sub>2</sub>H<sub>2</sub>(g) +  2H<sub>2</sub>","2CH<sub>4</sub>(g)",0)
+reaction[25]=new rxn("CH<sub>4</sub>(g) +  Br<sub>2</sub>(l)","CH<sub>3</sub>Br(g) + HBr",0)
+reaction[26]=new rxn("CH<sub>4</sub>(g) +  Cl<sub>2</sub>(l)","CH<sub>3</sub>Cl(g) + HCl",0)
+reaction[27]=new rxn("H<sub>2</sub>C=O(g) +  HCl(g)","ClH<sub>2</sub>COH(g)",0)
+reaction[28]=new rxn("H<sub>2</sub>C=O(g)  + HBr(g)","BrH<sub>2</sub>COH(g)",0)
+reaction[29]=new rxn("H<SUB>2</SUB>O<SUB>2</SUB>(g)  +  H<sub>2</sub>C=O(g)","H<sub>2</sub>CO<sub>2</sub>(g) +  H<sub>2</sub>O(g)",0)
+reaction[30]=new rxn("C(s) + H<SUB>2</SUB>O<SUB>2</SUB>","H<sub>2</sub>CO<sub>2</sub>(g)",0)
+reaction[31]=new rxn("C(s)  +  O<sub>2</sub>","CO<sub>2</sub>(g)",0)
+reaction[32]=new rxn("2C(s)  +  O<sub>2</sub>","CO(g)",0)
+reaction[33]=new rxn("2HCl(g)  +  O<sub>2</sub>","2HOCl(g)",0)
+reaction[34]=new rxn("H<sub>2</sub>O<sub>2</sub>(g) +  Cl<sub>2</sub>(g)","2HOCl(g)",0)
+reaction[35]=new rxn("H<sub>2</sub>O<sub>2</sub>(g) +  F<sub>2</sub>(g)","2HOF(g)",0)
+reaction[36]=new rxn("H<sub>2</sub>O<sub>2</sub>(g) +  Br<sub>2</sub>(g)","2HOBr(g)",0)
+reaction[37]=new rxn("Cl<sub>2</sub>(g) + H<sub>2</sub>O(g)","HCl(g) + HOCl(g)",0)
+reaction[38]=new rxn("F<sub>2</sub>(g) + H<sub>2</sub>O(g)","HF(g) + HOF(g)",0)
+reaction[39]=new rxn("Br<sub>2</sub>(g) + H<sub>2</sub>O(g)","HBr(g) + HOBr(g)",0)
+reaction[35]=new rxn("")
+reaction[36]=new rxn("")
+reaction[37]=new rxn("")
+reaction[38]=new rxn("")
+reaction[39]=new rxn("")
+reaction[40]=new rxn("")
+reaction[41]=new rxn("")
+reaction[42]=new rxn("")
+reaction[43]=new rxn("")
+reaction[44]=new rxn("")
+reaction[45]=new rxn("")
+reaction[46]=new rxn("")
+reaction[47]=new rxn("")
+reaction[48]=new rxn("")
+reaction[49]=new rxn("")
+reaction[50]=new rxn("")
+reaction[51]=new rxn("")
+reaction[52]=new rxn("")
+reaction[53]=new rxn("")
+reaction[54]=new rxn("")
+reaction[55]=new rxn("")
+reaction[56]=new rxn("")
+reaction[57]=new rxn("")
+reaction[58]=new rxn("")
+reaction[59]=new rxn("")
+reaction[60]=new rxn("")
+reaction[61]=new rxn("")
+reaction[62]=new rxn("")
+reaction[63]=new rxn("")
+reaction[64]=new rxn("")
+reaction[65]=new rxn("")
+reaction[66]=new rxn("")
+reaction[67]=new rxn("")
+reaction[68]=new rxn("")
+reaction[69]=new rxn("")
+reaction[70]=new rxn("")
+reaction[71]=new rxn("")
+reaction[72]=new rxn("")
+reaction[73]=new rxn("")
+reaction[74]=new rxn("")
+reaction[75]=new rxn("")
+reaction[76]=new rxn("")
+reaction[77]=new rxn("")
+reaction[78]=new rxn("")
+reaction[79]=new rxn("")
+reaction[80]=new rxn("")
+reaction[81]=new rxn("")
+reaction[82]=new rxn("")
+reaction[83]=new rxn("")
+reaction[84]=new rxn("")
+reaction[85]=new rxn("")
+reaction[86]=new rxn("")
+reaction[87]=new rxn("")
+reaction[88]=new rxn("")
+reaction[89]=new rxn("")
+reaction[90]=new rxn("")
+reaction[91]=new rxn("")
+reaction[92]=new rxn("")
+reaction[93]=new rxn("")
+reaction[94]=new rxn("")
+reaction[95]=new rxn("")
+reaction[96]=new rxn("")
+reaction[97]=new rxn("")
+reaction[98]=new rxn("")
+reaction[99]=new rxn("")
+reaction[100]=new rxn("")
+reaction[101]=new rxn("")
+reaction[102]=new rxn("")
+reaction[103]=new rxn("")
+reaction[104]=new rxn("")
+reaction[105]=new rxn("")
+reaction[106]=new rxn("")
+reaction[107]=new rxn("")
+reaction[108]=new rxn("")
+reaction[109]=new rxn("")
+reaction[110]=new rxn("")
+reaction[111]=new rxn("")
+reaction[112]=new rxn("")
+reaction[113]=new rxn("")
+reaction[114]=new rxn("")
+reaction[115]=new rxn("")
+reaction[116]=new rxn("")
+reaction[117]=new rxn("")
+reaction[118]=new rxn("")
+reaction[119]=new rxn("")
+reaction[120]=new rxn("")
+reaction[121]=new rxn("")
+reaction[122]=new rxn("")
+reaction[123]=new rxn("")
+reaction[124]=new rxn("")
+reaction[125]=new rxn("")
+reaction[126]=new rxn("")
+reaction[127]=new rxn("")
+reaction[128]=new rxn("")
+reaction[129]=new rxn("")
+reaction[130]=new rxn("")
+reaction[131]=new rxn("")
+reaction[132]=new rxn("")
+reaction[133]=new rxn("")
+reaction[134]=new rxn("")
+reaction[135]=new rxn("")
+reaction[136]=new rxn("")
+reaction[137]=new rxn("")
+reaction[138]=new rxn("")
+reaction[139]=new rxn("")
+reaction[140]=new rxn("")
+reaction[141]=new rxn("")
+reaction[142]=new rxn("")
+reaction[143]=new rxn("")
+reaction[144]=new rxn("")
+reaction[145]=new rxn("")
+reaction[146]=new rxn("")
+reaction[147]=new rxn("")
+reaction[148]=new rxn("")
+reaction[149]=new rxn("")
+reaction[150]=new rxn("")
+reaction[151]=new rxn("")
+reaction[152]=new rxn("")
+reaction[153]=new rxn("")
+reaction[154]=new rxn("")
+reaction[155]=new rxn("")
+reaction[156]=new rxn("")
+reaction[157]=new rxn("")
+reaction[158]=new rxn("")
+reaction[159]=new rxn("")
+reaction[160]=new rxn("")
+reaction[161]=new rxn("")
+reaction[162]=new rxn("")
+reaction[163]=new rxn("")
+reaction[164]=new rxn("")
+reaction[165]=new rxn("")
+reaction[166]=new rxn("")
+reaction[167]=new rxn("")
+reaction[168]=new rxn("")
+reaction[169]=new rxn("")
+reaction[170]=new rxn("")
+reaction[171]=new rxn("")
+reaction[172]=new rxn("")
+reaction[173]=new rxn("")
+reaction[174]=new rxn("")
+reaction[175]=new rxn("")
+reaction[176]=new rxn("")
+reaction[177]=new rxn("")
+reaction[178]=new rxn("")
+reaction[179]=new rxn("")
+reaction[180]=new rxn("")
+function begin(){
+num++
+tried=0
+totl++
+document.forms[0].correct.value=corrt
+if(document.forms[0].makeprobs.checked==1){
+num=Math.ceil(39*Math.random())
+if(Math.random()>10){qust=image()}
+else{qust=reaction[num]['reagents']+"=>"+reaction[num]['products']
+        theanswer=reaction[num]['heat']}
+problem(qust)}
+}
+function image(){
+choose=Math.ceil(14*Math.random())
+qust="<img src=rxn"+choose+".gif>"
+return qust
+}
+function problem(qust){
+parent.frames[0].document.clear();
+parent.frames[0].document.open();
+parent.frames[0].document.writeln ("<html>");
+parent.frames[0].document.writeln ("<head>");
+parent.frames[0].document.writeln ("</head>");
+parent.frames[0].document.writeln ("<body bgcolor = FFFFFF >");
+parent.frames[0].document.writeln ();
+parent.frames[0].document.write (qust);
+parent.frames[0].document.writeln ();
+parent.frames[0].document.close();
+}
+function cleanup(){
+for(j=0;j<=num-1;j++){
+
+parent.frames[3].document.forms[0].elements[3*j].checked=0;
+
+parent.frames[3].document.forms[0].elements[3*j+1].checked=0;
+
+parent.frames[3].document.forms[0].elements[3*j+2].value=1;
+
+}
+}
+function display(){
+num=0
+
+parent.frames[3].document.clear()
+parent.frames[3].document.writeln ("<html>");
+parent.frames[3].document.writeln ("<head><title>parent.frames[1]</title>");
+parent.frames[3].document.writeln ("</head>"); 
+parent.frames[3].document.writeln ("<body bgcolor = FFFFFF>");
+parent.frames[3].document.writeln ("<form><table>");
+for (j=0;j<=499;j++){if(heats[j+1]['name']!=""){
+
+parent.frames[3].document.writeln ("<tr><td align=center width=40><input type='checkbox' value=-1 name='cmpd",num,"' onClick='this.form.elements[",3*num+1,"].checked=0,this.form.elements[",3*num+2,"].select(),this.form.elements[",3*num+2,"].focus()'></td>");
+parent.frames[3].document.writeln("<td align=center width=40><input type='checkbox' value=1 name='cmpd",num,"' onClick='this.form.elements[",3*num,"].checked=0,this.form.elements[",3*num+2,"].select(),this.form.elements[",3*num+2,"].focus()'></td>");
+parent.frames[3].document.writeln("<td align=center width=40><input type=text size=2 value=1 name='heat",num,"' </td>");
+parent.frames[3].document.writeln("<td align=center width=60><b>",heats[j+1]['formula'],"</b>(",heats[j+1]['phase'],")</td><tr>");
+num++
+}
+}
+parent.frames[3].document.writeln ("</table></form></body>");
+parent.frames[3].document.writeln ("</html>");
+parent.frames[3].document.close();
+}
+function proceed(form){
+reac=""
+pro=""
+num=0
+for(j=1;j<=500;j++){
+
+if(heats[j]['name']!=""){
+if(form.elements[3*num].checked==1){
+
+        reac=reac+(form.elements[3*num+2].value)+" X "+heats[j]['formula']+";"}
+if(form.elements[3*num+1].checked==1){
+
+        pro=pro+(form.elements[3*num+2].value)+" X "+heats[j]['formula']+";"}
+num++}
+}
+showit="Reactants: "+reac+"<br>Products: "+pro
+checkit=window.open("","checkit","scrollbars=yes,width=350,height=150")
+checkit.document.clear()
+checkit.document.writeln ("<html>");
+checkit.document.writeln ("<head><title>Data Check</title>");
+checkit.document.writeln ("</head>"); 
+checkit.document.writeln ("<body bgcolor = FFFFFF>");
+checkit.document.writeln (showit);
+checkit.document.writeln ("<form>");
+checkit.document.writeln ("<input type=button value=OK onClick='self.close()'>");
+checkit.document.writeln ("</form></body>");
+checkit.document.writeln ("</html>");
+checkit.document.close();
+checkit.focus()
+}
+function eval(form){
+a=0
+num=0
+for(j=1;j<=500;j++){
+
+if(heats[j]['name']!=""){
+if(form.elements[3*num].checked==1){
+
+        a=a+(-form.elements[3*num+2].value)*heats[j]['heat']}
+
+if(form.elements[3*num+1].checked==1){
+
+        a=a+(1*form.elements[3*num+2].value)*heats[j]['heat']}
+
+num++}
+}
+document.forms[0].enthalpy.value=a
+
+if(document.forms[0].makeprobs.checked==1){answer(a)}
+
+}
+function createit(form){
+reac=""
+pro=""
+num=0
+
+for(j=1;j<=500;j++){
+
+if(heats[j]['name']!=""){
+if(form.elements[3*num].checked==1){
+
+        if(reac!=""){reac=reac+"+"}
+
+        reac=reac+(form.elements[3*num+2].value)+" "+heats[j]['formula']}
+if(form.elements[3*num+1].checked==1){
+
+        if(pro!=""){pro=pro+"+"}
+
+        pro=pro+(form.elements[3*num+2].value)+" "+heats[j]['formula']}
+num++}
+}
+showit=reac+"=>"+pro
+checkit=window.open("","checkit","scrollbars=yes,width=350,height=150")
+checkit.document.clear()
+checkit.document.writeln ("<html>");
+checkit.document.writeln ("<head><title>Reaction</title>");
+checkit.document.writeln ("</head>"); 
+checkit.document.writeln ("<body bgcolor = FFFFFF>");
+checkit.document.writeln (showit);
+checkit.document.writeln ("<form>");
+checkit.document.writeln ("<input type=button value=OK onClick='self.close()'>");
+checkit.document.writeln ("</form></body>");
+checkit.document.writeln ("</html>");
+checkit.document.close();
+checkit.focus()
+}
+
+function answer(a){
+check=Math.abs(a)
+check2=Math.abs(theanswer)
+if(tried==2){totl++;document.forms[0].total.value=totl}
+if(check>.95*check2 % check<1.05*check2){
+
+        document.forms[0].results.value="correct"
+        corrt++
+        tried=1
+
+        document.forms[0].correct.value=corrt}
+
+else{
+        document.forms[0].results.value="incorrect"
+        tried=2
+
+}
+
+}
+
+</script>
+</head>
+<body onLoad=display()>
+<h2>Using Heats of Formation</h2>
+This page is designed to fulfil a number of purposes related to the use of formation heats to estimate reaction enthalpies. As with the other pages, it can generate problems for you to solve. Alternatively, you can use it to solve problems you find elsewhere. As your first step in using the page, you must select whether you want it to generate problems for you, by clicking on the checkbox below. If you have checked that you want the page to provide a problem, clicking on "Start" will cause one to appear in the top frame. Regardless of whether you have asked for a problem, the formation heat data is in the right frame. In using the data to solve a problem, use the following procedure:<ul>
+<li>Identify all reactants and products and click on the appropriate checkbox. 
+<li>In the cell following the check boxes, enter the number of moles. If only one mole was affected, you do not need to enter a number.
+<li>When all of the data is entered, you can check it by clicking on the "Check Input" button. A small window will appear with your data in it. This is merely for you to check your data. Errors need to be changed on the heat selection window.
+<li>When you are satisfied with your input, press the "Submit" button. The result of your data input will appear in the main window. If you are doing a problem the page produced, you will also get the usual scoring on the main window.
+<li>You may look at the overall reaction you have submitted by pressing the "Create" button. This will open a small window with the reaction you've created. This can be compared with the reaction you are trying to determine the enthaply of.</ul>
+<form>
+<input type=checkbox name=makeprobs value=2>Check here to have page generate problems<br>
+<input type=button value="Start" onClick="begin()"><br>
+<input type=text size=10 name=enthalpy>Calculated Enthalpy
+<table border=2>
+<tr>
+<td>Results</td>
+<td>Total</td>
+<td>Correct</td>
+</tr>
+<tr>
+<td align=center><input type=text size=10 name=results></td>
+<td align=center><input type=text size=3 name=total></td>
+<td align=center><input type=text size=3 name=correct></td>
+</tr>
+</table>
+</form>
+<br><br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/formationheats.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:55 GMT -->
+</html>

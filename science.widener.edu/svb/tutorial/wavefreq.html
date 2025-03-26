@@ -1,0 +1,187 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/wavefreq.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:20 GMT -->
+<head><title>Wavelength,frequency and energy</title>
+<script language=javascript>
+//globals
+answered=0
+theanswer1=""
+theanswer2=""
+whichone=""
+valE=0
+valfreq=0
+valwave=0
+//This function clears all values in both tables on loading the page
+function fresh(){
+	for (var i=0;i<3;i++){
+		document.forms[0].elements[i].value=""}
+		document.forms[0].results.value=""
+	document.forms[0].correct.value=0
+	document.forms[0].total.value=0
+}
+//This function clears the first table
+function zeroout(){
+	document.forms[0].first.value=""
+	document.forms[0].second.value=""
+	document.forms[0].third.value=""
+}
+//This is the function started when "New Problem" is pushed	
+//This function first clears all old values using zeroout()
+//The three variables(wave,freq,E) are then determined, using Math.random() to 
+//generate wave and the known relationship to generate freq and E.
+function begin(){
+	answered=0
+	zeroout()
+	h=Math.random()
+	if (h<.33){wave=1e-3*Math.random()}
+	else{if(h<.67){wave=Math.random()}
+	else{wave=1e3*Math.random()}}
+	freq=3e10/wave
+	E=6.626e-34*freq
+	valwave=number(wave)
+	valfreq=number(freq)
+	valE=number(E)
+	problem()
+	document.forms[0].total.value++
+}
+function number(a){
+	if (a>=1 & a<10){
+	sign=""
+	display(a,sign,0)}
+	else{if(a>10){
+		sign="+"
+		for (var i=1;i<100;i++){
+		a=a/10
+		if (a<10){
+		break}}}
+	else {
+		sign="-"
+		for (var i=1;i<100;i++){
+		a=a*10
+		if (a>1){
+		break}}}
+}
+a=Math.round(100*a)/100
+	if (sign==""){
+	a= a}
+	else{
+	a=a + "e" + sign +i}
+return a}
+//This adjusts the coefficient to three sig figures
+//and then displays the result.
+function display(a,n,sign,i){
+	a=Math.round(100*a)/100
+	if (sign==""){
+	a= a}
+	else{
+	a=a + "e" + sign +i}
+}
+//This function creates the problem and the answer method by displaying only
+//two of the three variables while passing all three to hidden cells in a hidden
+//table
+function problem(){
+//the following places a value in one of the cells in the first table
+//creating the problem
+	whichone=Math.ceil(3*Math.random())
+	if (whichone==1){theanswer1=valfreq
+	theanswer2=valE
+	document.forms[0].first.value=valwave
+	document.forms[0].second.focus()
+	document.forms[0].second.select()}
+	if (whichone==2){theanswer1=valwave
+	theanswer2=valE
+	document.forms[0].second.value=valfreq
+	document.forms[0].first.focus()
+	document.forms[0].first.select()}
+	if(whichone==3){theanswer1=valwave
+	theanswer2=valfreq
+	document.forms[0].third.value=valE
+	document.forms[0].first.focus()
+	document.forms[0].first.select()}
+}
+function answer(form){
+	answered++
+	if(answered>1)
+	{	document.forms[0].total.value++}
+	if(whichone==1){response1=document.forms[0].second.value
+	response2=document.forms[0].third.value}
+	if(whichone==2){response1=document.forms[0].first.value
+	response2=document.forms[0].third.value}
+	if(whichone==3){response1=document.forms[0].first.value
+	response2=document.forms[0].second.value}
+	if(response1>.95*theanswer1 & response1<1.05*theanswer1 &
+	response2>.95*theanswer2 & response2<1.05*theanswer2){
+	document.forms[0].results.value="correct"
+	document.forms[0].correct.value++}
+	else {
+	document.forms[0].results.value="incorrect"}
+}
+</script>
+</head>
+<body onLoad="fresh();begin()">
+<h2>Wavelength, frequency and energy</h2>
+This is simple drill and practice involving electromagnetic radiation. On loading,
+and when you press "Refresh", one of the cells in the first table will be filled.
+Enter the two missing values and press "Check Ans" Results appear in the second
+table. Pay close attention to the dimensions. You should continue with a problem
+until you get it correct, but you can generate a new problem at any time.Use "e"
+notation for sci notation. Thus, 2.3e-4 equals 2.3*10<sup>-4</sup>
+<form method=post>
+<table border=4>
+<tr>
+<TD ALIGN=CENTER><b>Wavelength(cm)</td>
+<td align=center><b>Frequency(Hz)</td>
+<td align=center><b>Energy(J)</td>
+</tr>
+<tr>
+<td align=center><input type="text" name=first size=8 ></td>
+<td align=center><input type="text" name=second size=8 ></td>
+<td align=center><input type="text" name=third size=8 ></td>
+</tr>
+<tr>
+<td align=center><input type="button" value="Refresh" onClick=begin()></td>
+<td><input type="button" value="Check Ans" onClick=answer(this.form)></td>
+</tr>
+</table>
+<br>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input name=total type="text" size=4 ></td>
+<td align=center><input name=correct type="text" size=4 ></td>
+</tr>
+</table>
+</form>
+<br> <br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</form>
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/wavefreq.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:20 GMT -->
+</html>

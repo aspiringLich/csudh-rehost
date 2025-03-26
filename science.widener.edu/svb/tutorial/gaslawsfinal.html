@@ -1,0 +1,765 @@
+<htm>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/gaslawsfinal.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:48 GMT -->
+<head>
+<title>Gas Laws</title>
+<script>
+//globals
+which=0
+t1=0
+t2=0
+v1=0
+v2=0
+p1=0
+p2=0
+n1=0
+n2=0
+p=0
+n=0
+t=0
+v=0
+qtype=0
+totl=0
+corrt=0
+opt=0
+function clear(){
+	document.forms[0].results.value=""
+	document.forms[0].total.value=totl
+	document.forms[0].correct.value=corrt
+}
+function MakeArray(n){
+	this.length=n
+	for (var i=1;i<=n;i++){
+	this[i]= 0}
+}
+function count(c1,c2,c3,c4,c5,c6,c7,c8){
+	this.c1=c1
+	this.c2=c2
+	this.c3=c3
+	this.c4=c4
+	this.c5=c5
+	this.c6=c6
+	
+}
+function question(p1,p2,p3,p4,p5,p6,p7,p8){
+	this.p1=p1
+	this.p2=p2
+	this.p3=p3
+	this.p4=p4
+	this.p5=p5
+	this.p6=p6
+	this.p7=p7
+	this.p8=p8
+}
+group=new count(4,4,4,6,4)
+variables=new MakeArray(8)
+units=new MakeArray(8)
+intros=new MakeArray(10)
+choice=new MakeArray(10)
+ansr=new MakeArray(10)
+for(j=1;j<=10;j++){choice[j]=""}
+for(j=1;j<=10;j++){ansr[j]=""}
+intros[1]=new count("P1","P2","V1","V2")
+intros[2]=new count("V1","V2","T1","T2")
+intros[3]=new count("V1","V2","n1","n2")
+intros[4]=new count("P1","P2","V1","V2","T1","T2")
+intros[5]=new count("P","n","T","V")
+names=new count("Boyle's","Charles","Avogadros","Combined","Ideal")
+for(j=1;j<=8;j++){variables[j]=0}
+for(j=1;j<=8;j++){units[j]=""}
+law=""
+punit1="";punit2="";vunit1="";vunit2="";tunit1="";tunit2="";nunit1="";nunit2=""
+fillin="<input type=text size=8 name=ans>"
+boyle=new MakeArray(10)
+boyle[1]=new question("A sample of gas intially has a volume of "," and a pressure of ",". If the pressure is changed at constant n and T to ",", what is the new volume in ","?");
+boyle[2]=new question("A sample of gas intially has a volume of "," and a pressure of ",". If the volume is changed at constant n and T to ",", what is the new pressure in ","?");
+boyle[3]=new question("A sample of gas intially has a volume of "," with the pressure unknown. If the pressure is changed at constant n and T to ",", the new volume is found to be ",". What was the initial pressure in ","?");
+boyle[4]=new question("A sample of gas intially has a pressure of "," with the volume unknown. If the volume is changed at constant n and T to ",", the new pressure is found to be ",". What was the initial volume in ","?");
+charles=new MakeArray(10)
+charles[1]=new question("A sample of gas intially has a volume of "," and a temperature of ",". If the temperature is changed at constant n and P to ",", what is the new volume in ","?");
+charles[2]=new question("A sample of gas intially has a volume of "," and a temperature of ",". If the volume is changed at constant n and P to ",", what is the new temperature in ","?");
+charles[3]=new question("A sample of gas intially has a volume of "," with the temperature unknown. If the temperature is changed at constant n and P to ",", the new volume is found to be ",". What was the initial temperature in ","?");
+charles[4]=new question("A sample of gas intially has a temperature of "," with the volume unknown. If the volume is changed at constant n and P to ",", the new temperature is found to be ",". What was the initial volume in ","?");
+avo=new MakeArray(10)
+avo[1]=new question("A sample of gas intially has a volume of "," and contains ",". If the number of moles is changed at constant T and P to ",", what is the new volume in ","?");
+avo[2]=new question("A sample of gas intially has a volume of "," and contains ",". If the volume is changed at constant T and P to ",", what is the new gas quantity in ","?");
+avo[3]=new question("A sample of gas intially has a volume of "," with the gas quantity unknown. If the amount of gas is changed at constant T and P to ",", the new volume is found to be ",". What was the initial gas quantity in ","?");
+avo[4]=new question("A sample of gas intially contains "," with the volume unknown. If the volume is changed at constant T and P to ",", the new gas quantity is found to be ",". What was the initial volume in ","?");
+combined=new MakeArray(10)
+combined[1]=new question("A sample of gas initially has a pressure of ",", a volume of ",", and a temperature of ",". If the pressure is changed to "," and the volume to ",", what is the new temperature in ","?");
+combined[2]=new question("A sample of gas initially has a pressure of ",", a volume of ",", and a temperature of ",". If the pressure is changed to "," and the temperature to ",", what is the new volume in ","?");
+combined[3]=new question("A sample of gas initially has a pressure of ",", a volume of ",", and a temperature of ",". If the temperature is changed to "," and the volume to ",", what is the new pressure in ","?");
+combined[4]=new question("A sample of gas initially has a pressure of ",", and a volume of "," with the initial temperature unknown. If the pressure is changed to ",", the volume to ",", and the temperature to ",". What was the initial temperature in ","?");
+combined[5]=new question("A sample of gas initially has a pressure of ",", and a temperature of "," with the initial volume unknown. If the pressure is changed to ",", the volume to ",", and the temperature to ",". What was the initial volume in ","?");
+combined[6]=new question("A sample of gas initially has a temperature of ",", and a volume of "," with the initial pressure unknown. If the pressure is changed to ",", the volume to ",", and the temperature to ",". What was the initial pressure in ","?");
+ideal=new MakeArray(10)
+ideal[1]=new question("A sample of gas has a pressure of ",", a volume of ",", and a temperature of ",". What quantity of gas is present in ","?")
+ideal[2]=new question("A sample of gas has a pressure of ",", a volume of ",", and a quantity of gas  of ",". What is the temperature of the gas in ","?")
+ideal[3]=new question("A sample of gas has a pressure of ",", a quantity of ",", and a temperature of ",". What is the volume of the gas in ","?")
+ideal[4]=new question("A sample of gas contains ",", a volume of ",", and a temperature of ",". What is the pressure of the gas in ","?")
+function chooselaw(){
+tried=0
+totl++
+document.forms[0].total.value=totl
+document.forms[0].results.value=""
+which=Math.ceil(5*Math.random())
+if(which==1){goboyles();law="Boyle's"}
+if(which==2){gocharles();law="Charles"}
+if(which==3){goavogadros();law="Avogadro's"}
+if(which==4){gocombined();law="Combined"}
+if(which==5){goideal();law="Ideal"}
+qtype=Math.ceil(2*Math.random())
+if(qtype==1){makefillquestion()}
+else{makewordquestion()}
+}
+function goboyles(){
+v1=getvols()
+v2=getvols()
+p1=getpress()
+p2=sigfigs((p1*v1)/v2)
+p1=changep(p1,1)
+p2=changep(p2,2)
+v1=changev(v1,1)
+v2=changev(v2,2)
+variables[1]=p1;units[1]=punit1
+variables[2]=p2;units[2]=punit2
+variables[3]=v1;units[3]=vunit1
+variables[4]=v2;units[4]=vunit2
+}
+function gocharles(){
+v1=getvols()
+t1=gettemp()
+t2=gettemp()
+v2=(v1*t2)/t1
+v2=sigfigs(1*v2)
+v1=changev(v1,1)
+v2=changev(v2,2)
+t1=changet(t1,1)
+t2=changet(t2,2)
+variables[1]=v1;units[1]=vunit1
+variables[2]=v2;units[2]=vunit2
+variables[3]=t1;units[3]=tunit1
+variables[4]=t2;units[4]=tunit2
+}
+function goavogadros(){
+v1=getvols()
+v2=getvols()
+n1=getmoles()
+n2=(n1*v2)/v1
+n2=sigfigs(1*n2)
+v1=changev(v1,1)
+v2=changev(v2,2)
+n1=changen(n1,1)
+n2=changen(n2,2)
+variables[1]=v1;units[1]=vunit1
+variables[2]=v2;units[2]=vunit2
+variables[3]=n1;units[3]=nunit1
+variables[4]=n2;units[4]=nunit2
+}
+function gocombined(){
+v1=getvols()
+v2=getvols()
+p1=getpress()
+t2=gettemp()
+t1=gettemp()
+p2=sigfigs((p1*v1*t2)/(t1*v2))
+p1=changep(p1,1)
+p2=changep(p2,2)
+v1=changev(v1,1)
+v2=changev(v2,2)
+t1=changet(t1,1)
+t2=changet(t2,2)
+variables[1]=p1;units[1]=punit1
+variables[2]=p2;units[2]=punit2
+variables[3]=v1;units[3]=vunit1
+variables[4]=v2;units[4]=vunit2
+variables[5]=t1;units[5]=tunit1
+variables[6]=t2;units[6]=tunit2
+}
+function goideal(){
+p=getpress()
+n=getmoles()
+t=gettemp()
+v=sigfigs(.082*n*t/p)
+p=changep(p,1)
+n=changen(n,1)
+t=changet(t,1)
+v=changev(v,1)
+variables[1]=p;units[1]=punit1
+variables[2]=n;units[2]=nunit1
+variables[3]=t;units[3]=tunit1
+variables[4]=v;units[4]=vunit2
+}
+function getvols(){
+volume=Math.random()
+return sigfigs(volume)
+}
+function gettemp(){
+temperature=1000*Math.random()
+return sigfigs(temperature)
+}
+function getpress(){
+pressure=Math.pow(5,Math.random())
+return sigfigs(pressure)
+}
+function getmoles(){
+moles=Math.random()
+return sigfigs(moles)
+}
+function changep(x,order){
+tempt=Math.round(1000*Math.random())
+if((tempt%2)==0){x=sigfigs(x*760)
+	if(order==1){punit1="torr"}
+	if(order==2){punit2="torr"}
+	}
+else{ x=x
+	if(order==1){punit1="atm"}
+	if(order==2){punit2="atm"}
+	}
+return x
+}
+function changet(x,order){
+tempt=Math.round(1000*Math.random())
+if((tempt%2)==0){x=Math.round(10*(x-273))/10
+	if(order==1){tunit1="<sup>o</sup>C"}
+	if(order==2){tunit2="<sup>o</sup>C"}
+	}
+else{ x=x
+	if(order==1){tunit1="K"}
+	if(order==2){tunit2="K"}
+	}
+return x
+}
+function changev(x,order){
+tempt=Math.round(1000*Math.random())
+if((tempt%2)==0){x=sigfigs(x*1000)
+	if(order==1){vunit1="mL"}
+	if(order==2){vunit2="mL"}
+	}
+else{ x=x
+	if(order==1){vunit1="L"}
+	if(order==2){vunit2="L"}
+	}
+return x
+}
+function changen(x,order){
+tempt=Math.round(1000*Math.random())
+if((tempt%2)==0){x=sigfigs(x*1000)
+	if(order==1){nunit1="mmoles"}
+	if(order==2){nunit2="mmoles"}
+	}
+else{ x=x
+	if(order==1){nunit1="moles"}
+	if(order==2){nunit2="moles"}
+	}
+return x
+}
+function makefillquestion(){
+if(which==4){tally=6}
+	else{tally=4}
+option=Math.ceil(tally*Math.random())
+theanswer=variables[option]
+variables[option]=fillin
+question="<form><table>"
+for(j=1;j<=tally;j++){
+	question=question+"<tr><td>"+intros[which]['c'+j]+"="+variables[j]+units[j]+"</td></tr>"
+}
+display(question)
+}
+function makewordquestion(){
+if(which==1){question=boyleword()}
+if(which==2){question=charlesword()}
+if(which==3){question=avogadroword()}
+if(which==4){question=combinedword()}
+if(which==5){question=idealword()}
+if(Math.random()>.5){display(question)}
+else{ qtype=3
+	if(which==1){boylemultiple(question,opt)}
+	if(which==2){charlesmultiple(question,opt)}
+	if(which==3){avomultiple(question,opt)}
+	if(which==4){combmultiple(question,opt)}
+	if(which==5){idealmultiple(question,opt)}
+}
+}
+function boyleword(){
+opt=Math.ceil(4*Math.random())
+if(opt==1){
+	part1=v1+vunit1
+	part2=p1+punit1
+	part3=p2+punit2
+	part4=vunit2
+	theanswer=v2
+}
+if(opt==2){
+	part1=v1+vunit1
+	part2=p1+punit1
+	part3=v2+vunit2
+	part4=punit2
+	theanswer=p2
+}
+if(opt==3){
+	part1=v1+vunit1
+	part2=p2+punit2
+	part3=v2+vunit2
+	part4=punit1
+	theanswer=p1
+}
+if(opt==4){
+	part1=p1+punit1
+	part2=v2+vunit2
+	part3=p2+punit2
+	part4=vunit1
+	theanswer=v1
+}
+question=boyle[opt]['p1']+part1+boyle[opt]['p2']+part2+boyle[opt]['p3']+part3+boyle[opt]['p4']+part4+boyle[opt]['p5']
+return question
+}
+function charlesword(){
+opt=Math.ceil(4*Math.random())
+if(opt==1){
+	part1=v1+vunit1
+	part2=t1+tunit1
+	part3=t2+tunit2
+	part4=vunit2
+	theanswer=v2
+}
+if(opt==2){
+	part1=v1+vunit1
+	part2=t1+tunit1
+	part3=v2+vunit2
+	part4=tunit2
+	theanswer=t2
+}
+if(opt==3){
+	part1=v1+vunit1
+	part2=t2+tunit2
+	part3=v2+vunit2
+	part4=tunit1
+	theanswer=t1
+}
+if(opt==4){
+	part1=t1+tunit1
+	part2=v2+vunit2
+	part3=t2+tunit2
+	part4=vunit1
+	theanswer=v1
+}
+question=charles[opt]['p1']+part1+charles[opt]['p2']+part2+charles[opt]['p3']+part3+charles[opt]['p4']+part4+charles[opt]['p5']
+return question
+}
+function avogadroword(){
+opt=Math.ceil(4*Math.random())
+if(opt==1){
+	part1=v1+vunit1
+	part2=n1+nunit1
+	part3=n2+nunit2
+	part4=vunit2
+	theanswer=v2
+}
+if(opt==2){
+	part1=v1+vunit1
+	part2=n1+nunit1
+	part3=v2+vunit2
+	part4=nunit2
+	theanswer=n2
+}
+if(opt==3){
+	part1=v1+vunit1
+	part2=n2+nunit2
+	part3=v2+vunit2
+	part4=nunit1
+	theanswer=n1
+}
+if(opt==4){
+	part1=n1+nunit1
+	part2=v2+vunit2
+	part3=n2+nunit2
+	part4=vunit1
+	theanswer=v1
+}
+question=avo[opt]['p1']+part1+avo[opt]['p2']+part2+avo[opt]['p3']+part3+avo[opt]['p4']+part4+avo[opt]['p5']
+return question
+}
+function combinedword(){
+opt=Math.ceil(6*Math.random())
+if(opt==1){
+	part1=p1+punit1
+	part2=v1+vunit1
+	part3=t1+tunit1
+	part4=p2+punit2
+	part5=v2+vunit2
+	part6=tunit2
+	theanswer=t2
+}
+if(opt==2){
+	part1=p1+punit1
+	part2=v1+vunit1
+	part3=t1+tunit1
+	part4=p2+punit2
+	part5=t2+tunit2
+	part6=vunit2
+	theanswer=v2
+}
+if(opt==3){
+	part1=p1+punit1
+	part2=v1+vunit1
+	part3=t1+tunit1
+	part4=t2+tunit2
+	part5=v2+vunit2
+	part6=punit2
+	theanswer=p2
+}
+if(opt==4){
+	part1=p1+punit1
+	part2=v1+vunit1
+	part3=p2+punit2
+	part4=v2+vunit2
+	part5=t2+tunit2
+	part6=tunit1
+	theanswer=t1
+}
+if(opt==5){
+	part1=p1+punit1
+	part2=t1+tunit1
+	part3=p2+punit2
+	part4=v2+vunit2
+	part5=t2+tunit2
+	part6=vunit1
+	theanswer=v1
+}
+if(opt==6){
+	part1=t1+tunit1
+	part2=v1+vunit1
+	part3=p2+punit2
+	part4=v2+vunit2
+	part5=t2+tunit2
+	part6=punit1
+	theanswer=p1
+}
+question=combined[opt]['p1']+part1+combined[opt]['p2']+part2+combined[opt]['p3']+part3+combined[opt]['p4']+part4+combined[opt]['p5']+part5+combined[opt]['p6']+part6+combined[opt]['p7']
+return question
+}
+function idealword(){
+opt=Math.ceil(4*Math.random())
+if(opt==1){
+	part1=p+punit1
+	part2=v+vunit1
+	part3=t+tunit1
+	part4=nunit1
+	theanswer=n
+}
+if(opt==2){
+	part1=p+punit1
+	part2=v+vunit1
+	part3=n+nunit1
+	part4=tunit1
+	theanswer=t
+}
+if(opt==3){
+	part1=p+punit1
+	part2=n+nunit1
+	part3=t+tunit1
+	part4=vunit1
+	theanswer=v
+}
+if(opt==4){
+	part1=n+nunit1
+	part2=v+vunit1
+	part3=t+tunit1
+	part4=punit1
+	theanswer=p
+}
+question=ideal[opt]['p1']+part1+ideal[opt]['p2']+part2+ideal[opt]['p3']+part3+ideal[opt]['p4']+part4+ideal[opt]['p5']
+return question
+}
+function boylemultiple(){
+choice[1]=theanswer
+//opt=1,ans=v2;opt=2,ans=p2;opt=3,ans=p1;opt=4,ans=v1
+if(opt==1){
+	choice[2]=sigfigs(p1/(p2*v1))
+	choice[3]=sigfigs(p2*v1/p1)
+	choice[4]=sigfigs(p2/(p1*v1))
+}
+if(opt==2){
+	choice[2]=sigfigs(v1/(p1*v2))
+	choice[3]=sigfigs(p1*v2/v1)
+	choice[4]=sigfigs(v1*v2/p1)
+}
+if(opt==3){
+	if(punit1=="atm"){choice[2]=sigfigs(theanswer*760)}
+		else{choice[2]=sigfigs(theanswer/760)}
+	choice[3]=sigfigs(v1*v2/p2)
+	choice[4]=sigfigs(p2*v1/v2)
+}
+if(opt==4){
+	choice[2]=sigfigs(p1*p2/v2)
+	choice[3]=sigfigs(p1*v2/p2)
+	choice[4]=sigfigs(v2/(p1*p2))
+}
+answerset()
+}
+function charlesmultiple(){
+choice[1]=theanswer
+//opt=1,ans=v2;opt=2,ans=t2;opt=3,ans=t1;opt=4,ans=v1
+if(opt==1){
+	choice[2]=sigfigs(t1*v1/t2)
+	choice[3]=Math.abs(sigfigs(t1*t2/v1))
+	choice[4]=Math.abs(sigfigs(t2/(t1*v1)))
+}
+if(opt==2){
+	if(tunit2=="K"){choice[2]=sigfigs(theanswer-273)}
+		else{choice[2]=sigfigs(theanswer+273)}
+	choice[3]=sigfigs(t1*v1/v2)
+	choice[4]=sigfigs(v2/(t1*v1))
+}
+if(opt==3){
+	if(tunit1=="K"){choice[2]=sigfigs(theanswer-273)}
+		else{choice[2]=sigfigs(theanswer+273)}
+	choice[3]=sigfigs(t2*v2/v1)
+	choice[4]=sigfigs(t2/(v1*v2))
+}
+if(opt==4){
+	if(vunit1=="mL"){choice[2]=sigfigs(theanswer/1000)}
+		else{choice[2]=sigfigs(theanswer*1000)}
+	choice[3]=Math.abs(sigfigs(t2*v1/t1))
+	choice[4]=Math.abs(sigfigs(1/theanswer))
+}
+answerset()
+}
+function avomultiple(){
+choice[1]=theanswer
+//opt=1,ans=v2;opt=2,ans=n2;opt=3,ans=n1;opt=4,ans=v1
+if(opt==1){
+	choice[2]=sigfigs((n1*v1)/n2)
+	choice[3]=sigfigs(n2*n1/v1)
+	choice[4]=sigfigs(v1/(n2*n1))
+}
+if(opt==2){
+	choice[2]=sigfigs(n1*v1/v2)
+	choice[3]=sigfigs((v2*v1)/n1)
+	choice[4]=sigfigs(n1/(v1*v2))
+}
+if(opt==3){
+	choice[2]=sigfigs(n2*v2/v1)
+	choice[2]=sigfigs(v2*v1/n2)
+	choice[4]=sigfigs(n1/(v2*v1))
+}
+if(opt==4){
+	choice[2]=sigfigs(n2*v2/v1)
+	choice[3]=sigfigs(v2*v1/n2)
+	choice[4]=sigfigs(n2/(v2*v1))
+}
+answerset()
+}
+function combmultiple(){
+choice[1]=theanswer
+//opt=1,ans=t2;opt=2,ans=v2;opt=3,ans=p2;opt=4,ans=t1;opt=5,ans=v1;opt=6,ans=p1
+if(opt==1){
+	choice[2]=sigfigs((t1*p1*v1)/(p2*v2))
+	choice[3]=sigfigs((p1*v1)/(p2*v2*t1))
+	choice[4]=sigfigs((p2*v2)/(t1*p1*v1))
+}
+if(opt==2){
+	choice[2]=Math.abs(sigfigs((t1*p1*v1)/(p2*t2)))
+	choice[3]=Math.abs(sigfigs((p1*v1)/(p2*t2*t1)))
+	choice[4]=Math.abs(sigfigs((p2*t2)/(t1*p1*v1)))
+}
+if(opt==3){
+	choice[2]=Math.abs(sigfigs((t1*p1*v1)/(t2*v2)))
+	choice[3]=Math.abs(sigfigs((p1*v1)/(t2*v2*t1)))
+	choice[4]=Math.abs(sigfigs((t2*v2)/(t1*p1*v1)))
+}
+if(opt==4){
+	choice[2]=sigfigs((t2*p2*v2)/(p1*v1))
+	choice[3]=sigfigs((p1*v1)/(p2*v2*t2))
+	choice[4]=sigfigs((p2*v2)/(t2*p1*v1))
+}
+if(opt==5){
+	choice[2]=Math.abs(sigfigs((t1*p1*t2)/(p2*v2)))
+	choice[3]=Math.abs(sigfigs((p1*t2)/(p2*v2*t1)))
+	choice[4]=Math.abs(sigfigs((p2*v2)/(t1*p1*t2)))
+}
+if(opt==6){
+	choice[2]=Math.abs(sigfigs((t1*t2*v1)/(p2*v2)))
+	choice[3]=Math.abs(sigfigs((t2*v1)/(p2*v2*t1)))
+	choice[4]=Math.abs(sigfigs((p2*v2)/(t1*t2*v1)))
+}
+answerset()
+}
+function idealmultiple(){
+choice[1]=theanswer
+//opt=1,ans=n;opt=2,ans=t;opt=3,ans=v;opt=4,ans=p
+if(opt==1){
+	choice[2]=Math.abs(sigfigs((p*.082)/(v*t)))
+	choice[3]=Math.abs(sigfigs((p*t)/(.082*v)))
+	choice[4]=Math.abs(sigfigs((.082*t)/(p*v)))
+}
+if(opt==2){
+	choice[2]=sigfigs(p*n/(v*.082))
+	choice[3]=sigfigs((n*.082)/(p*v))
+	choice[4]=sigfigs((n*v)/(.082*p))
+}
+if(opt==3){
+	choice[2]=Math.abs(sigfigs(p/(n*.082*t)))
+	choice[3]=Math.abs(sigfigs(p*n/(.082*t)))
+	choice[4]=Math.abs(sigfigs(.082*t/(p*n)))
+}
+if(opt==4){
+	choice[2]=Math.abs(sigfigs(v/(n*.082*t)))
+	choice[3]=Math.abs(sigfigs(v*t/(n*.082)))
+	choice[4]=Math.abs(sigfigs(v*.082/(n*t)))
+}
+answerset()
+}
+
+function answerset(){
+var key=0
+if(Math.random()>.8){choice[1]=sigfigs(Math.random()*choice[1])
+	theanswer=5
+	var key=1}
+trial=new MakeArray(5)
+g=0
+for(j=1;j<=4;j++){
+	if(g==1){j--}
+	g=0
+	trial[j]=Math.ceil(4*Math.random())
+	if(j==1 & key==0){theanswer=trial[j]}
+	ansr[trial[j]]=choice[j]
+	for(k=j-1;k<0;k--){
+		if(trial[j]==trial[k]){g=1}
+		}
+}
+ansarray="<form>"
+for(h=1;h<=4;h++){
+	ansarray=ansarray+"<input type=radio name=ans onClick='opener.answer("+h+")'>"+ansr[h]+"<br>"
+}
+ansarray=ansarray+"<input type=radio name=ans onClick='opener.answer(5)'>"+"None of these<br>"
+
+display()
+}
+function answer(ans){
+if(tried==1){alert("You already answered this one. Get a new problem!")}
+else{
+if(Math.abs(ans)>.95*Math.abs(theanswer) & Math.abs(ans)<1.05*Math.abs(theanswer)){
+	document.forms[0].results.value="correct"
+	corrt++
+	document.forms[0].correct.value=corrt
+	tried=1
+}
+else{document.forms[0].results.value="incorrect"
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	tried=2
+}
+}
+}
+function display(){
+checkit=window.open("","checkit","scrollbars=yes,width=350,height=250")
+checkit.document.clear()
+checkit.document.writeln ("<html>");
+checkit.document.writeln ("<head><title>Gas Laws</title>");
+checkit.document.writeln ("</head>"); 
+checkit.document.writeln ("<body bgcolor = FFFFFF>");
+if(qtype==1){checkit.document.writeln ("Enter the answer in the vacant cell and press 'Submit'.")};
+checkit.document.writeln (question);
+if(qtype==1){checkit.document.writeln ("</table>")};
+if(qtype==2){checkit.document.writeln ("<form><input type=text name=ans size=8>")};
+if(qtype==1 || qtype==2){
+checkit.document.writeln ("<input type=button value=Submit onClick='opener.answer(this.form.ans.value)'>")};
+if(qtype==3){
+	checkit.document.writeln (ansarray)};
+checkit.document.writeln ("</form></body>");
+checkit.document.writeln ("</html>");
+checkit.document.close();
+if(qtype==1 || qtype==2){
+	checkit.document.forms[0].ans.focus()
+	checkit.document.forms[0].ans.select()
+}
+}
+function sigfigs(f){
+factor=1
+if(f<0){factor=-1}
+f=Math.abs(f)
+ex=0
+if(f>=1000){
+while(f>=1000){
+	ex++
+	f=f/10
+}
+f=Math.round(f)/100
+ex=ex+2
+f=""+f
+if(f.length==1){f=f+"."}
+while(f.length<4){f=f+"0"}
+f=f+"e"+ex
+return factor*f
+}
+else{if(f<100){
+while(f<100){
+	ex++
+	f=f*10
+}
+f=Math.round(f)/100
+ex=2-ex
+f=""+f
+if(f.length==1){f=f+"."}
+while(f.length<4){f=f+"0"}
+if(ex!=0){f=f+"e"+ex}
+return factor*f}
+else{
+f=Math.round(f)/100
+f=""+f
+if(f.length==1){f=f+"."}
+while(f.length<4){f=f+"0"}
+f=f+"e2"
+return factor*f
+}
+}
+}
+</script>
+</head>
+<body onLoad=clear()>
+<h2>The Gas Laws</h2>
+This page is a tour de force in problems involving the basic gas laws. When you press "New Problem", a new window with a question will appear. The nature of questions varies enormously, as does the matter of your response. Input the answer appropriately. Results appear in the scoring table on the main page.
+<form>
+<input type=button value=Push onClick=chooselaw()>
+<table border=4>
+<tr>
+<td align=center>Results</td>
+<td>Total</td>
+<td>Correct</td>
+</tr>
+<tr>
+<td><input type=text size=12 name=results></td>
+<td align=center><input type=text size=2 name=total></td>
+<td align=center><input type=text size=2 name=correct></td>
+</tr>
+</table>
+</form>
+<br><br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/gaslawsfinal.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:48 GMT -->
+</html>

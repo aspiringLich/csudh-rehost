@@ -1,0 +1,159 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/heatxfer.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:16 GMT -->
+<head>
+<script language=javascript>
+//globals
+tried=0
+theanswer=0
+g=0
+Ti1=0
+Ti2=0
+mass1=0
+mass2=0
+Tf=0
+total=0
+correct=0
+which=0
+function fresh(){
+		document.forms[1].first.value=""	
+}
+function clear(){
+	fresh()
+	document.forms[1].second.value=total
+	document.forms[1].third.value=correct
+}
+function begin(){
+	fresh()
+	tried=0
+	total++
+	document.forms[1].second.value=total
+	first=Math.pow(100,Math.random())
+	second=first
+	while(Math.abs(second-first)<10){
+	second=Math.pow(100,Math.random())}
+	r=Math.random()
+	if (r>.5){
+		var Ti1=first
+		var Ti2=second}
+	else{
+		var Ti2=second
+		var Ti1=first}
+	Ti1=Math.round(100*Ti1)/100
+	Ti2=Math.round(100*Ti2)/100
+	var mass1=Math.round(100*(Math.pow(1000,Math.random())))/100
+	mass2=mass1+21
+	while(Math.abs(mass2-mass1)>20){
+	var mass2=Math.round(100*(Math.pow(1000,Math.random())))/100}
+	var Tf=(mass1*Ti1+mass2*Ti2)/(mass1 + mass2)
+	Tf=Math.round(100*Tf)/100
+	display(mass1,Ti1,Tf,mass2,Ti2)
+}
+function answer(form){
+	if(tried==2){
+	total++
+	document.forms[1].second.value=total}	
+	if(form.elements[which].value>.95*theanswer & 
+	form.elements[which].value<1.05*theanswer){
+	correct++
+	document.forms[1].first.value="correct"
+	document.forms[1].third.value=correct}
+	else {
+	tried=2
+	document.forms[1].first.value="incorrect"}
+}
+function display(mass1,Ti1,Tf,mass2,Ti2){
+	document.forms[0].first.value=mass1
+	document.forms[0].second.value=Ti1
+	document.forms[0].third.value=mass2
+	document.forms[0].fourth.value=Ti2
+	document.forms[0].fifth.value=Tf
+	var g=Math.ceil(5*Math.random())
+	if (g==1){document.forms[0].first.value="";theanswer=mass1;which=0}
+	if (g==2){document.forms[0].second.value="";theanswer=Ti1;which=1}
+	if (g==3){document.forms[0].third.value="";theanswer=mass2;which=2}
+	if (g==4){document.forms[0].fourth.value="";theanswer=Ti2;which=3}
+	if (g==5){document.forms[0].fifth.value="";theanswer=Tf;which=4}
+	document.forms[0].elements[which].select()
+	document.forms[0].elements[which].focus()
+}
+</script>
+</head>
+<body onLoad="clear()">
+<h2>Heat Transfer-water</h2>
+This page deals with heat transfer resulting from samples of water initially at different temperatures. The problems
+are randomly generated when you press the "New Problem" button. When you do so, data will
+will appear in four of the cells. Fill in the empty cell and press "Check Answer." The results are displayed in the second table which will
+tell you whether you got the correct answer or not and keeps a running total of your score.
+If you get a question wrong, you should redo and recheck your answer. Getting new problems is just a matter of 
+pressing the "New Problem" button at any time. 
+<form method=post>
+<table border=4>
+<tr>
+<tr><td><b>First sample</td>
+<td></td>
+<td><b>Second sample</td></tr>
+<TD ALIGN=CENTER><b>Mass(g)</td>
+<td align=center><b>T<sub>i</sub></td>
+<TD ALIGN=CENTER><b>Mass(g)</td>
+<td align=center><b>T<sub>i</sub></td>
+</tr>
+<tr>
+<td align=center><input type="text" name="first" size=8 ></td>
+<td align=center><input type="text" name="second" size=8 ></td>
+<td align=center><input type="text" name="third" size=8 ></td>
+<td align=center><input type="text" name="fourth" size=8 ></td>
+</tr>
+<tr>
+<td align=center><b>T<sub>f</sub></td>
+</tr>
+<tr>
+<td align=center><input type="text" name="fifth" size=8 ></td>
+</tr>
+<tr>
+<td><input type="button" value="New Problem" onClick=begin()></td>
+<td><input type="button" value="Check Answer" onClick=answer(this.form)></td>
+</tr>
+</table>
+</form>
+<br>
+<form method=post>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name="first" size=12></td>
+<td align=center><input name="second" type="text" size=4 ></td>
+<td align=center><input name="third" type="text" size=4 ></td>
+</tr>
+</table>
+</form><br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/heatxfer.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:16 GMT -->
+</html>

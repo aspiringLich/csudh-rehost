@@ -1,0 +1,238 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/formulas.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:10 GMT -->
+<head>
+<script language=javascript> 
+function zeroout(form){
+	for (var i=0;i<9;i++){
+	form.elements[i].value=""
+	}
+}
+function clear1(form){
+for (var i=0;i<5;i++){
+	form.elements[i].value=""
+	}
+}
+function clear2(form){
+for (var i=5;i<9;i++){
+	form.elements[i].value=""
+	}
+}
+function decide(form){
+	var sum=0	
+	for (var i=0;i<4;i++){
+		sum=sum + 1.00*form.elements[i].value}
+	if (sum<50){
+		percents(form)}
+		else{formula(form)}
+}
+function percents(form){
+	var C=12.00*form.elements[5].value
+	var H=1.00*form.elements[6].value
+	var N=14.00*form.elements[7].value
+	var O=16.00*form.elements[8].value
+	var first=C + H + N + O	
+	form.elements[0].value=1200*form.elements[5].value/first
+	form.elements[1].value=100*form.elements[6].value/first
+	form.elements[2].value=1400*form.elements[7].value/first
+	form.elements[3].value=1600*form.elements[8].value/first
+	form.elements[4].value=first
+}
+function formula(form){
+	if (form.elements[4].value==""){
+		empirical(document.forms[0])}
+	else{
+		molecular(document.forms[0])}
+}
+function molecular(form){
+	var sum=0	
+	for (var i=0;i<4;i++){
+		sum=sum + 1.00*form.elements[i].value}
+	if (sum<99 || sum>101){
+		alert("Recheck your %s. They don't sum close enough to 100")}
+	else{
+	form.elements[5].value=Math.round(form.elements[0].value*form.elements[4].value/1200)
+	form.elements[6].value=Math.round(form.elements[1].value*form.elements[4].value/100)
+	form.elements[7].value=Math.round(form.elements[2].value*form.elements[4].value/1400)
+	form.elements[8].value=Math.round(form.elements[3].value*form.elements[4].value/1600)
+	for (var i=5;i<9;i++){
+		if (form.elements[i].value<1){
+		form.elements[i].value=""}
+	}
+
+}}
+function empirical(form){
+	var sum=0	
+	for (var i=0;i<4;i++){
+		sum=sum + 1.00*form.elements[i].value}
+	if (sum<99 || sum>101){
+		alert("Recheck your %s. They don't sum close enough to 100")}
+	else{
+	var C1=(1.0*form.elements[0].value)/12
+	var H1=(1.0*form.elements[1].value)
+	var N1=(1.0*form.elements[2].value)/14
+	var O1=(1.0*form.elements[3].value)/16
+	var least=.5
+	if (least>C1 & C1>.001){least=C1}
+	if (least>H1 & H1>.001){least=H1}
+	if (least>N1 & N1>.001){least=N1}
+	if (least>O1 & O1>.001){least=O1}
+	var C2=1.0*C1/least
+	var H2=1.0*H1/least
+	var N2=1.0*N1/least
+	var O2=1.0*O1/least
+	if (C2<.5){
+		C2=0
+		var h=1}
+	else{
+	if(Math.abs(C2-Math.round(C2)<.1)){
+		var h=1}
+		else{
+		var h=1
+		test=C2-Math.floor(C2)
+		if (test>.15){h=6}
+		if (test>.19){h=5}
+		if (test>.24 || test>.74){h=4}
+		if (test>.32 || test>.65){h=3}
+		if (test>.48 & test<.52){h=2}}}
+	if (H2<.5){
+		H2=0
+		var j=1}
+	else{
+	if(Math.abs(H2-Math.round(H2)<.1)){
+		var j=1}
+		else{
+		var j=1
+		test=H2-Math.floor(H2)
+		if (test>.15){j=6}
+		if (test>.19){j=5}
+		if (test>.24 || test>.74){j=4}
+		if (test>.32 || test>.65){j=3}
+		if (test>.48 & test<.52){j=2}}}
+	if (N2<.5){
+		N2=0
+		var k=1}
+	else{
+	if(Math.abs(N2-Math.round(N2)<.1)){
+		var k=1}
+		else{
+		var k=1
+		test=N2-Math.floor(N2)
+		if (test>.15){k=6}
+		if (test>.19){k=5}
+		if (test>.24 || test>.74){k=4}
+		if (test>.32 || test>.65){k=3}
+		if (test>.48 & test<.52){k=2}}}
+	if(O2<.5){
+		O2=0
+		var l=1}
+	else{
+	if(Math.abs(O2-Math.round(O2)<.1)){
+		var l=1}
+		else{
+		var l=1
+		test=O2-Math.floor(O2)
+		if (test>.15){l=6}
+		if (test>.19){l=5}
+		if (test>.24 || test>.74){l=4}
+		if (test>.32 || test>.65){l=3}
+		if (test>.48 & test<.52){l=2}}}
+	if(h!=j){r=h*j}
+		else {r=h}
+	if (k!=j & k!=h & k!=r) {r=r*k}
+	if (l!=j & l!=h & l!=k & l!=r) {r=r*l}
+	document.forms[0].elements[5].value=Math.round(C2*r)
+	document.forms[0].elements[6].value=Math.round(H2*r)
+	document.forms[0].elements[7].value=Math.round(N2*r)
+	document.forms[0].elements[8].value=Math.round(O2*r)
+
+}}
+</script>
+</head>
+<body>
+<h2>Formulas and Per Cent Composition</h2>
+This page permits you to practice/check your Mass % and formula calculations.
+At this time, you are limited to using only the elements C,H,N and O. That will
+change shortly, but should be sufficient for you to build your skills. The page
+can take the following inputs:
+<UL>
+<li>Input any set of <b>mass %s,</b> which add to 100, but do not provide a gfw. The
+program will return the empirical formula.
+<li>Input the <b>mass %s plus the gfw</b> and the page will return the molecular formula.
+<li>Input the mole quantities and the program will return the mass %s and the gfw.
+</ul>
+<h4>Additional Points:</h4>
+<ul>
+<li>It is strongly recommended that you clear extra data before running a
+problem. To help in this:
+<ul>
+<li>Pressing "Clear 1" will clear the first row only.
+<li>Pressing "Clear 2" will clear the second row only.
+</ul>
+<li>Pressing "Clear All" clears the entire form.
+<li>Pressing "Calculate" processes the input.
+<ul>
+
+<form method=post>
+<table border=4>
+<tr>
+<td align=middle><b>Mass %<td>
+</tr>
+<tr>
+<td align=middle>C</td>
+<td align=middle>H</td>
+<td align=middle>N</td>
+<td align=middle>O</td>
+<td align=middle>GFW</td>
+</tr>
+<tr>
+<td align=middle><input type="text" size=4></td>
+<td align=middle><input type="text" size=4></td>
+<td align=middle><input type="text" size=4></td>
+<td align=middle><input type="text" size=4></td>
+<td align=middle><input type="text" size=10></td>
+</tr>
+<tr><td><b>Moles<td></tr>
+<tr>
+<td align=middle><input type="text" size=4></td>
+<td align=middle><input type="text" size=4></td>
+<td align=middle><input type="text" size=4></td>
+<td align=middle><input type="text" size=4></td>
+</tr>
+<tr>
+<td><input type="button" value="Calculate" onClick=decide(this.form)></td>
+<td><input type="button" value="Clear 1" onClick=clear1(this.form)></td>
+<td><input type="button" value="Clear 2" onClick=clear2(this.form)></td>
+<td><input type="button" value="Clear All" onClick=zeroout(this.form)></td>
+</tr>
+</table>
+</form>
+<br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/formulas.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:10 GMT -->
+</html>
+

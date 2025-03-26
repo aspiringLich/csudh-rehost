@@ -1,0 +1,189 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/raoults.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:48 GMT -->
+<head><title>Raoult's Law</title>
+<script language=javascript>
+function zeroout(){
+	for (var i=0;i<8;i++){
+	document.forms[0].elements[i].value=""}
+}
+function raoult(form){
+//Assigning values to the variables
+	var Poa=form.elements[0].value
+	var Pob=form.elements[1].value
+	var Xsa=form.elements[2].value
+	var Xsb=form.elements[3].value
+	var Pa=form.elements[4].value
+	var Pb=form.elements[5].value
+	var Xva=form.elements[6].value
+	var Xvb=form.elements[7].value
+
+//Determining solution path
+	if (Poa*Pob!="" & Xsa+Xsb!=""){
+		if (Xsa!=""){
+			Xsb=1-Xsa}
+			else {Xsa=1-Xsb}
+		solve(Poa,Pob,Xsa,Xsb)}			
+	if (Poa*Pob!="" & Pa + Pb!=""){
+		if (Pa!=""){
+			Xsa=Pa/Poa
+			Xsb=1-Xsa}
+		else{Xsb=Pb/Pob
+			Xsa=1-Xsb}
+		solve(Poa,Pob,Xsa,Xsb)}	
+	if (Pa*Pb!="" & Xsa + Xsb!=""){
+		if (Xsa!=""){
+			Xsb=1-Xsa
+			Poa=Pa/Xsa
+			Pob=Pb/Xsb}
+		else{Xsa=1-Xsb
+			Poa=Pa/Xsa
+			Pob=Pb/Xsb}
+		solve(Poa,Pob,Xsa,Xsb)}				
+	if (Pa*Pob!="" & Xsa+Xsb!=""){
+		if (Xsa!=""){
+			Xsb=1-Xsa
+			Poa=Pa/Xsa}
+		else { Xsa=1-Xsb
+			Poa=Pa/Xsa}
+		solve(Poa,Pob,Xsa,Xsb)}
+	if (Poa*Pb!="" & Xsa+Xsb!=""){
+		if (Xsa!=""){
+			Xsb=1-Xsa
+			Pob=Pb/Xsb}
+		else { Xsa=1-Xsb
+			Pob=Pb/Xsb}
+		solve(Poa,Pob,Xsa,Xsb)}
+		if (Xsb!=""){}
+	if (Pa*Pb!="" & Poa+Pob!=""){
+		if(Poa!=""){
+			Xsa=Pa/Poa
+			Xsb=1-Xsa}
+		else{Xsb=Pb/Pob
+			Xsa=1-Xsb}
+	solve(Poa,Pob,Xsa,Xsb)}
+	if (Pa*Pob!="" & Xva+Xvb!=""){
+		if (Xva!=""){
+			Pb=Pa*(1-Xva)/Xva
+			Xsb=Pb/Pob
+			Xsa=1-Xsb
+			Poa=Pa/Xsa}
+		else { Xva=1-Xvb
+			Pb=Pa*(1-Xva)/Xva
+			Xsb=Pb/Pob
+			Xsa=1-Xsb
+			Poa=Pa/Xsa}
+		solve(Poa,Pob,Xsa,Xsb)}
+	if (Poa*Pb!="" & Xva+Xvb!=""){
+		if (Xvb!=""){
+			Pa=Pb*(1-Xvb)/Xvb
+			Xsa=Pa/Poa
+			Xsb=1-Xsa
+			Pob=Pb/Xsb}
+		else { Xvb=1-Xva
+			Pa=Pb*(1-Xvb)/Xvb
+			Xsa=Pa/Poa
+			Xsb=1-Xsa
+			Pob=Pb/Xsb}
+		solve(Poa,Pob,Xsa,Xsb)}}
+//Setting the display to limiting sig figures, calculating all values,
+//checking for invaild results
+function solve(Poa,Pob,Xsa,Xsb){
+	Poa=Math.round(1000*Poa)/1000
+	Pob=Math.round(1000*Pob)/1000
+	Xsa=Math.round(1000*Xsa)/1000
+	Xsb=Math.round(1000*Xsb)/1000
+	Pa=Math.round(1000*Poa*Xsa)/1000
+	Pb=Math.round(1000*Pob*Xsb)/1000
+	Xva=Math.round(1000*Pa/(Pa+Pb))/1000
+	Xvb=1-Xva
+	if(Pa>Poa || Pb>Pob || 1*Xsa+1*Xsb>1.01 || 1*Xva+1*Xvb>1.01 || 
+		1*Xsa<0 || 1*Xsb<0 || 1*Xva<0 || 1*Xvb<0){
+		alert("Your data set is invalid and will return unacceptable values such as mole fractions greater than one. Recheck the Data")}
+	else{
+	document.forms[0].elements[0].value=Poa
+	document.forms[0].elements[1].value=Pob
+	document.forms[0].elements[2].value=Xsa
+	document.forms[0].elements[3].value=Xsb
+	document.forms[0].elements[4].value=Poa*Xsa
+	document.forms[0].elements[5].value=Pob*Xsb
+	document.forms[0].elements[6].value=Xva
+	document.forms[0].elements[7].value=Xvb
+}}
+
+</script>
+</head>
+<body onLoad=zeroout()>
+<h2>Raoult's Law</h2>
+This page solves problems dealing with mixtures of volatile materials. If you
+input a valid data set. It will complete the table. It will also reject most
+invalid data, though the error checking is not yet complete. To use the page,
+fill in values in the proper positions, such that the problem is solvable. Such 
+a set would be the: P<sup>o</sup>(a), P<sup>o</sup>(b) and Xa(solution). An example of an unsolvable set would be
+P<sup>o</sup>(a),X(b) and Pa. When the data is entered, press "Solve". "Clear" clears the
+table.
+<form method="post">
+<table border=4>
+<tr>
+<td><b>Solution</td</tr>
+<tr>
+<td align=center>P<sup>o</sup>(a)</td>
+<td align=center>P<sup>o</sup>(b)</td>
+<td align=center>X(a)</td>
+<td align=center>X(b)</td>
+</tr>
+<tr>
+<td><input type="text" size=8></td>
+<td><input type="text" size=8></td>
+<td><input type="text" size=8></td>
+<td align=center><input type="text" size=8></td>
+</tr>
+<tr>
+<td><b>Vapor</td</tr>
+<tr>
+<td align=center>P(a)</td>
+<td align=center>P(b)</td>
+<td align=center>X(a)</td>
+<td align=center>X(b)</td>
+</tr>
+<tr>
+<td><input type="text" size=8></td>
+<td><input type="text" size=8></td>
+<td><input type="text" size=8></td>
+<td><input type="text" size=8></td>
+</tr>
+<tr>
+<td><input type="button" value="Solve" onClick=raoult(this.form)></td>
+<td><input type="button" value="Clear" onClick=zeroout()></td>
+</tr>
+</table>
+</form>
+<br><br>
+ <br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/raoults.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:48 GMT -->
+</html>

@@ -1,0 +1,167 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/boyleslaw.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:47 GMT -->
+<head>
+<title>Boyle's Law</title>
+<script language="javascript">
+which=0
+function clear(){
+	document.forms[2].results.value=""
+}
+function cleanse(){
+clear()
+document.forms[2].total.value=0
+document.forms[2].correct.value=0
+}
+function begin(){
+clear()
+//first calculate three values,V1,V2 and P1
+var V1=Math.round(1000*Math.pow(10,Math.random()))/1000
+var V2=Math.round(1000*Math.pow(10,Math.random()))/1000
+var P1=Math.round(1000*Math.pow(10,Math.random()))/1000
+//calculate P2
+var P2=Math.round(1000*V1*(P1/V2))/1000
+//Pass the values to the display function
+display (P1,V1,P2,V2)
+}
+function display(P1,V1,P2,V2){
+if (Math.random()>.5){
+	P1=Math.round(760*P1)
+	dimp1="torr"}
+else{dimp1="atm"}
+if (Math.random()>.5){
+	P2=Math.round(760*P2)
+	dimp2="torr"}
+else{dimp2="atm"}
+if (Math.random()>.5){
+	V1=Math.round(1e3*V1)
+	dimv1="mL"}
+else{dimv1="L"}
+if (Math.random()>.5){
+	V2=Math.round(1e3*V2)
+	dimv2="mL"}
+else{dimv2="L"}
+document.forms[0].press1.value=P1
+document.forms[0].dpress1.value=dimp1
+document.forms[0].vol1.value=V1
+document.forms[0].dvol1.value=dimv1
+document.forms[0].press2.value=P2
+document.forms[0].dpress2.value=dimp2
+document.forms[0].vol2.value=V2
+document.forms[0].dvol2.value=dimv2
+//go to the function which blanks a cell and sets problem
+problem()
+}
+function problem(){
+var h=2*Math.round(3*Math.random())
+theanswer=document.forms[0].elements[h].value
+document.forms[0].elements[h].value=""
+which=h
+document.forms[0].elements[h].focus()
+document.forms[0].elements[h].select()
+}
+function answer(){
+document.forms[2].elements[1].value++
+var h=which
+if (theanswer<1.05*document.forms[0].elements[h].value &
+	theanswer>.95*document.forms[0].elements[h].value)
+{ 
+	document.forms[2].elements[0].value="correct"
+	document.forms[2].elements[2].value++}
+	else {
+	document.forms[2].elements[0].value="incorrect"}
+}
+</script>
+</head>
+<body onLoad=cleanse()>
+<h2>Boyle's Law</h2>
+Boyle's Law states that under conditions of constant temperature and quantity, there is
+an inverse relationship between the volume and pressure for an ideal gas. When you press
+"New Problem", all but one of the cells will fill. The cursor will be in the
+empty cell. Calculate the missing quantity, paying close attention to all of the
+dimensions, enter it in the cell and press "Check Answer". Results appear in the second
+table where running totals are also kept. If you get a problem wrong, you should redo it.<br>
+<form method=post>
+<table border=4>
+<tr>
+<td><b>P1</b></td>
+<td></td>
+<td></td>
+<td><b>V1</b></td>
+<td></td>
+<td></td>
+<td><b>P2</b></td>
+<td></td>
+<td></td>
+<td><b>V2</b></td>
+<td></td>
+</tr>
+<tr>
+<td><input type=text name=press1 size =4></td>
+<td><input type=text name=dpress1 size =4></td>
+<td></td>
+<td><input type=text name=vol1 size =4></td>
+<td><input type=text name=dvol1 size =2></td>
+<td></td>
+<td><input type=text name=press2 size =4></td>
+<td><input type=text name=dpress2 size =4></td>
+<td></td>
+<td><input type=text name=vol2 size =4></td>
+<td><input type=text name=dvol2 size =2></td>
+</tr>
+<tr>
+</tr>
+</table>
+</form>
+<form>
+<table>
+<tr>
+<td><input type=button value="New Problem" onClick=begin()>
+<td><input type=button value="Check Answer" onClick=answer()>
+</tr>
+</table>
+</form>
+<form method=post>
+<table border=4>
+<tr>
+<td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td align=center><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input name=total type="text" size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+</table>
+</form>
+<br><br>
+<
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/boyleslaw.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:47 GMT -->
+</html>

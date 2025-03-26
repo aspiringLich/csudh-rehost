@@ -1,0 +1,239 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/freezing.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:48 GMT -->
+<head><title>Osmotic Pressure</title>
+<script language=javascript>
+//globals
+check1=0
+check2=0
+//This function clears all values in tables 1,2 and 3 on loading the page
+function fresh(){
+		document.forms[0].first.value=""
+		document.forms[0].second.value=""
+		document.forms[0].third.value=""
+		document.forms[0].fourth.value=""
+		document.forms[0].fifth.value=""
+		document.forms[1].first.value=""
+		document.forms[1].second.value=0
+		document.forms[1].third.value=0
+	}
+//This function clears tables 1 and 3
+function zeroout(){
+		document.forms[0].first.value=""
+		document.forms[0].second.value=""
+		document.forms[0].third.value=""
+		document.forms[0].fourth.value=""
+		document.forms[0].fifth.value=""
+		document.forms[1].first.value=""
+		}
+//This function creates an array
+function MakeArray(n){
+	this.length=n
+	for (var i=1;i<=n;i++){
+	this[i]= 0}
+}
+theanswer=new MakeArray(10)
+//This function creates array elements with four properties, formula,gfw and
+//"particles" per formula unit,and the gs(g/100mL). If the material is highly
+//miscible with water, its gs is set at 25g.
+function solute(cmpd,gfw,parts,gs){
+	this.cmpd=cmpd
+	this.gfw=gfw
+	this.parts=parts
+	this.gs=gs
+}
+//This creates an array of solutes with 20 elements
+ite=new MakeArray(20);
+//The following are the elements in the item array which have the properties
+//shown in solute
+ite[1]=new solute("NaCl",58.45,2,25)
+ite[2]=new solute("NaNO3",85,2,25)
+ite[3]=new solute("KI",166,2,25)
+ite[4]=new solute("KOH",56,2,25)
+ite[5]=new solute("Ca(NO3)2",164,3,25)
+ite[6]=new solute("CH3OH",32,1,25)
+ite[7]=new solute("HCl",36.5,2,25)
+ite[8]=new solute("ethanol",46,1,25)
+ite[9]=new solute("LiBr",104.9,2,25)
+ite[10]=new solute("Fe(NO3)3",242,4,25)
+ite[11]=new solute("Mg(NO3)2",148,3,25)
+ite[12]=new solute("HNO3",63,2,25)
+ite[13]=new solute("CaI2",294,3,25)
+ite[14]=new solute("Co(NO3)2",183,3,25)
+ite[15]=new solute("Na2SO4",142.08,3,27.8)
+ite[16]=new solute("KClO4",138.5,2,1.54)
+ite[17]=new solute("NaOH",40.01,2,25)
+ite[18]=new solute("KNO2",85.1,2,25)
+ite[19]=new solute("HI",128,2,25)
+ite[20]=new solute("CsCl",168.4,2,25);
+//This is the function started when "New Problem" is pushed	
+//This function first clears all old values using zeroout()
+//The four variables(a,b,t) are then determined, using Math.random()
+//They are then passed to the calculate function
+function begin(){
+	zeroout()
+	var a=Math.ceil(20*Math.random())
+	for (var i=1;i<100;i++){
+      var b=25*Math.random()
+	if (b<ite[a]["gs"]){
+	break}}
+	if (b>10){
+	b=Math.round(10*b)/10}
+	if(b<10 & b>.1){b=Math.round(100*b)/100}	
+	if (b<.1){b=Math.round(1000*b)/100}
+	var m=Math.round(100+1000*Math.random())
+      calculate(a,b,m)
+}
+function calculate(a,b,m){
+	moles=b/(ite[a]["gfw"])
+	var u=(1000*moles)/m
+	u=u*ite[a]["parts"]
+	var fp=-Math.round(100*1.86*u)/100
+	var bp=100+Math.round(100*.512*u)/100
+	display(a,b,m,fp,bp)
+}
+//This function creates the problem and the answer method by first filling up 
+//two tables and then partially clearing the "problem" table
+//table
+function display(a,b,m,fp,bp){
+//this initially puts values in all cells in table 1
+	document.forms[0].first.value=ite[a]["cmpd"]
+	document.forms[0].second.value=b
+	document.forms[0].third.value=m
+	document.forms[0].fourth.value=fp
+	document.forms[0].fifth.value=bp
+	//this places all four values in table 3, which is hidden
+	theanswer[0]=ite[a]["cmpd"]
+	theanswer[1]=b
+	theanswer[2]=m
+	theanswer[3]=fp
+	theanswer[4]=bp
+//the following resets two of the cells in the first table blank, thus
+//creating the problem
+	g=Math.ceil(3*Math.random())
+	if (g==1){document.forms[0].second.value=""
+	check1=1
+	k=Math.ceil(2*Math.random())
+	if (k==1){document.forms[0].fourth.value=""
+	check2=3}
+	if (k==2){document.forms[0].fifth.value=""
+	check2=4}
+	document.forms[0].second.focus()
+	document.forms[0].second.select()}
+	if (g==2){document.forms[0].third.value=""
+	check1=2
+	k=Math.ceil(2*Math.random())
+	if (k==1){document.forms[0].fourth.value=""
+	check2=3}
+	if (k==2){document.forms[0].fifth.value=""
+	check2=4}
+	document.forms[0].third.focus()
+	document.forms[0].third.select()}
+	if(g==3){document.forms[0].fourth.value=""
+	document.forms[0].fifth.value=""
+	check1=3
+	check2=4
+	document.forms[0].fourth.focus()
+	document.forms[0].fourth.select()}
+}
+// This is the "Check Answer Function
+function answer(form){
+	document.forms[1].second.value++
+	var tally=0
+//if your tables are set up as in this page, i is 1 less than the # of variables
+	if(check1==1){
+	if(theanswer[1]==document.forms[0].second.value){tally++}}
+	if(check1==2){
+	if(theanswer[2]==document.forms[0].third.value){tally++}}
+	if(check1==3){
+	if(theanswer[3]==document.forms[0].fourth.value){tally++}}
+	if(check2==3){
+	if(theanswer[3]==document.forms[0].fourth.value){tally++}}
+	if(check2==4){
+	if(theanswer[4]==document.forms[0].fifth.value){tally++}}
+	if(tally==2){ 
+	document.forms[1].first.value="correct"
+	document.forms[1].third.value++}
+	else {
+	document.forms[1].first.value="incorrect"}
+}
+</script>
+</head>
+<body onLoad="fresh()">
+<h2>Freezing and Boiling Points of Aqueous Solutions</h2>
+This page is an exercise in colligative properties. When you press "New Problem" a solute formula appears in the first cell and
+two of the other cells will show values. Determine the value for the missing
+cells and press "Check Answer." Results appear in the second table.
+<h4>Hints</h4>
+<ul>
+<li>Be careful about dissociating solutes
+<li>All solutions are treated as ideal
+<li>It is assumed there are not additional processes beyond the possible solute dissociation
+<li>You can should continue to work on a problem until you get it correct, but
+you can get a new problem at any time.
+</ul>
+<form method=post>
+<table border=4>
+<tr>
+<TD ALIGN=CENTER><b>Solute</td>
+<td align=center><b>Solute(grams)</td>
+<td align=center><b>Water Mass(g)</td>
+<td align=center><b>FP</td>
+<td align=center><b>BP</td>
+</tr>
+<tr>
+<td align=center><input type="text" name="first" size=8 ></td>
+<td align=center><input type="text" name="second" size=8 ></td>
+<td align=center><input type="text" name="third" size=8 ></td>
+<td align=center><input type="text" name="fourth" size=8 ></td>
+<td align=center><input type="text" name="fifth" size=8 ></td>
+</tr>
+<tr>
+<td><input type="button" value="New Problem" onClick=begin()></td>
+<td><input type="button" value="Check Answer" onClick=answer(this.form)></td>
+</tr>
+</table>
+</form>
+<br>
+<form>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name="first" size=12></td>
+<td align=center><input type="text" name="second" size=4 ></td>
+<td align=center><input type="text" name="third" size=4 ></td>
+</tr>
+</table>
+</form>
+<br><br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</form>
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/freezing.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:48 GMT -->
+</html>

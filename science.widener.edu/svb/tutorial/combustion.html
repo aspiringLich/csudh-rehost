@@ -1,0 +1,292 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/combustion.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:15 GMT -->
+<head>
+<title>Combustion Analysis</title>
+<script language="JavaScript">
+//globals
+theanswer=0
+Cs=0
+Hs=0
+subc=0
+subd=0
+third=""
+fourth=""
+thirdsub=0
+fourthsub=0
+choice=0
+num=0
+num2=0
+count=0
+count2=0
+cfactor=0
+hfactor=0
+mass2=0
+thirdpc=0
+fourthpc=0
+part3=0
+part4=0
+total=0
+tried=0
+correct=0
+function clear(){
+	document.forms[0].first.value=""
+	document.forms[0].second.value=0
+	document.forms[0].third.value=0
+}
+
+function data(symbol,name,gaw){
+	this.symbol=symbol
+	this.name=name
+	this.gaw=gaw
+}
+function MakeArray(n){
+	this.length=n
+	for (var i=1;i<=n;i++){
+	this[i]= 0}
+}
+function question(p1,p2,p3,p4,p5,p6){
+	this.p1=p1
+	this.p2=p2
+	this.p3=p3
+	this.p4=p4
+	this.p5=p5
+	this.p6=p6
+}
+finalpart=new MakeArray(10)
+ans=new MakeArray(5)
+ans[1]=0
+ans[2]=0
+ans[3]=0
+ans[4]=0
+ans[5]=0
+finish=new MakeArray(5)
+finalpart[1]=new question("Another sample of the compound with a mass of "," grams is found to contain "," grams of ",".")
+ansr=new MakeArray(5)
+elements=new MakeArray(10)
+elements[1]=new data("O","oxygen",16)
+elements[2]=new data("N","nitrogen",14)
+elements[3]=new data("S","sulfur",32.1)
+elements[4]=new data("F","fluorine",19)
+elements[5]=new data("Cl","chlorine",35.45)
+elements[6]=new data("Br","bromine",79.9)
+quest=new question("The combustion of "," grams of a compound which contains only "," yields "," grams of CO<sub>2</sub> and "," grams of H<sub>2</sub>O."," What is the empirical formula of the compound?")
+//begin program
+
+function begin(){
+document.forms[0].first.value=""
+tried=0
+total++
+document.forms[0].second.value=total
+Cs=getC()
+Hs=getH(Cs)
+getthird()
+if(Math.random()>.7){getfourth()}
+else{fourth="";subfourth=""}
+checkit()
+gfw=12*Cs+Hs+subthird*elements[num]['gaw']
+if(fourth!=""){gfw=gfw+subfourth*elements[num2]['gaw']}
+gfw=Math.round(10*gfw)/10
+cfactor=(Cs*44)/gfw
+hfactor=(Hs*9)/gfw
+thirdpc=subthird*elements[num]['gaw']/gfw
+if(fourth!=""){fourthpc=subfourth*elements[num2]['gaw']/gfw}
+else{fourthpc=0}
+if(subthird<2){subthird=""}
+if(subfourth<2){subfourth=""}
+if(Cs==1){Cs=""}
+if(Hs==1){Hs=""}
+formula="C<sub>"+Cs+"</sub>H<sub>"+Hs+"</sub>"+third+"<sub>"+subthird+"</sub>"+fourth+"<sub>"+subfourth+"</sub>"
+//display(formula,gfw)
+part2()
+}
+function getC(){
+Cs=1+Math.ceil(5*Math.random())
+return Cs
+}
+function getH(Cs){
+choice=Math.ceil(3*Math.random())
+if(choice==1){Hs=Math.round(2*Cs+2)}
+if(choice==2){Hs=Math.round(2*Cs)}
+if(choice==3){Hs=Math.round(2*Cs-2)}
+return Hs
+}
+function getthird(){
+num=Math.ceil(6*Math.random())
+if(Math.random()>.5){count=1}
+else{count=2}
+if(choice==1){
+	if(num>=4){Hs=Hs-count}
+	if(num==2){Hs=Hs+count}
+}
+else{if(count==1){Hs=Hs-1}}
+third=elements[num]['symbol']
+subthird=count
+}
+function getfourth(){
+num2=num
+while(num2==num){
+num2=Math.ceil(6*Math.random())}
+if(Math.random()>.5){count2=1}
+else{count2=2}
+if(choice==1){
+	if(num2>=4){Hs=Hs-count2}
+	if(num2==2){Hs=Hs+count2}
+}
+else{if((num2>=4) & Hs+count2>(2*Cs+2)){Hs=Hs-2}}
+fourth=elements[num2]['symbol']
+subfourth=count2
+}
+function checkit(){
+if(Cs%2==0 & Hs%2==0 & subthird%2==0 & subfourth%2==0){Cs=Math.round(Cs/2);Hs=Math.round(Hs/2);subthird=Math.round(subthird/2);Math.round(subfourth=subfourth/2)}
+}
+function display(formula,gfw){
+var show=window.open("","show","menubar=yes,scrollbars=yes,,width=200,height=50")
+show.document.writeln ("<html>");
+show.document.writeln ("<head>");
+show.document.writeln ("</head>");
+show.document.writeln ("<body bgcolor = FFFFFF><pre>");
+show.document.writeln (formula,"<br>",gfw);
+show.document.writeln("<html>");
+show.document.close();
+show.focus();
+}
+function part2(){
+ansr[1]=formula
+for(j=2;j<=5;j++){answers(j)}
+finalset()
+mass=Math.pow(100,Math.random())
+mass=Math.ceil(100*mass)/100
+massc=cfactor*mass
+massh=hfactor*mass
+massc=Math.ceil(100*massc)/100
+massh=Math.ceil(100*massh)/100
+mass2=Math.pow(100,Math.random())
+part3=thirdpc*mass2
+part4=fourthpc*mass2
+mass2=Math.round(100*mass2)/100
+part3=Math.round(100*part3)/100
+part4=Math.round(100*part4)/100
+if(fourth==""){insert="C,H and "+third}
+else{insert="C,H,"+third+" and "+fourth}
+if(fourth!=""){asktwo()}
+else{ask2=""}
+ask=quest['p1']+mass+quest['p2']+insert+quest['p3']+massc+quest['p4']+massh+quest['p5']+ask2+quest['p6']
+display2(ask)
+}
+function prepare(){
+suba=Cs
+subb=Hs
+subc=count
+subd=count2
+}
+function answers(n){
+prepare()
+if(n==2){suba=suba-1;subb=subb+2}
+if(n==3){subc=3*subc-1;subd=subd+1}
+if(n==4){subb=subb-2;subd=2*subd-1}
+if(n==5){suba=suba+2;subc=2*subc}
+if(suba<1){suba=3}
+if(subb<1){subb=1}
+if(suba==1){suba=""}
+if(subb==1){subb=""}
+if(subc==1){subc=""}
+if(subd==1){subd=""}
+ansr[n]="C<sub>"+suba+"</sub>H<sub>"+subb+"</sub>"+third+"<sub>"+subc+"</sub>"
+if(fourth!=""){ansr[n]=ansr[n]+fourth+"<sub>"+subd+"</sub>"}
+return ansr[n]
+}
+function finalset(){
+finish[1]=Math.ceil(5*Math.random())
+for(i=2;i<=5;i++){
+	g=0
+	finish[i]=Math.ceil(5*Math.random())
+	for(z=1;z<i;z++){
+		if(finish[i]==finish[z]){
+			g=1}}
+	if(g==1){i--}
+}
+for(j=1;j<=5;j++){
+	if(finish[j]==1){theanswer=j}
+	finish[j]="<input type=radio name='correct' value="+j+" onClick=opener.answer("+j+")>"+ansr[finish[j]]}
+}
+function display2(ask){
+var problem=window.open("","problem","menubar=no,scrollbars=yes,,width=500,height=250")
+problem.document.writeln ("<html>");
+problem.document.writeln ("<head>");
+problem.document.writeln ("</head><body bgcolor=FFFFFF>");
+problem.document.writeln (ask,"<br><form>");
+for(j=1;j<=5;j++){
+	problem.document.writeln(finish[j],"<br>")};
+problem.document.writeln("</body></html>");
+problem.document.close();
+problem.focus();
+}
+function answer(val){
+if(tried==1){
+alert("You've already done this one, get a new problem")
+}
+else{
+if(tried==2){total++
+document.forms[0].elements[2].value=total}
+if(val==theanswer){document.forms[0].elements[1].value="correct"
+correct++
+document.forms[0].elements[3].value=correct
+tried=1}
+else{document.forms[0].elements[1].value="incorrect"
+tried=2}
+}}
+function asktwo(){
+if(Math.random()>.5){elm=third;elmmass=part3}
+else{elm=fourth;elmmass=part4}
+ask2=finalpart[1]['p1']+mass2+finalpart[1]['p2']+elmmass+finalpart[1]['p3']+elm+finalpart[1]['p4']
+return ask2
+}
+</script>
+</head>
+<body onLoad=clear()>
+<h2>Combustion Analysis</h2>
+This page presents combustion analysis data for the determination of empirical formulas. Its operation is quite straightforward. When you click on "New Problem" a window with information about a chemical compound  and five possible answers will open. The first time you generate a question, you may have to "drag" tha window to a new position so that you can see the scoring table on the main page. Use the data provided to ascertain the empirical formula and then click on the circle in front of the answer. The results will appear in the table on the main window.
+<form>
+<input type="button" value="New Problem" onCLick="begin()">
+<table border=4>
+<tr>
+<td>Results</td>
+<td>Total</td>
+<td>Correct</td>
+</tr>
+<tr>
+<td><input type=text name=first size=10></td>
+<td align=center><input type=text name=second size=3</td>
+<td align=center><input type=text name=third size=3></td>
+</tr>
+</table>
+</form>
+<br><br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/combustion.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:15 GMT -->
+</html>

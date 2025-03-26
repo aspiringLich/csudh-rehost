@@ -1,0 +1,179 @@
+<html>
+
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/convertdensity.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:09 GMT -->
+<head><title>Converting Densities</title>
+
+<script language="javascript">
+theanswer=0
+function clear(){
+	zeroout()
+	document.forms[1].elements[0].value=""
+	document.forms[1].elements[1].value=0
+	document.forms[1].elements[2].value=0	
+}
+function zeroout(){
+	document.forms[0].first.value=""
+	document.forms[0].second.value=""
+	document.forms[0].third.value=""
+	document.forms[0].fourth.value=""}
+function begin(){
+	zeroout()
+	var gml=Math.ceil(100*Math.random())/10
+	var gl=Math.ceil(1e6*gml)/1000
+	var kgl=gml
+	var mgl=gml + "e+6"
+	var kgml=gml + "e-3"
+	var mgml=Math.ceil(1e6*gml)/1000
+	display(gml,gl,kgl,mgl,kgml,mgml)
+}
+//Choose known and unknown
+function display(gml,gl,kgl,mgl,kgml,mgml){
+//Choose known
+	var d=Math.ceil(6*Math.random())
+	if (d==1){
+		a=1
+		document.forms[0].first.value=gml
+		document.forms[0].second.value="g/ml"}
+	if (d==2){
+		a=2
+		document.forms[0].first.value=gl
+		document.forms[0].second.value="g/l"}
+	if (d==3){
+		a=3
+		document.forms[0].first.value=kgl
+		document.forms[0].second.value="kg/l"}
+	if (d==4){
+		a=4
+		document.forms[0].first.value=mgl
+		document.forms[0].second.value="mg/l"}
+	if (d==5){
+		a=5
+		document.forms[0].first.value=kgml
+		document.forms[0].second.value="kg/ml"}	
+	if(d==6){
+		a=6
+		document.forms[0].first.value=mgml
+		document.forms[0].second.value="mg/ml"}
+//choose the unknown
+	d=a
+	while(d==a){
+	var d=Math.ceil(6*Math.random())
+	if (d==1 & a!=1){
+		theanswer=gml
+		document.forms[0].fourth.value="g/ml"}
+	if (d==2 & a!=2){
+		theanswer=gl
+		document.forms[0].fourth.value="g/l"}
+	if (d==3 & a!=3){
+		theanswer=kgl
+		document.forms[0].fourth.value="kg/l"}
+	if (d==4 & a!=4){
+		theanswer=mgl
+		document.forms[0].fourth.value="mg/l"}
+	if (d==5 & a!=5){
+		theanswer=kgml
+		document.forms[0].fourth.value="kg/ml"}	
+	if (d==6 & a!=6){
+		theanswer=mgml
+		document.forms[0].fourth.value="mg/ml"}
+}
+}
+function answer(form){
+		if (form.third.value>.99*theanswer &
+		form.third.value<1.01*theanswer){
+		document.forms[1].first.value="correct"
+		document.forms[1].second.value++
+		document.forms[1].third.value++}
+	else {
+		document.forms[1].first.value="incorrect"
+		document.forms[1].second.value++}
+}	
+</script>
+</head>
+<body onLoad=clear()>
+<h2>Converting Densities</h2>
+This page is an exercise in converting densities expressed in the metric system.
+It is not really an exercise in density, but rather drill and practice so that
+you can become familiar with using the metric system. To practice:
+<br>
+<ul>
+<li>Press New Problem-a number will appear in the left cell and a density
+dimension (mass/volume) in the second.
+<li>The third cell will be empty and the fourth will have the new density
+measure.
+<li>Enter the value which the density would have when expressed in the units
+shown in the fourth cell and press "Check Answer."
+<li>Results are shown in the second table.
+<li>If your answer is incorrect, you should redo it and recheck your new answer.
+<li> Scientific notation is represented using the "e" notation. Thus,
+2.3*10<sup>3</sup> will be shown by 2.3e3. You may use this in submitting your
+answers.
+</ul>
+<form method="post">
+<table border=4>
+<tr>
+<td><input type="text"  name="first" size=8></td>
+<td><input type="text" name="second" size=8></td>
+<td><b>equals</td>
+<td><input type="text" name="third" size=8></td>
+<td><input type="text" name="fourth" size=8></td>
+</tr>
+<tr>
+<td><input type="button" value="New Problem" onClick=begin()></td>
+<td><input type="button" value="Check Answer" onClick=answer(this.form)></td>
+</tr>
+</table>
+</form>
+<br>
+<form>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name="first" size=12></td>
+<td align=center><input type="text" name="second" size=4 ></td>
+<td align=center><input type="text" name="third" size=4 ></td>
+</tr>
+</table>
+</form>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/convertdensity.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:09 GMT -->
+</html>
+
+
+
+
+
+
+
+
+
+
+

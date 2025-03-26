@@ -1,0 +1,198 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/qnumberswp.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:55 GMT -->
+<head><title>Quantum Numbers</title>
+<script>
+function clear(){
+	document.forms[0].elements[0].value=""
+	document.forms[0].elements[3].value=""
+	document.forms[1].elements[0].value=""
+	}
+function cleanse(){
+clear()
+document.forms[1].elements[1].value=0
+document.forms[1].elements[2].value=0
+}
+function MakeArray(n){
+	this.length=n
+	for (var i=1;i<=n;i++){
+	this[i]= 0}
+}
+function question(p1,p2,p3,p4,p5){
+	this.p1=p1
+	this.p2=p2
+	this.p3=p3
+	this.p4=p4
+	this.p5=p5
+}
+quest=new MakeArray(10)
+quest[1]=new question("For a principle quantum number,n, equal to "," ,what is largest<br>allowed value of l?","")
+quest[2]=new question("For a principle quantum number,n, equal to "," ,is it possible<br>for l to be equal to ","(Y or N)?","")
+quest[3]=new question("For a principle quantum number,n, equal to "," ,what is the total<br>number of orbitals permitted?","")
+quest[4]=new question("For a principle quantum number,n, equal to "," ,what is the total<br>electron capacity of that level?","")
+quest[5]=new question("For the quantum number,l, equal to "," is an m<sub>l</sub> value of "," permitted(Y or N)?")
+quest[6]=new question("For the quantum number,l, equal to "," ,how many orbitals of that type<br>are permitted?","")
+quest[7]=new question("Is the<b> ","</b> orbital permitted(Y or N)?","")
+quest[8]=new question("What is the m<sub>l</sub> quantum number for an <b>","</b> orbital?","")
+
+
+function begin(){
+clear()
+//first select a value for n,l and ml
+var l=Math.round(8*Math.random())
+var ml=Math.round(8*Math.random())
+if(Math.random()>.5){ml=-ml}
+var n=Math.round(.5+8*Math.random())
+//now pass these variables to the display function
+display(n,l,ml)
+}
+function display(n,l,ml){
+//select the question
+if(l==0){sym="s"}
+if(l==1){sym="p"}
+if(l==2){sym="d"}
+if(l==3){sym="f"}
+if(l==4){sym="g"}
+if(l==5){sym="h"}
+if(l==6){sym="i"}
+if(l==7){sym="j"}
+if(l==8){sym="k"}
+var h=Math.round(.5+8*Math.random())
+if(h==1){
+	v1=n
+	v2=""
+	ans=n-1
+}
+if(h==2){
+	v1=n
+	v2=l
+if(l<=n-1){ans="Y"}
+else{ans="N"}
+}
+if(h==3){
+	v1=n
+	v2=""
+	ans=n*n
+}
+if(h==4){
+	v1=n
+	v2=""
+	ans=2*n*n
+}
+if(h==5){
+	v1=l
+	v2=ml
+if(Math.abs(ml)<=l){ans="Y"}
+else{ans="N"}
+}
+if(h==6){
+	v1=l
+	v2=""
+	ans=2*l + 1
+}
+if(h==7){
+	v1=n+sym
+	v2=""
+if(l<=n-1){ans="Y"}
+else{ans="N"}
+}
+if(h==8){
+	v1=sym
+	v2=""
+	ans=l
+}
+//now compose the question
+question=quest[h]["p1"]+v1+quest[h]["p2"]+v2+quest[h]["p3"]
+//send answer to hidden cell
+document.forms[0].elements[0].value=ans
+tryit(question)
+}
+function tryit(question)    {
+parent.frames[0].document.clear();
+parent.frames[0].document.open();
+parent.frames[0].document.writeln ("<html>");
+parent.frames[0].document.writeln ("<head>");
+parent.frames[0].document.writeln ("</head>");
+parent.frames[0].document.writeln ("<body bgcolor = FFFFFF >");
+parent.frames[0].document.writeln ("<pre>");
+parent.frames[0].document.write (question);
+parent.frames[0].document.writeln ("</font>");
+parent.frames[0].document.close();
+document.forms[0].elements[3].focus()
+document.forms[0].elements[3].select()
+}
+function answer(){
+var a=document.forms[0].elements[3].value
+document.forms[0].elements[3].value=a.toUpperCase()
+document.forms[1].elements[1].value++
+	if (document.forms[0].elements[0].value==document.forms[0].elements[3].value){
+	    document.forms[1].elements[0].value="correct"
+    document.forms[1].elements[2].value++}
+    else {document.forms[1].elements[0].value="incorrect"}
+}
+
+</script>
+</head>
+<body onLoad="cleanse()">
+<h2>Quantum Numbers</h2>
+This is an exercise in using using and understanding the quantum numbers. When you press "New Question", a question will appear in the top frame. Determine the value of the answer, enter it in the cell and press "Check Answer." Results appear in the second
+table. Based upon the nature of the question, you will answer it by entering a number or a Y or N(use uppercase) in the cell. Once you have answered the question appropriately, press "Check Answer" and the results will appear in the second table.
+<form>
+<table>
+<tr>
+<input type="hidden" size=4>
+<input type="button" value="New Question" onClick="begin()">
+<input type="button" value="Check Answer" onClick="answer()">
+</tr>
+<tr>
+<td><b>Enter your answer here</b></td>
+<td align=center><input type="text" size=10></td>
+
+</tr>
+</table>
+</form>
+<form>
+<table border=4>
+<tr>
+<td><b>Results</b></td>
+<td><b>Total Done</b></td>
+<td><b>Total Correct</b></td></tr>
+</tr>
+<tr>
+<td align=center><input type="text" size=10></td>
+<td align=center><input type="text" size=3></td>
+<td align=center><input type="text" size=3></td>
+<tr>
+</table>
+</form>
+
+
+
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="tutorial.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of Prof. George Wiger (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  1/5 /96 .<P>
+
+Last Updated: Sunday, February 09, 1997 13:31:27
+
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/qnumberswp.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:58:55 GMT -->
+</html>

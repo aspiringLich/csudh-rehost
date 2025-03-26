@@ -1,0 +1,447 @@
+<html>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/ptable.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:09 GMT -->
+<head><title>Periodic Table Drill</title>
+<script>
+zerofour=0
+twozero=0
+twofour=0
+function setup(){
+for(j=0;j<=3;j++){document.forms[0].elements[j].checked=0}
+
+twofour=1
+
+document.forms[2].one.value=""
+document.forms[2].five.value=0
+
+document.forms[2].six.value=0
+
+document.forms[2].seven.value=""
+}
+z=0
+
+function MakeArray(n){
+        this.length=n
+
+        for (var i=1;i<=n;i++){
+
+        this[i]= 0}
+
+}
+function atom(name,sym,an){
+        this.name=name
+
+        this.sym=sym
+
+        this.an=an
+
+        }
+function startover(){
+for(i=0;i<=102;i++){
+
+        document.forms[1].elements[i].value="__"
+        previous[i+1]=1}
+
+setup()
+clearTimeout(running)
+z=0
+
+}
+compare=new MakeArray(107)
+previous=new MakeArray(107)
+a=new MakeArray(107);
+a[1]=new atom("hydrogen","H",1)
+a[2]=new atom("helium","He",2)
+a[3]=new atom("lithium","Li",3)
+a[4]=new atom("beryllium","Be",4)
+a[5]=new atom("boron","B",5)
+a[6]=new atom("carbon","C",6)
+a[7]=new atom("nitrogen","N",7)
+a[8]=new atom("oxygen","O",8)
+a[9]=new atom("fluorine","F",9)
+a[10]=new atom("neon","Ne",10)
+a[11]=new atom("sodium","Na",11)
+a[12]=new atom("magnesium","Mg",12)
+a[13]=new atom("aluminum","Al",13)
+a[14]=new atom("silicon","Si",14)
+a[15]=new atom("phosphorus","P",15)
+a[16]=new atom("sulfur","S",16)
+a[17]=new atom("chlorine","Cl",17)
+a[18]=new atom("argon","Ar",18)
+a[19]=new atom("potassium","K",19)
+a[20]=new atom("calcium","Ca",20)
+a[21]=new atom("scandium","Sc",21)
+a[22]=new atom("titanium","Ti",22)
+a[23]=new atom("vanadium","V",23)
+a[24]=new atom("chromium","Cr",24)
+a[25]=new atom("manganese","Mn",25)
+a[26]=new atom("iron","Fe",26)
+a[27]=new atom("cobalt","Co",27)
+a[28]=new atom("nickel","Ni",28)
+a[29]=new atom("copper","Cu",29)
+a[30]=new atom("zinc","Zn",30)
+a[31]=new atom("gallium","Ga",31)
+a[32]=new atom("germanium","Ge",32)
+a[33]=new atom("arsenic","As",33)
+a[34]=new atom("selenium","Se",34)
+a[35]=new atom("bromine","Br",35)
+a[36]=new atom("krypton","Kr",36)
+a[37]=new atom("rubidium","Rb",37)
+a[38]=new atom("strontium","Sr",38)
+a[39]=new atom("yttrium","Y",39)
+a[40]=new atom("zirconium","Zr",40)
+a[41]=new atom("niobium","Nb",41)
+a[42]=new atom("molybdenum","Mo",42)
+a[43]=new atom("technetium","Tc",43)
+a[44]=new atom("ruthenium","Ru",44)
+a[45]=new atom("rhodium","Rh",45)
+a[46]=new atom("palladium","Pd",46)
+a[47]=new atom("silver","Ag",47)
+a[48]=new atom("cadmium","Cd",48)
+a[49]=new atom("indium","In",49)
+a[50]=new atom("tin","Sn",50)
+a[51]=new atom("antimony","Sb",51)
+a[52]=new atom("tellurium","Te",52)
+a[53]=new atom("iodine","I",53)
+a[54]=new atom("xenon","Xe",54)
+a[55]=new atom("cesium","Cs",55)
+a[56]=new atom("barium","Ba",56)
+a[57]=new atom("lanthanum","La",57)
+a[58]=new atom("cerium","Ce",58)
+a[59]=new atom("praseodymium","Pr",59)
+a[60]=new atom("neodymium","Nd",60)
+a[61]=new atom("promethium","Pm",61)
+a[62]=new atom("samarium","Sm",62)
+a[63]=new atom("europium","Eu",63)
+a[64]=new atom("gadollinium","Gd",64)
+a[65]=new atom("terbium","Tb",65)
+a[66]=new atom("dysprosium","Dy",66)
+a[67]=new atom("holmium","Ho",67)
+a[68]=new atom("erbium","Er",68)
+a[69]=new atom("thullum","Tm",69)
+a[70]=new atom("ytterblum","Yb",70)
+a[71]=new atom("lutetium","Lu",71)
+a[72]=new atom("hafnium","Hf",72)
+a[73]=new atom("tantalum","Ta",73)
+a[74]=new atom("tungsten","W",74)
+a[75]=new atom("rhenium","Re",75)
+a[76]=new atom("osmium","Os",76)
+a[77]=new atom("iridium","Ir",77)
+a[78]=new atom("platinum","Pt",78)
+a[79]=new atom("gold","Au",79)
+a[80]=new atom("mercury","Hg",80)
+a[81]=new atom("thallium","Tl",81)
+a[82]=new atom("lead","Pb",82)
+a[83]=new atom("bismuth","Bi",83)
+a[84]=new atom("polonium","Po",84)
+a[85]=new atom("astatine","At",85)
+a[86]=new atom("radon","Rn",86)
+a[87]=new atom("francium","Fr",87)  
+a[88]=new atom("radium","Ra",88)
+a[89]=new atom("actinium","Ac",89)
+a[90]=new atom("thorium","Th",90)
+a[91]=new atom("protactinium","Pa",91)
+a[92]=new atom("uranium","U",92)
+a[93]=new atom("neptunium","Np",93)
+a[94]=new atom("plutonium","Pu",94)
+a[95]=new atom("americium","Am",95)
+a[96]=new atom("curium","Cm",96)
+a[97]=new atom("berkelium","Bk",97)
+a[98]=new atom("californium","Cf",98)
+a[99]=new atom("einsteinum","Es",99)
+a[100]=new atom("fermium","Fm",100)
+a[101]=new atom("mendelevium","Md",101)
+a[102]=new atom("nobelium","No",102)
+a[103]=new atom("lawrencium","Lr",103)
+
+function checkit(x){
+if(x==twozero){
+
+z++
+previous[x]=2
+
+twofour=1
+
+document.forms[2].five.value++
+if(x<=57){
+
+document.forms[1].elements[x-1].value=a[x]["sym"]}
+
+if(x>71 & x<90){
+
+document.forms[1].elements[x-15].value=a[x]["sym"]}
+
+if(x>57 & x<72){
+
+document.forms[1].elements[x+17].value=a[x]["sym"]}
+
+if(x>89){
+document.forms[1].elements[x-1].value=a[x]["sym"]}
+}
+else{
+document.forms[2].six.value++}
+}
+function start(){
+if(z==0){timer(0);optlast=0}
+zmax=32
+optotal=0
+if(document.forms[0].elements[0].checked==1){zmax=zmax+15;optotal++}
+if(document.forms[0].elements[1].checked==1){zmax=zmax+9;optotal++}
+if(document.forms[0].elements[2].checked==1){zmax=zmax+17;optotal++}
+if(document.forms[0].elements[3].checked==1){zmax=zmax+30;optotal++}
+if(z!=0 & optotal>optlast){timer(tt+1)}
+optlast=optotal
+if(z==zmax){alert("You're finished with that section. To continue ,you must either add more elements or reload.")
+clearTimeout(running)}
+else{
+twfour=0
+for (j=1;j<=103;j++){compare[j]=1}
+
+var g=Math.ceil(103*Math.random())
+
+if(document.forms[0].elements[3].checked==0){
+
+for (f=57;f<=71;f++){compare[f]=0}
+
+for (f=89;f<=103;f++){compare[f]=0}}
+
+if(document.forms[0].elements[0].checked==0){
+
+for (f=30;f<35;f++){compare[f]=0}
+
+for (f=48;f<53;f++){compare[f]=0}
+
+for (f=80;f<85;f++){compare[f]=0}}
+
+if(document.forms[0].elements[1].checked==0){
+
+for (f=21;f<30;f++){compare[f]=0}}
+
+if(document.forms[0].elements[2].checked==0){
+
+for (f=39;f<48;f++){compare[f]=0}
+
+for (f=72;f<80;f++){compare[f]=0}}
+
+while(compare[g]==0){g=Math.ceil(103*Math.random())}
+
+if (previous[g]==2){start()}
+
+else{
+document.forms[2].one.value=a[g]["name"]
+
+twozero=a[g]["an"]
+
+}}}
+function timer(zz){
+tt=zz
+
+var b=Math.floor(tt/60)
+
+var j = (tt % 60)
+if (j<10){c="0"}
+else {c=""}
+document.forms[2].seven.value=b + ":" + c + j
+running=setTimeout("timer(tt+1)",1000)
+
+}
+
+</script>
+</head>
+<body onLoad="setup()">
+<h3>Periodic Table Drill</h3>
+<p>This page permits practice in locating elements in the periodic table. When
+you click "New Element" an elemental name will appear in the cell. Click on the
+proper position in the table for that element. If you get it correct, the elemental
+symbol will replace the "__" in the square. The basic drill includes only elements
+1-18 plus the remaining alkali metals,alkaline earths, halogens and noble gases.
+Before you begin or at any other time you may add additional elements using the selection boxes below.
+<br><b>Important:</b></p><li>Once you check a new group and begin it, you cannot simply
+"uncheck" it. 
+<li>If you want to start over, either reload the page or press the
+"Reset" button. 
+<li>When you complete a section, the timer will stop. If you then add sections,
+the timer will restart when you press "New Element". 
+<li>You can also reset the
+timer by pressing the "Timer Reset" button.
+<form method="post">
+<table>
+<tr><td><b>Select additional elements</b></td></tr>
+<tr>
+<td><INPUT NAME="repelements" TYPE="checkbox" onClick="document.forms[0].elements[4].value=1" >All the representative elements (inc. Zn group)</td>
+<td><INPUT NAME="firsttrans" TYPE="checkbox" >First transition series</td>
+</tr><tr>
+<td><INPUT NAME="secondtrans" TYPE="checkbox">Second and Third Transition Series</td>
+<td><INPUT NAME="lans" TYPE="checkbox">Lanthanides and Actinides (inc. La and Ac)</td>
+</tr>
+</table>
+</form>
+<form method="post">
+<table width=600 >
+<tr>
+<td width=8><input type="button" value="__" onClick="checkit(1)"></td>
+<th ColSpan=16></th>
+<td><input type="button" value="__" onClick="checkit(2)"></td></tr>
+<tr>
+<td><input type="button" value="__" onClick="checkit(3)"></td>
+<td><input type="button" value="__" onClick="checkit(4)"></td>
+<th ColSpan=10></th>
+<td><input type="button" value="__" onClick="checkit(5)"></td>
+<td><input type="button" value="__" onClick="checkit(6)"></td>
+<td><input type="button" value="__" onClick="checkit(7)"></td>
+<td><input type="button" value="__" onClick="checkit(8)"></td>
+<td><input type="button" value="__" onClick="checkit(9)"></td>
+<td><input type="button" value="__" onClick="checkit(10)"></td></tr>
+<tr>
+<td><input type="button" value="__" onClick="checkit(11)"></td>
+<td><input type="button" value="__" onClick="checkit(12)"></td>
+<th ColSpan=10></th>
+<td><input type="button" value="__" onClick="checkit(13)"></td>
+<td><input type="button" value="__" onClick="checkit(14)"></td>
+<td><input type="button" value="__" onClick="checkit(15)"></td>
+<td><input type="button" value="__" onClick="checkit(16)"></td>
+<td><input type="button" value="__" onClick="checkit(17)"></td>
+<td><input type="button" value="__" onClick="checkit(18)"></td></tr>
+<tr>
+<td><input type="button" value="__" onClick="checkit(19)"></td>
+<td><input type="button" value="__" onClick="checkit(20)"></td>
+<td><input type="button" value="__" onClick="checkit(21)"></td>
+<td><input type="button" value="__" onClick="checkit(22)"></td>
+<td><input type="button" value="__" onClick="checkit(23)"></td>
+<td><input type="button" value="__" onClick="checkit(24)"></td>
+<td><input type="button" value="__" onClick="checkit(25)"></td>
+<td><input type="button" value="__" onClick="checkit(26)"></td>
+<td><input type="button" value="__" onClick="checkit(27)"></td>
+<td><input type="button" value="__" onClick="checkit(28)"></td>
+<td><input type="button" value="__" onClick="checkit(29)"></td>
+<td><input type="button" value="__" onClick="checkit(30)"></td>
+<td><input type="button" value="__" onClick="checkit(31)"></td>
+<td><input type="button" value="__" onClick="checkit(32)"></td>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                               
+<td><input type="button" value="__" onClick="checkit(33)"></td>
+<td><input type="button" value="__" onClick="checkit(34)"></td>
+<td><input type="button" value="__" onClick="checkit(35)"></td>
+<td><input type="button" value="__" onClick="checkit(36)"></td></tr>
+<tr>
+<td><input type="button" value="__" onClick="checkit(37)"></td>
+<td><input type="button" value="__" onClick="checkit(38)"></td>
+<td><input type="button" value="__" onClick="checkit(39)"></td>
+<td><input type="button" value="__" onClick="checkit(40)"></td>
+<td><input type="button" value="__" onClick="checkit(41)"></td>
+<td><input type="button" value="__" onClick="checkit(42)"></td>
+<td><input type="button" value="__" onClick="checkit(43)"></td>
+<td><input type="button" value="__" onClick="checkit(44)"></td>
+<td><input type="button" value="__" onClick="checkit(45)"></td>
+<td><input type="button" value="__" onClick="checkit(46)"></td>
+<td><input type="button" value="__" onClick="checkit(47)"></td>
+<td><input type="button" value="__" onClick="checkit(48)"></td>
+<td><input type="button" value="__" onClick="checkit(49)"></td>
+<td><input type="button" value="__" onClick="checkit(50)"></td>
+<td><input type="button" value="__" onClick="checkit(51)"></td>
+<td><input type="button" value="__" onClick="checkit(52)"></td>
+<td><input type="button" value="__" onClick="checkit(53)"></td>
+<td><input type="button" value="__" onClick="checkit(54)"></td>
+</tr>
+<tr>
+<td><input type="button" value="__" onClick="checkit(55)"></td>
+<td><input type="button" value="__" onClick="checkit(56)"></td>
+<td><input type="button" value="__" onClick="checkit(57)"></td>
+<td><input type="button" value="__" onClick="checkit(72)"></td>
+<td><input type="button" value="__" onClick="checkit(73)"></td>
+<td><input type="button" value="__" onClick="checkit(74)"></td>
+<td><input type="button" value="__" onClick="checkit(75)"></td>
+<td><input type="button" value="__" onClick="checkit(76)"></td>
+<td><input type="button" value="__" onClick="checkit(77)"></td>
+<td><input type="button" value="__" onClick="checkit(78)"></td>
+<td><input type="button" value="__" onClick="checkit(79)"></td>
+<td><input type="button" value="__" onClick="checkit(80)"></td>
+<td><input type="button" value="__" onClick="checkit(81)"></td>
+<td><input type="button" value="__" onClick="checkit(82)"></td>
+<td><input type="button" value="__" onClick="checkit(83)"></td>
+<td><input type="button" value="__" onClick="checkit(84)"></td>
+<td><input type="button" value="__" onClick="checkit(85)"></td>
+<td><input type="button" value="__" onClick="checkit(86)"></td>
+</tr>
+<tr>
+<td><input type="button" value="__" onClick="checkit(87)"></td>
+<td><input type="button" value="__" onClick="checkit(88)"></td>
+<td><input type="button" value="__" onClick="checkit(89)"></td>
+</tr>
+<th ColSpan=18>
+<tr>
+<th ColSpan=3>
+<td><input type="button" value="__" onClick="checkit(58)"></td>
+<td><input type="button" value="__" onClick="checkit(59)"></td>
+<td><input type="button" value="__" onClick="checkit(60)"></td>
+<td><input type="button" value="__" onClick="checkit(61)"></td>
+<td><input type="button" value="__" onClick="checkit(62)"></td>
+<td><input type="button" value="__" onClick="checkit(63)"></td>
+<td><input type="button" value="__" onClick="checkit(64)"></td>
+<td><input type="button" value="__" onClick="checkit(65)"></td>
+<td><input type="button" value="__" onClick="checkit(66)"></td>
+<td><input type="button" value="__" onClick="checkit(67)"></td>
+<td><input type="button" value="__" onClick="checkit(68)"></td>
+<td><input type="button" value="__" onClick="checkit(69)"></td>
+<td><input type="button" value="__" onClick="checkit(70)"></td>
+<td><input type="button" value="__" onClick="checkit(71)"></td>
+</tr>
+<tr>
+<th ColSpan=3>
+<td><input type="button" value="__" onClick="checkit(90)"></td>
+<td><input type="button" value="__" onClick="checkit(91)"></td>
+<td><input type="button" value="__" onClick="checkit(92)"></td>
+<td><input type="button" value="__" onClick="checkit(93)"></td>
+<td><input type="button" value="__" onClick="checkit(94)"></td>
+<td><input type="button" value="__" onClick="checkit(95)"></td>
+<td><input type="button" value="__" onClick="checkit(96)"></td>
+<td><input type="button" value="__" onClick="checkit(97)"></td>
+<td><input type="button" value="__" onClick="checkit(98)"></td>
+<td><input type="button" value="__" onClick="checkit(99)"></td>
+<td><input type="button" value="__" onClick="checkit(100)"></td>
+<td><input type="button" value="__" onClick="checkit(101)"></td>
+<td><input type="button" value="__" onClick="checkit(102)"></td>
+<td><input type="button" value="__" onClick="checkit(103)"></td>
+</tr>
+</table>
+</form>
+<form method="post">
+<table>
+
+<TD><input type="text" name="one" size=12></TD>
+<TD><input type="button" value="New Element" onClick="start()"></TD>
+<TD><input type=button value="Reset" onClick="startover()"></TD>
+
+<td><b>Hits</b><input type="text" name="five" size=3</td>
+<td><b>Misses</b><input type="text" name="six" size=3</td>
+<TD><input type="text" name="seven" size=8></TD>
+<TD><input type=button value="Reset Timer" onClick="clearTimeout(running);timer(0)"></tD>
+</table>
+</form>
+<br>
+ <br>
+<P><HR>
+<CENTER><TABLE WIDTH=99% BORDER>
+<TR>
+<TD ALIGN=center><A HREF="index.html">Return to <BR> Drill and Practice Problems</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem145/chem145.html">Return to <BR> Chemistry 145</A></TD>
+<TD ALIGN=center><A href="https://science.widener.edu/~svanbram/chem146/chem146.html">Return to <BR> Chemistry 146</A></TD>
+</TABLE></CENTER><P><HR>
+
+These problems are provided courtesy of <A HREF="http://chemistry.csudh.edu/">Prof. George Wiger</A> (<A HREF="mailto:gwiger@chemistry.csudh.edu">gwiger@chemistry.csudh.edu</A>) at California State University, Dominguez Hills.<P>
+
+Please direct any questions about this site to 
+Please send comments or suggestions to<A HREF="mailto: svanbram@science.widener.edu"> svanbram@science.widener.edu</A><p>
+<A HREF="http://science.widener.edu/~svanbram">Scott Van Bramer</A><BR>
+<A HREF="http://www.widener.edu/CAS/chemistry">Department of Chemistry</A><BR>
+<A HREF="http://www.widener.edu/">Widener University</A><BR>
+Chester, PA 19013<P>
+
+
+This page has been accessed 
+<!--#exec cgi="/cgi-bin/counter"-->
+ times since  9/1 /98 .<P>
+
+Last Updated: Tuesday, September 01, 1998 11:12:46 AM
+</body>
+
+<!-- Mirrored from science.widener.edu/svb/tutorial/ptable.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 18 Dec 2023 22:57:09 GMT -->
+</html>
