@@ -1,0 +1,208 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/protontransfercsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:17 GMT -->
+<head>
+<title>Proton Transfer Reactions</title>
+<style>
+#qspot {position:absolute;left:320;top:410}
+#ansspot {position:absolute;left:320;top:540;height:300}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600}
+#prespot {position:relative;height:50}
+</style>
+<script src=lecturesupportn7.js></script>
+<script src="numberconvert.js"></script>
+<script src=reflist.js></script>
+<script language="javascript">
+refnumber=124
+thepage="Proton Transfer(80)"
+teststring="z0123456789"
+cell1="<input type=text size=8 name=cell1>"
+cell2="<input type=text size=8 name=cell2>"
+option=swtch=0
+thebutton="<br><input type=button value='Preview' onClick=preview(this.form)><input type=button value='Check Answer' onClick=answer(this.form)></form>"
+acids=new Array("HBr","HCl","HI","HF","HNO3","HNO2","HClO","HClO3","HClO4","HCN","H2SO4","H2CO3","H2SO3","HCO2H","CH3CO2H","C6H5CO2H","CH2ClCO2H")
+bases=new Array("OH-","NH3","CH3NH2","(CH3)3N","C2H5NH2","C10H14N2","C6H5NH2","C5H5N","(CH3)2NH")
+introphrase="Complete the following proton transfer reaction, following the conventions for entering the formulas described above. Use the <b>Preview</b> button, if you wish, before submitting your answer<br><form name=protonxfer>"
+ansset=new Array()
+ansset[0]=new Array(2,3)
+ansset[1]=new Array(1,2)
+ansset[2]=new Array(0,3)
+ansset[3]=new Array(0,1)
+function startit(){
+	clear()
+	tried=0
+	totl++
+	document.forms[0].total.value=totl
+	theacid=Math.floor(acids.length*Math.random())
+	thebase=Math.floor(bases.length*Math.random())
+	conbase=getconbase(theacid)
+	conacid=getconacid(thebase)
+	alldata=new Array(acids[theacid],bases[thebase],conbase,conacid)
+	thereaction=convertformula(acids[theacid])+" + "+convertformula(bases[thebase])+"=>"+convertformula(conbase)+" + "+convertformula(conacid)
+	theanswer=thereaction
+	buildquest(alldata)
+	//showanswer()
+}
+function getconbase(x){
+	(x>9 && x<13)?conbase="H":conbase="";
+	x<13?spoint=1:spoint=0;
+	if(x>9 && x<13)spoint=2;
+	x<13?epoint=acids[x].length:epoint=(acids[x].length-1);
+	for(h=spoint;h<epoint;h++)conbase+=acids[x].charAt(h);
+	conbase+="-"
+	return conbase
+}
+function getconacid(x){
+	if(x==0)return "H2O";
+	else{
+	conacid=""
+	for(h=0;h<bases[x].length-1;h++)conacid+=bases[x].charAt(h);
+	if(bases[x].charAt(bases[x].length-1)=="H")conacid+="H2";
+	else{
+		if(teststring.indexOf(bases[x].charAt(bases[x].length-1))>0 && bases[x].charAt(bases[x].length-2)=="H")conacid+=(1*bases[x].charAt(bases[x].length-1)+1);
+		else conacid+=(bases[x].charAt(bases[x].length-1)+"H")		
+	}
+	conacid+="+"
+	return conacid
+}}
+function convertformula(x){
+	newform=x.charAt(0)
+	for(j=1;j<x.length;j++){
+		if(x.charAt(j)=="-" || x.charAt(j)=="+")newform+="<sup>"+x.charAt(j)+"</sup>";
+		else{
+			if(teststring.indexOf(x.charAt(j))>0)newform+="<sub>"+x.charAt(j)+"</sub>";
+			else newform+=x.charAt(j);
+			}
+	}
+	return newform
+}
+function buildquest(alldata){
+	thequest=introphrase
+	option=Math.floor(4*Math.random());
+	Math.random()>.5?swtch=1:swtch=0;
+	if(swtch==0){
+	if(option==0)thequest+=convertformula(alldata[0])+"+"+convertformula(alldata[1])+"=>"+cell1+"+"+cell2+thebutton;
+	if(option==1)thequest+=convertformula(alldata[0])+"+"+cell1+"=>"+cell2+"+"+convertformula(alldata[3])+thebutton;
+	if(option==2)thequest+=cell1+"+"+convertformula(alldata[1])+"=>"+convertformula(alldata[2])+"+"+cell2+thebutton;
+	if(option==3)thequest+=cell1+"+"+cell2+"=>"+convertformula(alldata[2])+"+"+convertformula(alldata[3])+thebutton;
+	theanswer=convertformula(alldata[0])+"+"+convertformula(alldata[1])+"=>"+convertformula(alldata[2])+"+"+convertformula(alldata[3])
+		}
+	else{
+if(option==0)thequest+=cell1+"+"+cell2+"=>"+convertformula(alldata[0])+"+"+convertformula(alldata[1])+thebutton;
+	if(option==1)thequest+=cell2+"+"+convertformula(alldata[3])+"=>"+convertformula(alldata[0])+"+"+cell1+thebutton;
+	if(option==2)thequest+=convertformula(alldata[2])+"+"+cell2+"=>"+cell1+"+"+convertformula(alldata[1])+thebutton;
+	if(option==3)thequest+=convertformula(alldata[2])+"+"+convertformula(alldata[3])+"=>"+cell1+"+"+cell2+thebutton;
+	theanswer=convertformula(alldata[2])+"+"+convertformula(alldata[3])+"=>"+convertformula(alldata[0])+"+"+convertformula(alldata[1])
+		}
+	showquest(thequest)
+}
+function clear(){
+	document.forms[0].results.value=""
+	clearansspot()
+	clearpreview()
+}
+function clearpreview(){
+	if(thisbrowser=="IE"){
+		prespot.innerHTML=""
+		}
+	else{
+		if(thisbrowser=="NN4"){
+		document.prespot.document.open()
+		document.prespot.document.write("")
+		document.prespot.document.close()
+		}
+		else{
+			document.getElementById("prespot").innerHTML=""
+			}
+		}
+}
+function preview(form){
+	theequation=""
+	var cell1=convertformula(form.cell1.value)
+	var cell2=convertformula(form.cell2.value)
+	if(swtch=0){
+	if(option==0)theequation+=convertformula(alldata[0])+"+"+convertformula(alldata[1])+"=>"+cell1+"+"+cell2;
+	if(option==1)theequation+=convertformula(alldata[0])+"+"+cell1+"=>"+cell2+"+"+convertformula(alldata[3]);
+	if(option==2)theequation+=cell1+"+"+convertformula(alldata[1])+"=>"+convertformula(alldata[2])+"+"+cell2;
+	if(option==3)theequation+=cell1+"+"+cell2+"=>"+convertformula(alldata[2])+"+"+convertformula(alldata[3]);
+	}
+	else{
+	if(option==0)theequation+=cell1+"+"+cell2+"=>"+convertformula(alldata[0])+"+"+convertformula(alldata[1]);
+	if(option==1)theequation+=cell2+"+"+convertformula(alldata[3])+"=>"+convertformula(alldata[0])+"+"+cell1;
+	if(option==2)theequation+=convertformula(alldata[2])+"+"+cell2+"=>"+cell1+"+"+convertformula(alldata[1]);
+	if(option==3)theequation+=convertformula(alldata[2])+"+"+convertformula(alldata[3])+"=">+cell1+"+"+cell2;
+	}
+	if(thisbrowser=="IE"){
+		prespot.innerHTML=theequation
+		}
+	else{
+		if(thisbrowser=="NN4"){
+		document.prespot.document.open()
+		document.prespot.document.write(theequation)
+		document.prespot.document.close()
+		}
+		else{
+			document.getElementById("prespot").innerHTML=theequation
+			}
+		}
+}
+				
+function answer(form){
+	if(tried==1)alert("You've done this one. Get a new problem.");
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	attempts++
+	if(form.cell1.value==alldata[ansset[option][0]] && form.cell2.value==alldata[ansset[option][1]]){
+		document.forms[0].results.value="Correct"
+		corrt++
+		document.forms[0].correct.value=corrt
+		tried=1
+	}
+	else{
+		document.forms[0].results.value="Incorrect"
+		tried=2
+	}
+}}	
+</script>
+<body onLoad=mainstart()>
+<h3>Proton Transfer Reactions</h3>
+This page presents exercises in the completion of proton transfer reactions. It is critical that your answers are entered in the format shown below. You should use the "Preview" button to check your answer before submitting it.<br>
+Using this page<ul>
+<li>Pressing "New Reaction" will display a partial proton transfer reaction with two species shown and two missing. Enter the missing materials according to the following format:<br>
+Inorganic Acids: HA  +  B  => A<SUP>-</SUP> + BH<SUP>+ </SUP> Ex: HI + NH<SUB>3</SUB>  => I<sup>-</sup> + NH<SUB>4</SUB><SUP>+</SUP><br>
+Carboxylic Acids(end in CO<SUB>2</SUB>H): AH  + B =>  A<SUP>-</SUP> + BH<SUP>+</SUP>  Ex: CH<SUB>3</SUB>CO<SUB>2</SUB>H + NH<SUB>3</SUB> => CH<SUB>3</SUB>CO<SUB>2</SUB><SUP>-</SUP> + NH<SUB>4</SUB><SUP>+</SUP> </center>
+<li>Make certain that the sequence above is followed and you include the charges
+<li>It is possible that the reaction will presented as the reverse of the general equations shown above and you should structure your response accordingly.
+<li>You cannot enter subscripts or superscripts in the answer cell, so HNO<sub>3</sub> would be entered as HNO3. Also, make certain that the charge, if present is the last entry.
+<li>Be careful about capitalization.
+<li>The first time you attempt this page, use the showanswer() and Preview buttons extensively to familiarize yourself with its operation and how to input the values.
+<li>If you press "Preview" after entering the values, your proposed reaction will be displayed.
+<li>When you are certain that you have it correct, press "Check Answer" and results will appear in the table.
+<li>If you miss a problem three times, pressing "Show Answer" will display the complete solution and you will no longer be able submit an answer for that problem.
+</ul>
+<form >
+<input type=button value="New Reaction" onClick="startit()">
+<input type=button value="Show Answer" onClick="showanswer()">
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</form>
+<DIV ID=prespot></div>   
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+</form>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/protontransfercsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:17 GMT -->
+</html>

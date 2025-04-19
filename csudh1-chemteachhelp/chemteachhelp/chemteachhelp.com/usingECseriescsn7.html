@@ -1,0 +1,182 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/usingECseriescsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:20 GMT -->
+<head>
+<title>Using the ECSeries</title>
+<style>
+#qspot {position:absolute;left:360;top:250}
+#ansspot {position:absolute;left:360;top:390;height:300}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600;height:50}
+</style>
+<script src="reflist.js"></script>
+<script src="numberconvert.js"></script>
+<script src="ionformulas.js"></script>
+<script src=lecturesupportn7.js></script>
+<script language="javascript">
+thepage="Using ECSeries(142)"
+//updated 11/14/00-added complete solution
+//updated 11/20/02-netscape 7
+//global variables
+first=second=
+refnumber=188
+corrt=0
+tried=0
+totl=answr=0
+theanswer=0
+halfrxn=new Array()
+halfrxn[0]=new Array("F2","F-")
+halfrxn[1]=new Array("Au+","Au")
+halfrxn[2]=new Array("Ce+4","Ce+3")
+halfrxn[3]=new Array("MnO4-","Mn+2")
+halfrxn[4]=new Array("Cl2","Cl-")
+halfrxn[5]=new Array("Cr2O7-2","Cr+3")
+halfrxn[6]=new Array("O2","H2O")
+halfrxn[7]=new Array("Br2","Br-")
+halfrxn[8]=new Array("NO3-","NO")
+halfrxn[9]=new Array("Ag+","Ag")
+halfrxn[10]=new Array("I2","I-")
+halfrxn[11]=new Array("O2","OH-")
+halfrxn[12]=new Array("Cu+2","Cu")
+halfrxn[13]=new Array("H+","H2")
+halfrxn[14]=new Array("Pb+2","Pb")
+halfrxn[15]=new Array("Sn+2","Sn")
+halfrxn[16]=new Array("Fe+2","Fe")
+halfrxn[17]=new Array("Zn+2","Zn")
+halfrxn[18]=new Array("Al+3","Al")
+halfrxn[19]=new Array("Mg+2","Mg")
+halfrxn[20]=new Array("Na+","Na")
+halfrxn[21]=new Array("K+","K")
+halfrxn[22]=new Array("Li+","Li")
+theform="<br><form><input type=radio name=yesno onClick=answer(0)>Yes<input type=radio name=yesno onClick=answer(1)>No</form>"
+introphrase="Under standard conditions, will "
+phrases=new Array(" oxidize "," reduce "," be oxidized by "," be reduced by "," act as an oxidizing agent toward "," act as a reducing agent toward ")
+function startit(){
+	clear()
+	first=second=Math.floor(Math.random()*halfrxn.length);
+	while(second==first)second=Math.floor(Math.random()*halfrxn.length);
+	getcmpds(first,second)
+	option=Math.floor(6*Math.random())
+	thequest=introphrase
+	//option=0
+	if(option==0 || option==4){
+		thequest+=thecmpds[0] + phrases[option] + thecmpds[3]
+		first<second?answr=0:answr=1
+	}
+	if(option==1|| option==5){
+		thequest+=thecmpds[1] + phrases[option] + thecmpds[2]
+		first>second?answr=0:answr=1
+	}
+	if(option==2){
+		thequest+=thecmpds[1] + phrases[2] + thecmpds[2]
+		first>second?answr=0:answr=1
+	}
+	if(option==3){
+		thequest+=thecmpds[0] + phrases[3] + thecmpds[3]
+		first<second?answr=0:answr=1
+	}
+	buildanswer()
+	thequest+=theform
+	showquest(thequest)	
+}
+function buildanswer(){
+	if(option==0 || option==4){
+		theanswer="Since "+thecmpds[0]+" is "
+		first<second?theanswer+=" above ":theanswer+=" below ";
+		theanswer+=thecmpds[3]+" in the electrochemical series, it ";
+		first<second?theanswer+=" will ":theanswer+=" will not ";
+		theanswer+=" oxidize the latter."
+	}
+	if(option==1 || option==5){
+		theanswer="Since "+thecmpds[1]+" is "
+		first>second?theanswer+=" below ":theanswer+=" above ";
+		theanswer+=thecmpds[2]+" in the electrochemical series, it ";
+		first>second?theanswer+=" will ":theanswer+=" will not ";
+		theanswer+=" reduce the latter."
+	}
+	if(option==2){
+		theanswer="Since "+thecmpds[1]+" is "
+		first>second?theanswer+=" below ":theanswer+=" above ";
+		theanswer+=thecmpds[2]+" in the electrochemical series, it ";
+		first>second?theanswer+=" will ":theanswer+=" will not ";
+		theanswer+=" be oxidized by the latter."
+	}
+	if(option==3){
+		theanswer="Since "+thecmpds[0]+" is "
+		first<second?theanswer+=" above ":theanswer+=" below ";
+		theanswer+=thecmpds[3]+" in the electrochemical series, it ";
+		first<second?theanswer+=" will ":theanswer+=" will not ";
+		theanswer+=" be reduced by the latter."
+	}
+
+}
+function clear(){
+	document.forms[0].results.value=""
+	tried=0
+	clearansspot()
+}				
+function getcmpds(first,second){
+	hrxn=new Array()
+	thecmpds=new Array()
+	thecmpds[0]=completeformula(halfrxn[first][0])
+	thecmpds[1]=completeformula(halfrxn[first][1])
+	thecmpds[2]=completeformula(halfrxn[second][0])	
+	thecmpds[3]=completeformula(halfrxn[second][1])
+	hrxn[1]=thecmpds[1]+"+"+halfrxn[first][2]+"e<sup>-</sup> =>"+thecmpds[3]+"<br>"
+	hrxn[2]=thecmpds[2]+" => "+thecmpds[4]+"+"+halfrxn[second][2]+"e<sup>-</sup><br>"
+}
+function answer(ans){
+	if(tried==1)alert("You've done this one. Get a new problem.");
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	attempts++
+	if(ans==answr){
+		tried=1
+		corrt++
+		document.forms[0].results.value="correct"
+		document.forms[0].correct.value=corrt
+	}
+	else{
+		tried=1
+		document.forms[0].results.value="incorrect"
+		attempts=3
+		showanswer()
+	}
+	}	
+}
+
+</script>
+</head>
+<body onLoad="mainstart()">
+<h3>Using the Electrochemical Series</h3>
+This page is a basic exercise in using the structure of the electrochemical series to predict spontaneity under
+standard conditions. When you press "New Problem", a question involving a redox reacion will be presented. Use the electrochemical
+series to ascertain whether the reaction will occur as described and click on the button in front of the correct
+response. The results appear in the usual cell.<ul>
+<li>You only get one attempt per problem. If you miss a problem, the correct answer will be displayed and you will no longer be able to submit an answer to that question.</ul>
+<form>
+<table>
+<tr><td><input type=button value="New Problem" onClick="startit()"><td></tr>
+</tr>
+</table>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</form>
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+<br>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/usingECseriescsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:20 GMT -->
+</html>

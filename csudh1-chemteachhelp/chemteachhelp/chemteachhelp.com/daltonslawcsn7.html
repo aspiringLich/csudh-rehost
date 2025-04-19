@@ -1,0 +1,175 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/daltonslawcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:15 GMT -->
+<head>
+<title>Dalton's Law of Partial Pressures</title>
+<style>
+#qspot {position:absolute;left:360;top:220}
+#ansspot {position:absolute;left:360;top:380;height:300}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600;height:50}
+</style>
+<script src="reflist.js"></script>
+<script src="numberconvert.js"></script>
+<script src=lecturesupportn7.js></script>
+<script language="javascript">
+thepage="Dalton's Law(46)"
+refnumber=62
+//11/20/02-updated netscape 7
+//global variables
+theanswer=""
+which=0
+cmpd=new Array("He","H<sub>2</sub>","Ar","C<sub>2</sub>H<sub>4</sub>","CH<sub>4</sub>","CO","CO<sub>2</sub>","C<sub>2</sub>H<sub>2</sub>","Xe","H<sub>2</sub>S")
+syms=new Array("<B>n</B><sub>","<B>P</B><sub>","<B>&Chi;</B><sub>")
+datalabels=new Array("moles","moles","moles","torr","torr","torr","","")
+esub="</sub>"
+symbols=option=0
+dset=new Array()
+qset=new Array()
+dset[0]=new Array(0,1,3)
+qset[0]=new Array(4,5)
+dset[1]=new Array(0,1,5)
+qset[1]=new Array(3,4)
+dset[2]=new Array(0,3,5)
+qset[2]=new Array(1,4,7)
+dset[3]=new Array(0,3,6)
+qset[3]=new Array(4,5)
+dset[4]=new Array(5,6)
+qset[4]=new Array(3,4)
+dset[5]=new Array(3,5)
+qset[5]=new Array(7,7)
+dset[6]=new Array(3,6)
+qset[6]=new Array(4,5)
+dset[7]=new Array(0,2,3)
+qset[7]=new Array(4,5)
+dset[8]=new Array(0,2,5)
+qset[8]=new Array(3,4)
+solveset=new Array()
+solveset[0]=new Array(2,0,"+",1)//nt=n1+n2
+solveset[1]=new Array(6,0,"index.html",2)//x1=n2/nt
+solveset[2]=new Array(7,1,"index.html",2)//x2=n2/nt
+solveset[3]=new Array(6,99,"1-",7)//x1=1-x2
+solveset[4]=new Array(7,99,"1-",6)//x2=1-x1
+solveset[5]=new Array(3,6,"*",5)//p1=x1*pt
+solveset[6]=new Array(4,7,"*",5)//p2=x2*pt
+solveset[7]=new Array(5,3,"+",4)//pt=p1+p2
+solveset[8]=new Array(6,3,"index.html",5)//x1=p1/pt
+solveset[9]=new Array(7,4,"index.html",5)//x2=p2/pt
+solveset[15]=new Array(0,"index.html",1,3,"index.html",4)//n1/n2=p1/p2
+solveset[16]=new Array(0,"index.html",2,3,"index.html",5)//n1/nt=p1/pt
+solveset[17]=new Array(1,"index.html",2,4,"index.html",5)//n2/nt=p2/pt
+solveset[20]=new Array(3,0,"index.html",1,"*",4)//p1=(n1/n2)*p2
+solveset[21]=new Array(4,1,"index.html",0,"*",3)//p2=(n2/n1)*p1
+solvepath=new Array
+solvepath[0]=new Array(0,4)
+symbols=new Array()
+function startit(){
+	clear()
+	totl++
+	document.forms[0].total.value=totl
+	first=Math.floor(cmpd.length*Math.random())
+	second=first
+	while(second==first)second=Math.floor(cmpd.length*Math.random())
+	setsymbols(first,second)
+	pt=nt=x1=0
+	while(pt<100)pt=number((1000*Math.random()),2,3)
+	while(nt<.01)nt=number(Math.random(),2,3)
+	while(x1<.1 || x1>.8)x1=number(Math.random(),2,3)
+	x2=number((1-x1),2,3)
+	n1=number((nt*x1),2,3)
+	n2=number((nt-n1),2,3)
+	p1=number((pt*x1),2,3)
+	p2=number((pt-p1),2,3)
+	alldata=new Array(n1,n2,nt,p1,p2,pt,x1,x2)
+	buildquestion(first,second)
+	buildequat()
+}
+function buildequat(){
+	wequat=Math.floor(10*Math.random())
+	wequat=21
+	if(wequat<10){
+	thesolution=symbols[solveset[wequat][0]]+"="
+	solveset[wequat][1]==99?thesolution+=solveset[wequat][2]+symbols[solveset[wequat][3]]:thesolution+=symbols[solveset[wequat][1]]+solveset[wequat][2]+symbols[solveset[wequat][3]];
+	}
+	else{
+		if(wequat<20){
+			thesolution=symbols[solveset[wequat][0]]+solveset[wequat][1]+symbols[solveset[wequat][2]]+"="+symbols[solveset[wequat][3]]+solveset[wequat][4]+symbols[solveset[wequat][5]]
+	}
+		else{
+			thesolution=symbols[solveset[wequat][0]]+"="+symbols[solveset[wequat][1]]+solveset[wequat][2]+symbols[solveset[wequat][3]]+solveset[wequat][4]+symbols[solveset[wequat][5]]
+			}
+	}
+}
+function setsymbols(first,second){
+	symbols[0]=syms[0]+cmpd[first]+esub
+	symbols[1]=syms[0]+cmpd[second]+esub
+	symbols[2]="<B>n</B><sub>T</sub>"
+	symbols[3]=syms[1]+cmpd[first]+esub
+	symbols[4]=syms[1]+cmpd[second]+esub
+	symbols[5]="<B>P</B><sub>T</sub>"
+	symbols[6]=syms[2]+cmpd[first]+esub
+	symbols[7]=syms[2]+cmpd[second]+esub
+}
+function buildquestion(first,second){
+	which=Math.floor(Math.random()*dset.length);
+	thequest="A mixture of two gases, "+cmpd[first]+" and "+cmpd[second]+", has the properties listed below.<table border=0><tr>"
+	for(j=0;j<dset[which].length;j++)thequest+="<td>"+symbols[dset[which][j]]+"="+alldata[dset[which][j]]+datalabels[dset[which][j]]+"<td></tr>";
+	option=qset[which][Math.floor(Math.random()*qset[which].length)]
+	thequest+="What is the "+symbols[option]+" for this mixture?"
+	thequest+="</table>"
+	theanswer=alldata[option]
+	showquest(thequest)
+}
+function answer(theans){
+	attempts++
+	if(tried==1)alert("You've done this one! Get a new problem.");
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl};
+	attempts++
+	if(theans>.95*alldata[option] && theans<1.05*alldata[option]){
+		document.forms[0].results.value="Correct"
+		corrt++
+		document.forms[0].correct.value=corrt
+		tried=1
+	}
+	else{
+		document.forms[0].results.value="Incorrect"
+		tried=2
+	}
+}}
+		
+</script>
+</head>
+<body onLoad="mainstart()">
+<h2>Dalton's Law</h2>
+Dalton's Law states that, in a mixture of gases, each gas' partial pressure is directly proportional to its mole fraction:P<sub>a</sub>=X<sub>a</sub>*P<sub>T</sub>. When you press "New Problem", a question will be displayed to the right of the table. Determine the correct response, enter it in the cell and submit your answer.
+<ul>
+<li>All pressures are in torr.
+<li>If you miss a problem three times, pressing "Show Answer" will cause the correct answer to appear and you will no longer be able to submit an answer for that problem. At this time, showing the answer will only provide the numeric answer, not a complete solution.
+</ul>
+<form>
+<input type=button value="New Problem" onClick="startit()"><br>
+<input type="text" name=theans size=8>Enter your Answer<br>
+<input type=button value="Check Answer" onClick="answer(this.form.theans.value)">
+<input type=button value="Show Answer" onClick="showanswer()">
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</form>
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+<br>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/daltonslawcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:15 GMT -->
+</html>

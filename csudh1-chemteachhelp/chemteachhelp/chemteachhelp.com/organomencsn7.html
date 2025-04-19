@@ -1,0 +1,210 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/organomencsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:21 GMT -->
+<head><title>Functional Groups</title>
+<style>
+#qspot {position:absolute;left:350;top:300}
+#ansspot {position:absolute;left:320;top:450;height:400}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600}
+</style>
+<script src="numberconvert.js"></script>
+<script src=lecturesupportn7.js></script>
+<script src="reflist.js"></script>
+<script language=javascript>
+pieces=new Array
+thepage="Organic Nomenclature(163)"
+refnumber=220
+brkpt=0
+totl=corrt=0
+cstarts=new Array("H3C","H2C")
+middles=new Array("CH2","CH","C")
+theends=new Array("CH3","CH2","CH")
+descript=thename=""
+basename=new Array("none","meth","eth","prop","but","pent","hex","hept","oct")
+alphaname=new Array(-10,4,1,7,0,6,3,2,5)
+nameend=new Array("ane","ene","yne","yl")
+thegroups=new Array("Cl","Br","I","NH2","OH","CHO","CO2H")
+linkgroups=new Array("CO2","O","CO")
+funcnames=new Array("chloro","bromo","iodo","amino","ol","al","oic acid")
+linknames=new Array("ester","ether","ketone")
+function cleanse(){
+	totl=0
+	corrt=0
+	document.forms[0].total.value=totl
+	document.forms[0].correct.value=corrt
+	clear()
+	}
+function clear(){
+	tried=0
+	document.forms[0].results.value=""
+	document.forms[0].theans.value=""
+	clearansspot()
+}
+function startit(){
+	totl++
+	document.forms[0].total.value=totl
+	clear()
+	var f=0
+	while(f<2)f=Math.ceil(8*Math.random())
+	spot=Math.ceil((f-1)*Math.random())
+	Math.random()<.5?dcount=1:dcount=0;
+	descript=new Array(f,dcount,spot)
+	Math.random()>.5?buildhcarbon():buildother()
+}
+function buildhcarbon(){
+	//total length of the compound in carbons
+	clength=descript[0];
+	dcount=descript[1]
+	dspot=descript[2]
+	dcount>0 && dspot==1?cmpd=(cstarts[1]+"="):cmpd=cstarts[0]
+	if(dcount==0){
+		for(var j=1;j<(clength-1);j++)cmpd+=middles[0];
+		cmpd+=theends[0]
+	}
+	else{
+		for(var j=1;j<(clength-1);j++){
+			if(j==(dspot-1)){
+					cmpd+=middles[1]+"="
+					}
+			else{
+				if(j==dspot+1)cmpd+=middles[1];
+				else cmpd+=middles[0];
+			}
+		}
+		dspot==(clength-1)?cmpd+=theends[1]:cmpd+=theends[0]
+	}
+	cmpd=getformula(cmpd)
+	thename=""
+	if(dcount==0)thename=basename[descript[0]]+nameend[0];
+	else{
+		dspot<=clength/2?dspot=dspot:dspot=clength-dspot;
+		if(descript[0]>3)thename=dspot+"-";
+		thename+=basename[descript[0]]+nameend[1];
+		}
+	thequest=cmpd+"<br>"+thename
+	theanswer=thename
+	showquest(cmpd)
+}
+function buildother(){
+	Math.random()>.5?buildfgroup():buildlinked()
+}
+function buildfgroup(){
+	dspot=Math.ceil(Math.random()*descript[0])
+	clength=descript[0]
+	cmpd=thename=""
+	thegroup=Math.floor(Math.random()*thegroups.length)
+	if(thegroup>4)dspot=clength;
+	dspot==1?cmpd=("<b>"+thegroups[thegroup]+"</b>"+theends[1]):cmpd=cstarts[0]
+	for(j=2;j<descript[0];j++){
+		j!=dspot?cmpd+=middles[0]:cmpd+=(middles[1]+"<b>"+thegroups[thegroup]+"</b>")
+	}
+	if(thegroup>4)cmpd+="<b>"+thegroups[thegroup]+"</b>";
+	else dspot==descript[0]?cmpd+=(theends[1]+"<b>"+thegroups[thegroup]+"</b>"):cmpd+=theends[0];
+	cmpd=getformula(cmpd)
+	//thename=basename[descript[0]]+nameend[0];
+	dspot<=clength/2?dspot=dspot:dspot=clength-dspot+1;
+	if(thegroup<=4){
+		if(descript[0]>2 && thegroup<=4)thename=dspot+"-";
+		if (thegroup<4)thename+=funcnames[thegroup]+basename[descript[0]]+nameend[0];
+			else thename+=basename[descript[0]]+"anol"
+		}
+	else  thename+=(basename[descript[0]]+"an"+funcnames[thegroup]);
+	thequest=cmpd+"<br>"+thename
+	theanswer=thename
+	showquest(cmpd)
+}
+function buildlinked(){
+	first=Math.ceil(6*Math.random())
+	second=Math.ceil(6*Math.random())
+	lgroup=Math.floor(3*Math.random())
+	first>1?sfirst=first:sfirst=""
+	second>1?ssecond=second:ssecond=""
+	cmpd="C"+sfirst+"H"+(2*first+1)+"<b>"+linkgroups[lgroup]+"</b>C"+ssecond+"H"+(2*second+1)
+	cmpd=getformula(cmpd)
+	thename=""
+	if(first==second)thename="di"+basename[first]+"yl"+linknames[lgroup]
+	else{
+		if(lgroup==0){thename=basename[second]+"yl"+basename[first+1]+"anoate"}
+		else{
+		alphaname[first]<alphaname[second]?thename=basename[first]+"yl"+basename[second]+"yl"+linknames[lgroup]:thename=basename[second]+"yl"+basename[first]+"yl"+linknames[lgroup]
+		}
+	}
+	thequest=cmpd+"<br>"+thename
+	theanswer=thename
+	showquest(cmpd)
+}
+		
+function getformula(x){
+		sdigits="z0123456789"
+		sub="false"
+		newstring=""
+		thestring=x
+		for(k=0;k<thestring.length;k++){
+			nextchar=thestring.charAt(k)
+			if(sdigits.indexOf(nextchar)>0){
+				sub=="false"?newstring+=("<sub>"+nextchar):newstring+=nextchar;
+				sub="true"
+				}
+			else{
+				sub=="true"?newstring+=("</sub>"+nextchar):newstring+=nextchar;
+				sub="false"
+				}
+		}
+		sub=="true"?newstring+="</sub>":"";
+		return newstring
+}
+function answer(ans){
+	attempts++
+	if(tried==1){alert("You've already done this problem. Get a new one!")}
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	if(ans==theanswer)
+		{
+    		document.forms[0].results.value="correct"
+    		corrt++
+    		document.forms[0].correct.value=corrt
+    		tried=1
+	}
+	else{
+    		tried=2
+    		document.forms[0].results.value="incorrect"}
+	}	
+}
+
+</script>
+</head>
+<body onLoad="mainstart()">
+<h2>Basic Organic Nomenclature</h2>
+This page provides introductory exercises in naming organic compounds. It will present the following compound types: a)linear alkanes b)linear monoalkenes c)Linear alkanes with a single functional group d)Esters, ethers and ketones. In order to make them obvious, the functional groups and linking groups will be shown in <b>bold</b> immediately after the carbon which they are attached, with the exception of the leftmost carbon,where they will be written first.<br>
+When entering the name of the compound, please follow the text and lecture descriptions wiht regards to format. The computer isn't going to recognize any variations on the presentation or spelling. To familiarize yourself with the required format, you should try a few "Show Answer" problems before beginning.<ul>
+<li>When you press "New Compound", a formula will appear to the right of the table
+<li>Enter the name in the cell and press "Check Answer"
+<li>If you miss a problem three times, pressing "Show Answer" will display the complete solution and you will no longer be able submit an answer for that problem.
+</ul>
+<form >
+<input type="button" value="New Compound" onClick="startit()"><br>
+<input type=text name=theans size=20><input type=button value="Check Answer" onClick=answer(this.form.theans.value)><br>
+<td><input type=button value="Show answer" onClick="showanswer()"></td>
+</tr>
+</table>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</FORM>
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/organomencsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:21 GMT -->
+</html>

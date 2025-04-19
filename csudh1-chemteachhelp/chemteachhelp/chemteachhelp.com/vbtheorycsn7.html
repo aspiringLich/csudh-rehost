@@ -1,0 +1,182 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/vbtheorycsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:21 GMT -->
+<head>
+<title>VBT Metal complexes</title>
+<style>
+#qspot {position:absolute;left:350;top:400}
+#ansspot {position:absolute;left:350;top:620;height:50}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600}
+</style>
+<script src=lecturesupportn7.js></script>
+<script src="numberconvert.js"></script>
+<script src=reflist.js></script>
+<script language="javascript">
+thepage="VBT T Metal compounds(171)"
+teststring="z0123456789"
+refnumber=240
+thecell="<input type=text size=3 >"
+thelabels="</td></tr><tr><td align=center>d</td><td align=center>s</td><td align=center>p</td><td align=center>d</td></tr>"
+spacer="  "
+question=new Array("A complex of "," is formed. The complex is found to be ")
+inserts=new Array(" tetrahedral."," square planar "," octahedral ")
+finishes=new Array(" inner sphere."," outer sphere. "," low spin. "," high spin. ")
+option=choice=0
+basestring=new Array("111","1111","11111","21111","22111","211","221","222","2221","2222","22221","22211","22221")
+ligandstring=("2222","22222")
+themetals=new Array()
+themetals[0]=new Array("V",5,3,2)
+themetals[1]=new Array("Cr",6,3,2)
+themetals[2]=new Array("Mn",7,3,2)
+themetals[3]=new Array("Fe",8,3,2)
+themetals[4]=new Array("Co",9,3,2)
+themetals[5]=new Array("Ni",10,3,2)
+themetals[6]=new Array("Mo",6,3,2)
+themetals[7]=new Array("Ru",8,4,3,2)
+themetals[8]=new Array("Rh",9,2,3,4)
+themetals[9]=new Array("Pd",10,2,4)
+themetals[10]=new Array("W",6,4,2)
+themetals[11]=new Array("Os",8,4,3,2)
+themetals[12]=new Array("Ir",9,6,4,3,2)
+themetals[2]=new Array("Pt",10,4,2)
+ansstring=""
+totl=corrt=0
+oxstate=ecount=metalsym=pcount=0
+ansphrase=new Array(" is d<sup>","</sup>. According to the information given, the metal electrons will be distributed as follows:<br>","<br>You then add "," electrons pairs from the ligands, yielding the final diagram:<br>")
+function cleanse(){
+	clear()
+	totl=0
+	corrt=0
+	document.forms[0].total.value=totl
+	document.forms[0].correct.value=corrt
+}
+function clear(){
+	document.forms[0].results.value=""
+	tried=0
+	attempts=0
+	clearansspot()
+}
+function startit(){
+	totl++
+	document.forms[0].total.value=totl
+	clear()
+	metal=Math.floor(Math.random()*themetals.length)
+	oxstate=2+Math.floor(Math.random()*(themetals[metal].length-2))
+	metalsym=themetals[metal][0]+"<sup>"+themetals[metal][oxstate]+"+</sup>"
+	ecount=themetals[metal][1]-themetals[metal][oxstate]
+	if(ecount<3){totl--;startit()}
+	buildquestion()
+}
+function buildquestion(){
+	if(ecount==8){
+		option=Math.floor(2*Math.random());
+		pcount=4
+		}
+	else {option=2;pcount=6}
+	thequest=question[0]+metalsym+question [1]+inserts[option]
+	if(option>1 && ecount>3){thequest+=" and "
+		choice=Math.floor(4*Math.random())
+		thequest+=finishes[choice]
+	}
+	else thequest+=".";
+	thequest+=" Use the diagram below to present the VBT description of this complex."
+	thequest+=thetable
+	showquest(thequest)
+	buildanswer()
+}
+function buildanswer(){
+	thestrings=new Array()
+	if(ecount==3 || ecount==8){
+		if(ecount==3){ansstring=basestring[0]+"222222";
+				thestrings[0]=basestring[0]
+				thestrings[1]="222222"
+				}
+		else{
+			option==0?thestring=basestring[11]:thestring=basestring[9]
+			thestrings[0]=thestring
+			thestrings[1]="2222"
+			ansstring=thestring+"2222"
+		}
+	}
+	else{
+		theindex=ecount-3
+		if(choice==0 || choice==2)theindex=theindex+4
+		ansstring=basestring[theindex]+"222222"
+		thestrings[0]=basestring[theindex]
+		thestrings[1]="222222"
+	}
+	theanswer=metalsym+ansphrase[0]+ecount+ansphrase[1]+thestrings[0]+ansphrase[2]+pcount+ansphrase[3]+thestrings[0]+thestrings[1]
+}
+
+function getstring(form){
+	thestring=""
+	for(var j=0;j<13;j++){
+		if(form.elements[j].value!="")thestring+=form.elements[j].value;
+		else break
+	}
+	answer(thestring)
+}
+function buildseries(){
+	pseries=dseries=""
+	for(var j=0;j<3;j++)pseries+=thecell;
+	for(var j=0;j<5;j++)dseries+=thecell;
+ 	thetable="<form><table border=0><tr><td>"+dseries+"</td><td>"+thecell+"</td><td>"+pseries+"</td><td>"+dseries+thelabels+"</table><input type=button value='Check Answer' onClick=getstring(this.form)></form>"
+}
+function answer(x){
+	attempts++
+	if(tried==1){alert("You've already done this problem. Get a new one!")}
+	else{
+		if(tried==2){totl++;document.forms[0].total.value=totl}
+		if(x==ansstring){
+			document.forms[0].results.value="Correct";
+			corrt++
+			document.forms[0].correct.value=corrt
+			tried=1
+		}
+		else document.forms[0].results.value="Incorrect";
+		tried=2
+		}
+	}
+</script>
+</head>
+<body onLoad="mainstart(),buildseries()">
+<h3>VB Theory for Transition Metal Complexes</h3>
+This page presents exercises in VB diagrams for transition metal complexes. When the "New Question" button is pressed a description of the complex will be provided with sufficient information for you to distribute the metal and ligand electrons properly in the boxes provided. As you might expect, how the information is entered is critical.<ul>
+<li>Start from the left and enter the metal electrons. If an orbital has a single electron, enter a "1", if it has two electrons, enter a "2".
+<li>When entering the metal electrons, have all the filled orbitals before the half-filled. In principle, 221 is the same as 212, but the data is much more easily checked if a uniform format is followed.
+<li>Once the metal electrons are entered, enter the appropriate number of ligand electron pairs, as "2"s.
+<li>A Co<SUP>3+</SUP> complex is octahedral and high spin<ul>
+<li>Co<SUP>3+</SUP> is d<SUP>6</SUP>. Since it's high spin, those electrons will distributed in the five d orbitals as follows 21111.
+<li>Since it's octahedral, there are six ligand electron pairs. Those are added to the next six orbitals, the s, three p orbitals, and two d orbitals "222222"
+<li>From left to right the orbital filling will be "21111222222"
+</ul>
+<li>When you have the diagram complete, press "Check Answer".
+<li>If you miss a problem three times, pressing "Show Answer" will display the complete solution and you will no longer be able submit an answer for that problem.
+</ul> 
+<form>
+<input type="button" value="New Question" onClick="startit()"><br>
+<td><input type=button value="Show answer" onClick="showanswer()"></td>
+</tr>
+</table>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</FORM>
+<DIV ID=prespot></div>   
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/vbtheorycsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:21 GMT -->
+</html>

@@ -1,0 +1,224 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/showbhcycles.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:21 GMT -->
+<head>
+<title>Presenting B-H Cycles</title>
+<style>
+#qspot {position:relative}
+#ansspot {position:absolute;left:50;top:200}
+#cmpdspot {position:absolute;left:330;top:800}
+#heatofF {position:absolute;left:175;top:750}
+#startspot {position:absolute;left:40;top:700}
+#subheat {position:absolute;left:75;top:650}
+#metalgas {position:absolute;left:50;top:600}
+#ionheat {position:absolute;left:75;top:550}
+#metalion {position:absolute;left:50;top:500}
+#heatnmetalvapor {position:absolute;left:75;top:450}
+#nmetalvapor {position:absolute;left:50;top:400}
+#bondenergy {position:absolute;left:75;top:350}
+#atoms {position:absolute;left:50;top:300}
+#ea1 {position:absolute;left:240;top:350}
+#theions1 {position:absolute;left:330;top:400}
+#ea2 {position:absolute;left:240;top:250}
+#theions2 {position:absolute;left:330;top:200}
+#lattice {position:absolute;left:350;top:500}
+</style>
+<script src=hwsupportn7.html></script>
+<script>
+uparrow="<img src=uparrow.jpg>"
+downarrow="<img src=downarrow.jpg>"
+ruparrow="<img src=ruarrow.jpg>"
+rdarrow="<img src=rdarrow.jpg>"
+cations=new Array()
+cations[0]=new Array("Li","Na","K","Rb","Cs")
+cations[1]=new Array("Be","Mg","Ca","Sr","Ba")
+anions=new Array()
+anions[0]=new Array("F","Cl","Br","I")
+anions[1]=new Array("O","O")
+labels=new Array("&Delta;H<sub>sub</sub>","&Delta;H<sub>vap</sub>","1st Ionization Energy","1st + 2nd Ionization Energies","Bond Energy","1st Electron Affinity","1st + 2nd Electron Affinities")
+compound=baseanion=basemetal=""
+function startit(){
+	clearall()
+	first=Math.floor(2*Math.random())
+	second=Math.floor(cations[first].length*Math.random())
+	Math.random()>.2?third=0:third=1;
+	fourth=Math.floor(anions[third].length*Math.random())
+	compound=cations[first][second]
+	if(first==third){
+		compound+=anions[third][fourth];
+		metalfactor=1;
+		anionfactor=1/2
+	}
+	else{
+		if(first>third){
+		compound+=(anions[third][fourth]+"<sub>2</sub>");
+		metalfactor=1;
+		anionfactor=1;
+		}
+		else{
+		compound+=("<sub>2</sub>"+anions[third][fourth]);
+		metalfactor=2
+		anionfactor=1/2
+		}
+	}
+	thequest="Present the Born-Haber Cycle for the Lattice Energy for "+compound+"."
+	showquest(thequest)
+	buildentries()
+}		
+function buildentries(){
+	reagents=new Array("","","","","","","")
+	metalterm=new Array("","","","","","","","","")
+	anionterm=new Array("","","","","","","","","")
+	steplabel=new Array("","","","","","","")
+	metalfactor!=1?basemetal=(metalfactor+cations[first][second]):basemetal=(cations[first][second]);
+	metalterm[0]=basemetal+"(s)"
+	anionfactor!=1?baseanion=("1/2"+anions[third][fourth]+"<sub>2</sub>"):baseanion=(anions[third][fourth]+"<sub>2</sub>");
+	if((third==0 && fourth<2) || third==1)anionterm[0]=baseanion+"(g)";
+	else{
+		fourth==2?anionterm[0]=baseanion+"(l)":anionterm[0]=baseanion+"(s)";
+	}
+	metalterm[1]=basemetal+"(g)"
+	steplabel[1]=labels[0]+" for "+ cations[first][second];
+	if(first==0 && third==1)steplabel[1]+="(x2)"
+	anionterm[1]=anionterm[0]
+	first==0?metalterm[2]=(basemetal+"<sup>+</sup>(g)"):metalterm[2]=(basemetal+"<sup>2+</sup>(g)");
+	first==0?steplabel[2]=(labels[2]+" for "+cations[first][second]+"(g)"):steplabel[2]=(labels[3]+" for "+cations[first][second]+"(g)");
+	if(first==0 && third==1)steplabel[2]+="(x2)"
+	anionterm[2]=anionterm[1]
+	metalterm[3]=metalterm[2]
+	if(third==0 && fourth>1){
+		anionterm[3]=baseanion+"(g)";
+		fourth==2?steplabel[3]=(labels[1]+" for "+anions[third][fourth]+"<sub>2</sub>(l)"):steplabel[3]=(labels[0]+" for "+anions[third][fourth]+"<sub>2</sub>(s)");
+		}
+	if(first==0 || third==1)steplabel[3]+="(x1/2)";
+	metalterm[4]=metalterm[3]
+	anionfactor==1?aterm=2:aterm="";
+	anionterm[4]=aterm+anions[third][fourth]+"(g)";
+	steplabel[4]=labels[4]+" for "+anions[third][fourth]+"<sub>2</sub>(g)";
+	if(first==0 || third==1)steplabel[4]+="<br>(x1/2)";
+	metalterm[5]=metalterm[4];
+	anionterm[5]=aterm+anions[third][fourth];
+	third==1?steplabel[5]=(labels[6]+" for "+anions[third][fourth]+"(g)"):steplabel[5]=(labels[5]+" for "+anions[third][fourth]+"(g)");
+	if(first==1 && third==0)steplabel[5]+="(x2)"
+	third==1?anionterm[5]+="<sup>2-</sup>":anionterm[5]+="<sup>-</sup>";	
+	for(k=0;k<6;k++)reagents[k]=metalterm[k]+"+"+anionterm[k];
+	thequest="Present the Lattice energy for "+compound+".";
+	showquest(thequest)
+}
+function showbhcycle(){
+	if(thisbrowser=="IE"){
+		cmpdspot.innerHTML=compound+"(s)"
+		heatofF.innerHTML=rdarrow+"Heat of Formation"
+		startspot.innerHTML="0  "+reagents[0]
+		subheat.innerHTML=uparrow+steplabel[1]
+		metalgas.innerHTML=reagents[1]
+		ionheat.innerHTML=uparrow+steplabel[2]
+		metalion.innerHTML=reagents[2]
+		if(fourth>1){
+			heatnmetalvapor.innerHTML=uparrow+steplabel[3]
+			nmetalvapor.innerHTML=reagents[3]
+			}
+		bondenergy.innerHTML=uparrow+steplabel[4]
+		atoms.innerHTML=reagents[4]
+		if(third==1){ea2.innerHTML=ruparrow+steplabel[5];
+				theions2.innerHTML=reagents[5]
+				}
+		else{
+			ea1.innerHTML=rdarrow+steplabel[5]
+			theions1.innerHTML=reagents[5]
+			}
+		lattice.innerHTML="<img src=downarrow.jpg width=5 height=50>U<sub>o</sub>(Lattice Energy)"		
+
+		}
+	else{
+		document.getElementById("cmpdspot").innerHTML=compound+"(s)"
+		document.getElementById("heatofF").innerHTML=rdarrow+"Heat of Formation"
+		document.getElementById("startspot").innerHTML="0  "+reagents[0]
+		document.getElementById("subheat").innerHTML=uparrow+steplabel[1]
+		document.getElementById("metalgas").innerHTML=reagents[1]
+		document.getElementById("ionheat").innerHTML=uparrow+steplabel[2]
+		document.getElementById("metalion").innerHTML=reagents[2]
+		if(fourth>1){
+			document.getElementById("heatnmetalvapor").innerHTML=uparrow+steplabel[3]
+			document.getElementById("nmetalvapor").innerHTML=reagents[3]
+			}
+		document.getElementById("bondenergy").innerHTML=uparrow+steplabel[4]
+		document.getElementById("atoms").innerHTML=reagents[4]
+		if(third==1){document.getElementById("ea2").innerHTML=ruparrow+steplabel[5];
+				document.getElementById("theions2").innerHTML=reagents[5]
+				}
+		else{
+			document.getElementById("ea1").innerHTML=rdarrow+steplabel[5]
+			document.getElementById("theions1").innerHTML=reagents[5]
+			}
+		document.getElementById("lattice").innerHTML="<img src=downarrow.jpg width=5 height=50>U<sub>o</sub>(Lattice Energy)"		
+		}
+}
+function clearall(){
+	if(thisbrowser=="IE"){
+		cmpdspot.innerHTML=""
+		heatofF.innerHTML=""
+		startspot.innerHTML=""
+		subheat.innerHTML=""
+		metalgas.innerHTML=""
+		ionheat.innerHTML=""
+		metalion.innerHTML=""
+		heatnmetalvapor.innerHTML=""
+		nmetalvapor.innerHTML=""
+		bondenergy.innerHTML=""
+		atoms.innerHTML=""
+		ea2.innerHTML=""
+		theions2.innerHTML=""
+		ea1.innerHTML=""
+		theions1.innerHTML=""
+		lattice.innerHTML=""		
+
+		}
+	else{
+		document.getElementById("cmpdspot").innerHTML=""
+		document.getElementById("heatofF").innerHTML=""
+		document.getElementById("startspot").innerHTML=""
+		document.getElementById("subheat").innerHTML=""
+		document.getElementById("metalgas").innerHTML=""
+		document.getElementById("ionheat").innerHTML=""
+		document.getElementById("metalion").innerHTML=""
+		document.getElementById("heatnmetalvapor").innerHTML=""
+		document.getElementById("nmetalvapor").innerHTML=""
+		document.getElementById("bondenergy").innerHTML=""
+		document.getElementById("atoms").innerHTML=""
+		document.getElementById("ea2").innerHTML=""
+		document.getElementById("theions2").innerHTML=""
+		document.getElementById("ea1").innerHTML=""
+		document.getElementById("theions1").innerHTML=""
+		document.getElementById("lattice").innerHTML=""		
+		}
+}
+
+function clear(){}
+</script>
+</head>
+<body onLoad=whatbrowser()>
+<h3>Born-Haber Cycles</h3>
+This page is for the presentation of Born-Haber cycles for the determination of lattice energies. There are no numbers involved beyond stoichiometric issues. When the "New Compound" button is pressed, the formula for an ionic compound will be presented. You should sketch out the Born-Haber cycle and then press "Show Cycle" and compare the displayed cycle with yours. Or, you could be totally lazy and just press "Show Cycle" without trying to sketch the cycle first.<B> Your choice</B>. This page requires Netscape 6 or 7 or IE5 or higher.<br><br>
+<form><input type=button value="New Compound" onClick=startit()><input type=button value="Show Cycle" onClick="showbhcycle()"></form>
+<div id=qspot></div> 
+<div id=ansspot></div>
+<div id=cmpdspot></div>
+<div id=heatofF></div>
+<div id=startspot></div>
+<div id=subheat></div>
+<div id=metalgas></div>
+<div id=ionheat></div>
+<div id=metalion></div>
+<div id=heatnmetalvapor></div>
+<div id=nmetalvapor></div>
+<div id=bondenergy></div>
+<div id=atoms></div>
+<div id=ea1></div>
+<div id=theions1></div>
+<div id=ea2></div>
+<div id=theions2></div>
+<div id=lattice></div></body>
+
+<!-- Mirrored from chemteachhelp.com/showbhcycles.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:21 GMT -->
+</html>

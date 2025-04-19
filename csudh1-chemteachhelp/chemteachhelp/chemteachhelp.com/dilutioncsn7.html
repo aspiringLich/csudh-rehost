@@ -1,0 +1,188 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/dilutioncsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:15 GMT -->
+<head>
+<title>Dilutions-cs</title>
+<style>
+#qspot {position:absolute;left:360;top:250}
+#ansspot {position:absolute;left:360;top:320;height:300}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:500;height:50}
+</style>
+<script src="reflist.js"></script>
+<script src=lecturesupportn7.js></script>
+<script src="numberconvert.js"></script>
+<script language="javascript">
+//updated 11/14/00-added complete solution
+thepage="Dilution(57)"
+//11/20/02-updated netscape 7
+//global variables
+refnumber=72
+corrt=0
+tried=0
+totl=0
+theanswer=""
+alldata=0
+solved=0
+cmpd=0
+aindex=0
+vol1=vol2=vol3=mol=0
+thestart=theend=""
+function item(name,formula,gfw){
+	this.name=name
+	this.formula=formula
+	this.gfw=gfw
+}
+question=new Array()
+question[0]=new Array("To what final volume in "," should "," of a ","M solution be diluted if you want a final concentration of ","M?")
+question[1]=new Array(" of a ","M solution is diluted to a final volume of ",". What is the resultant molarity?")
+question[2]=new Array(" of a solution of unknown concentration is diluted to a final volume of "," where the concentration is found to be ","M. What was the initial molarity?")
+question[3]=new Array("How many "," of solvent should be added to "," of a ","M solution if you want a final concentration of ","M?" )
+question[4]=new Array("What volume in "," of a ","M solution is needed in order to prepare "," of a ","M solution?")
+symbols=new Array("V<sub>1</sub>","V<sub>2</sub>","<u>M</u><sub>1</sub>","<u>M</u><sub>2</sub>","&Delta;V")
+equation=new Array()
+equation[0]=symbols[1]+"="+symbols[2]+"*"+symbols[0]+"/"+symbols[3]//v2=m1*v1/m2
+equation[1]=symbols[3]+"="+symbols[2]+"*"+symbols[0]+"/"+symbols[1]//m2=m1*v1/v2
+equation[2]=symbols[0]+"="+symbols[3]+"*"+symbols[1]+"/"+symbols[2]//v1=m2*v2/m1
+equation[3]=symbols[2]+"="+symbols[3]+"*"+symbols[1]+"/"+symbols[0]//m1=m2*v2/v1
+equation[4]=symbols[4]+"="+symbols[1]+"-"+symbols[0]//dv=v2-v1
+equation[5]=symbols[0]+"="+symbols[1]+"-"+symbols[4]//v1=v2=dv
+equation[6]=symbols[1]+"="+symbols[0]+"+"+symbols[4]//v2=v1+dv
+dlabels=new Array("L","L","<U>M</u>","<U>M</u>","L","mL","mL","mL")
+labelseq=new Array(0,2,0,2,0,0,0)
+ansseq=new Array()
+ansseq[0]=new Array(0,99)
+ansseq[1]=new Array(1,99)
+ansseq[2]=new Array(3,99)
+ansseq[3]=new Array(0,4)
+ansseq[4]=new Array(2,99)
+function startit(){
+	totl++
+	document.forms[0].total.value=totl
+	clear()
+	molarity1=0
+	vol1=new Array(0,0)
+	vol2=new Array(0,0)
+	while(vol1[0]<.01)vol1[0]=number(Math.random(),2,3)
+	vol1[1]=number(1000*vol1[0],2,3)
+	vol2=new Array(0,0)	
+	while (vol2[0]<1.5*vol1[0] || vol2[0]>5*vol1[0])vol2[0]=vol1[0]/Math.random()
+	vol2[0]=number(vol2[0],2,3)
+	vol2[1]=number(vol2[0]*1000,2,3)
+	vol3=new Array(number(vol2[0]-vol1[0],2,3),number(vol2[1]-vol1[1],2,3))
+	mol=new Array(0,0)
+	while(mol[0]<.01 || mol[1]>3)mol[0]=number(3*Math.random(),2,3)
+	mol[1]=number(mol[0]*vol1[0]/vol2[0],2,3)
+	alldata=new Array(vol1[0],vol2[0],mol[0],mol[1],vol3[0],vol1[1],vol2[1],vol3[1])
+	buildquestion()
+}
+function buildquestion(){
+	which=Math.floor(5*Math.random())
+	vunit=new Array()
+	Math.random()>.5?vunit[0]=0:vunit[0]=5;
+	Math.random()>.5?vunit[1]=1:vunit[1]=6;
+	Math.random()>.5?vunit[2]=4:vunit[2]=7;
+	//probkey=1*(""+which+first+vunit)
+	if(which==0){thequest=question[which][0]+dlabels[vunit[1]]+question[which][1]+alldata[vunit[0]]+dlabels[vunit[0]]+question[which][2]+alldata[2]+question[which][3]+alldata[3]+question[which][4]}		
+	if(which==1){
+	thequest=alldata[vunit[0]]+dlabels[vunit[0]]+question[1][0]+alldata[2]+question[1][1]+alldata[vunit[1]]+dlabels[vunit[1]]+question[1][2]}
+	if(which==2){
+		thequest=alldata[vunit[0]]+dlabels[vunit[0]]+question[2][0]+alldata[vunit[1]]+dlabels[vunit[1]]+question[2][1]+alldata[3]+question[2][2]}
+	if(which==3){
+		thequest=question[3][0]+dlabels[vunit[2]]+question[3][1]+alldata[vunit[0]]+dlabels[vunit[0]]+question[3][2]+alldata[2]+question[3][3]+alldata[3]+question[3][4]}
+	if(which==4){
+		thequest=question[4][0]+dlabels[vunit[0]]+question[4][1]+alldata[2]+question[4][2]+alldata[vunit[1]]+dlabels[vunit[1]]+question[4][3]+alldata[3]+question[4][4]}
+	buildanswer()
+	ansarray=new Array(alldata[vunit[1]],alldata[3],alldata[2],alldata[vunit[2]],alldata[vunit[0]])
+	//document.forms[0].theans.value=ansarray[which]
+	showquest(thequest)
+}
+function buildanswer(){
+	fixvolumes()
+	getsolved()
+	theanswer="This problem is solved by the following step or steps:<br>"+thestart 
+	for(j=0;j<ansseq[which].length;j++)if(ansseq[which][j]!=99)theanswer+=equation[ansseq[which][j]]+"=>"+solved[ansseq[which][j]]+"<b>"+dlabels[labelseq[ansseq[which][j]]]+"</b><br>";
+	theanswer+=theend
+	//showanswer()
+}
+//
+function fixvolumes(){
+	thestart=theend=""
+	if(which==0){
+		if(vunit[0]==5)thestart="Convert the initial volume to L:<br>"+alldata[5]+"mL="+alldata[0]+"L<br>";
+		if(vunit[1]==6)theend="Convert this volume to mL:<br>"+alldata[1]+"L=>"+alldata[6]+"mL<br>";
+	}
+	if(which==1 || which==2){
+		if(vunit[0]==5)thestart="Convert the initial volume to L:<br>"+alldata[5]+"mL="+alldata[0]+"L<br>";
+		if(vunit[1]==6)thestart+="Convert the final volume to L:<br>"+alldata[6]+"mL=>"+alldata[1]+"L<br>";
+	}
+      if(which==3){
+		if(vunit[0]==5)thestart="First convert the initial volume to L:<br>"+alldata[5]+"mL="+alldata[0]+"L<br>";
+		if(vunit[2]==7)theend="Convert this volume to mL:<br>"+alldata[4]+"L=>"+alldata[7]+"mL<br>";
+	}
+	if(which==4){
+		if(vunit[0]==5)theend="Convert this volume to mL:<br>"+alldata[0]+"L="+alldata[5]+"mL<br>";
+		if(vunit[1]==6)thestart="Convert the final volume to L:<br>"+alldata[1]+"mL=>"+alldata[6]+"mL<br>";
+	}
+}		
+function getsolved(){
+	solved=new Array()
+	solved[0]=alldata[2]+"*"+alldata[0]+"/"+alldata[3]+"="+alldata[1]//m1*v1/m2=v2
+	solved[1]=alldata[2]+"*"+alldata[0]+"/"+alldata[1]+"="+alldata[3]//m1*v1/v2=m2
+	solved[2]=alldata[3]+"*"+alldata[1]+"/"+alldata[2]+"="+alldata[0]//m2*v2/m1=v1
+	solved[3]=alldata[3]+"*"+alldata[1]+"/"+alldata[0]+"="+alldata[2]//m2*v2/v1=m1
+	solved[4]=alldata[1]+"-"+alldata[0]+"="+alldata[4]//v2-v1=dv
+	solved[5]=alldata[1]+"-"+alldata[4]+"="+alldata[0]//v2-dv=v1
+	solved[6]=alldata[0]+"+"+alldata[4]+"="+alldata[1]//v1+dv=v2
+}
+function answer(ans){
+	attempts++
+	if(tried==1)alert("You've done this one! Get a new problem!");
+	else{
+		if(tried==2){totl++;document.forms[0].total.value=totl};
+		attempts++
+		if (ans>.90*ansarray[which] & ans<1.1*ansarray[which]){
+    			document.forms[0].results.value="correct"
+			corrt++
+    			document.forms[0].correct.value=corrt
+			tried=1
+			}
+		else{tried=2;document.forms[0].results.value="incorrect"}
+}}
+</script>
+</head>
+<BODY onLoad="mainstart()">
+<h3>Dilutions</h3>
+This page is an exercise in performing basic dilution calculations. 
+<ul>
+<li>Pressing "New Problem" will display a question to the right of the table. Enter the answer in the answer cell and press "Check Answer." 
+<li>In principle, molarity calculations should always be done using L for the volume, even though in a dilution problem, the analysis only requires that the volumes all have the same dimensions. All of the solutions here will use L for the volume. 
+<li>Pay close attention to the volume dimensions. Since this is drill and practice exercise, all values, including answers, are presented to just two significant figures.
+<li>If you miss a problem three times, pressing "Show Answer" will display the complete solution and you will no longer be able submit an answer for that problem.
+</ul>
+<form>
+<input type=button value="New Problem" onClick="startit()"><BR>
+<td><b>Enter your answer here</b>
+<input type="text" name=theans size=10><br>
+<input type=button value="Check Answer" onClick="answer(this.form.theans.value)">
+<input type=button value="Show Answer" onClick="showanswer()"><br>
+<table border=4>
+<tr>
+<td><b>Results</b></td>
+<td><b>Total Done</b></td>
+<td><b>Total Correct</b></td></tr>
+</tr>
+<tr>
+<td align=center><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=3></td>
+<td align=center><input type="text" name=correct size=3></td>
+<tr>
+</table>
+</form>
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/dilutioncsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:15 GMT -->
+</html>

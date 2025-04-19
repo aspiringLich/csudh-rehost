@@ -1,0 +1,151 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/writeredoxcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:20 GMT -->
+<head>
+<title>Writing Redox</title>
+<style>
+#qspot {position:absolute;left:360;top:250}
+#ansspot {position:absolute;left:360;top:390;height:300}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600;height:50}
+</style>
+<script src="reflist.js"></script>
+<script src="numberconvert.js"></script>
+<script src="ionformulas.js"></script>
+<script src=lecturesupportn7.js></script>
+<script language="javascript">
+thepage="Writing Redox Reactions(146)"
+//updated 11/14/00-added complete solution
+//updated 11/20/02-netscape 7
+//global variables
+first=second=
+refnumber=188
+corrt=0
+tried=0
+totl=answr=0
+theanswer=0
+halfrxn=new Array()
+halfrxn[0]=new Array("F2","F-")
+halfrxn[1]=new Array("Au+","Au")
+halfrxn[2]=new Array("Ce+4","Ce+3")
+halfrxn[3]=new Array("MnO4-","Mn+2")
+halfrxn[4]=new Array("Cl2","Cl-")
+halfrxn[5]=new Array("Cr2O7-2","Cr+3")
+halfrxn[6]=new Array("O2","H2O")
+halfrxn[7]=new Array("Br2","Br-")
+halfrxn[8]=new Array("NO3-","NO")
+halfrxn[9]=new Array("Ag+","Ag")
+halfrxn[10]=new Array("I2","I-")
+halfrxn[11]=new Array("O2","OH-")
+halfrxn[12]=new Array("Cu+2","Cu")
+halfrxn[13]=new Array("H+","H2")
+halfrxn[14]=new Array("Pb+2","Pb")
+halfrxn[15]=new Array("Sn+2","Sn")
+halfrxn[16]=new Array("Fe+2","Fe")
+halfrxn[17]=new Array("Zn+2","Zn")
+halfrxn[18]=new Array("Al+3","Al")
+halfrxn[19]=new Array("Mg+2","Mg")
+halfrxn[20]=new Array("Na+","Na")
+halfrxn[21]=new Array("K+","K")
+halfrxn[22]=new Array("Li+","Li")
+theform="<br><form><input type=text name=theans size=6><Br><Input type=button Value='Check Answer' onClick='answer(this.form.theans.value)'</form>"
+introphrase="Write the reaction for the "
+phrases=new Array(" reduction of "," oxidation of ")
+function startit(){
+	clear()
+	first=second=Math.floor(Math.random()*halfrxn.length);
+	while(second==first)second=Math.floor(Math.random()*halfrxn.length);
+	getcmpds(first,second)
+	option=Math.floor(2*Math.random())
+	thequest=introphrase
+	//option=0
+	if(option==0){
+		thequest+=phrases[0]+thecmpds[0] + " by " + thecmpds[3]
+	}
+	if(option==1){
+		thequest+=phrases[1]+thecmpds[3] + " by " + thecmpds[0]
+		first>second?answr=0:answr=1
+	}
+	buildanswer()
+	thequest+=theform
+	showquest(thequest)	
+}
+function buildanswer(){
+	theanswer="The redox reaction is:<br>"+thecmpds[0]+"+"+thecmpds[3]+"=>"+thecmpds[1]+"+"+thecmpds[2]
+	theanswer+=("<br>You should have entered the species as follows: "+alldata);
+		}
+function clear(){
+	document.forms[0].results.value=""
+	tried=0
+	clearansspot()
+}				
+function getcmpds(first,second){
+	hrxn=new Array()
+	thecmpds=new Array()
+	thecmpds[0]=completeformula(halfrxn[first][0])
+	thecmpds[1]=completeformula(halfrxn[first][1])
+	thecmpds[2]=completeformula(halfrxn[second][0])	
+	thecmpds[3]=completeformula(halfrxn[second][1])
+	alldata=new Array(halfrxn[first][0],halfrxn[second][1],halfrxn[first][1],halfrxn[second][0])
+	hrxn[1]=thecmpds[1]+"+"+halfrxn[first][2]+"e<sup>-</sup> =>"+thecmpds[3]+"<br>"
+	hrxn[2]=thecmpds[2]+" => "+thecmpds[4]+"+"+halfrxn[second][2]+"e<sup>-</sup><br>"
+}
+function answer(form){
+	if(tried==99)alert("You've done this one. Get a new problem.");
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	if(tried==answr){
+		tried=1
+		corrt++
+		document.forms[0].results.value="correct"
+		document.forms[0].correct.value=corrt
+	}
+	else{
+		tried=1
+		document.forms[0].results.value="incorrect"
+		attempts=3
+		showanswer()
+	}
+	}	
+}
+
+</script>
+</head>
+<body onLoad="mainstart()">
+<h3>Writing skeletal redox equations</h3>
+This page is a basic exercise in writing skeletal redox equations from descriptions of the process. Since the page has to read four strings correctly, you need to be very careful with your input.<ul>
+<li>Enter the compounds in the sequence  OA  +  RA  => RA  +  OA
+<li>Although it is not standard, for charged species enter the sign of the charge followed by the number as in Fe+3. If it is singly charged, leave off the "1" (Na+)
+<li>Do not be concerned about any balancing or stoichiometry.
+<li>You only get one attempt per problem. If you miss a problem, the correct answer will be displayed and you will no longer be able to submit an answer to that question.
+</uL>
+<form>
+<table>
+<tr><td><input type=button value="New Problem" onClick="startit()"><td></tr>
+<tr><td><b>Enter your answer</b></td>
+</tr>
+<tr>
+<td><input type=button value="Show answer" onClick="showanswer()"></td>
+</tr>
+</table>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</form>
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+<br>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/writeredoxcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:20 GMT -->
+</html>

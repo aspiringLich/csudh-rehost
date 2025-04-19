@@ -1,0 +1,154 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/workheatcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:16 GMT -->
+<head><title>Energy, heat and work</title>
+<style>
+#qspot {position:absolute;left:320;top:300}
+#ansspot {position:absolute;left:420;top:260;height:240}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600}
+</style>
+<script src="reflist.js"></script>
+<script src=lecturesupportn7.js></script>
+<script src="numberconvert.js"></script>
+<script src=acidlist.js></script>
+<script language="javascript">
+//updated 11/14/00-added complete solution
+thepage="Energy, heat and work(67)"
+//11/20/02-updated netscape 7
+refnumber=144
+//updated 9/7/98 added show answer
+//globals
+attempts=corrt=totl=tried=0
+theanswer=missing=0
+given=0
+alldata=0
+symbols=new Array("&Delta;U","q","w")
+equations=new Array()
+equations[0]=symbols[0]+"="+symbols[1]+"+"+symbols[2]
+equations[1]=symbols[1]+"="+symbols[0]+"-"+symbols[2]
+equations[2]=symbols[2]+"="+symbols[0]+"-"+symbols[1]
+ansphrase=new Array("To calculate the gfw, you divide the mass by the number of moles<br>","To calculate the mass, you take the product of the number of moles and thegfw<br>","To calculate the gfw, you divide the mass by the number of gfw<br>")
+//This function clears all values in both tables on loading the page
+//This function clears the first table
+function clear(){
+	document.forms[0].first.value=""
+	document.forms[0].second.value=""
+	document.forms[0].third.value=""
+	attempts=0
+	tried=0
+	clearansspot()
+}
+
+//This is the function started when "New Problem" is pushed	
+//This function first clears all old values using clear()
+//The three variables(mass,moles and gfw) are then determined, using Math.random() to 
+//generate gfw and mass and a ratio to generate moles. 
+function startit(){
+	clear()
+	totl++
+	document.forms[0].total.value=totl
+	alldata=new Array()
+	for(var j=0;j<3;j++)alldata[j]=0;	
+	while(alldata[1]<50)alldata[1]=Math.round(500*Math.random());	
+	if(Math.random>.5)alldata[1]=-alldata[1];
+	while(alldata[2]<50)alldata[2]=Math.round(500*Math.random());
+	if(Math.random()>.5)alldata[2]=-alldata[2]
+	alldata[0]=Math.round(alldata[1]+alldata[2])
+//The three variables are then converted to two significant figures.
+	//for(var j=0;j<3;j++)alldata[j]=number(alldata[j],2,3)
+	setproblem()
+}
+//This function partially fills the table, setting the problem
+function setproblem(){
+	missing=Math.floor(3*Math.random())
+	for(var j=0;j<3;j++){
+		if(j!=missing)document.forms[0].elements[j].value=alldata[j];
+		}
+	document.forms[0].elements[missing].select()
+	document.forms[0].elements[missing].focus()
+	buildanswer()
+}
+function buildanswer(){
+	getsolved()
+	theanswer=ansphrase[missing]+equations[missing]+"<br>"+solved[missing]
+}
+function getsolved(){
+	solved=new Array()
+	solved[0]=alldata[1]+"+"+alldata[2]+"="+alldata[0]+"<b>J</b>"
+	solved[1]=alldata[0]+"-"+alldata[2]+"="+alldata[1]+"<b>J</b>"
+	solved[2]=alldata[0]+"-"+alldata[1]+"="+alldata[2]+"<b>J</b>"
+}
+// This is the "Check Answer Function
+//This function checks for correctness by simply seeing if a/b is within 1%
+//of c. The results are then posted to the second table. If you change the
+//relationship between a and b, above, make sure you change this also.
+function answer(form){
+	if(tried==1)alert("You've done this one. Get a new problem!")
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	attempts++
+	if (form.elements[missing].value==alldata[missing]){	
+		document.forms[0].results.value="correct"
+		corrt++
+		document.forms[0].correct.value=corrt
+		tried=1
+	}
+	else {
+		document.forms[0].results.value="incorrect"
+		tried=2
+		document.forms[0].elements[missing].select()
+		document.forms[0].elements[missing].focus()
+	}
+	}
+}
+</script>
+</head>
+<body onLoad="mainstart()">
+<h2>Energy, heat and work</h2>
+This page permits practice with the relationships between energy changes(&Delta;U), heat(q) and work(w).
+When you press "New Problem", values will appear in two of the windows. Enter the
+missing value and press "Check Answer". The results will appear in the second
+table.
+<h3>Hints</h3>
+<ul>
+<li>All values are in Joules and are integers for ease of use.
+<li>If you miss a problem three times, pressing the "Show Answer" will cause the correct answer to appear and you will no longer be able to submit an answer for that problem.
+</ul>
+<form>
+<table border=4>
+<tr>
+<TD ALIGN=CENTER><b>&Delta;U</td>
+<td align=center><b>q</td>
+<td align=center><b>w</td>
+</tr>
+<tr>
+<td align=center><input type="text" name="first" size=8 ></td>
+<td align=center><input type="text" name="second" size=8 ></td>
+<td align=center><input type="text" name="third" size=8 ></td>
+</tr>
+<tr>
+<td><input type="button" value="New Problem" onClick=startit()></td>
+<td><input type="button" value="Check Answer" onClick=answer(this.form)></td>
+<td><input type="button" value="Show Answer" onClick=showanswer()></td>
+</tr>
+</table>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name="results" size=12></td>
+<td align=center><input type="text" name="total" size=4 ></td>
+<td align=center><input type="text" name="correct" size=4 ></td>
+</tr>
+</table>
+</form>
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/workheatcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:16 GMT -->
+</html>

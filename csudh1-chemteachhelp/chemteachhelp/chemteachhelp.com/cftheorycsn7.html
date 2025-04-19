@@ -1,0 +1,161 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/cftheorycsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:21 GMT -->
+<head>
+<title>CFT Metal complexes</title>
+<style>
+#qspot {position:absolute;left:350;top:350}
+#ansspot {position:absolute;left:350;top:620;height:50}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600}
+</style>
+<script src=lecturesupportn7.js></script>
+<script src="numberconvert.js"></script>
+<script src="reflist.js"></script>
+<script language="javascript">
+thepage="CFT T Metal compounds(172)"
+refnumber=239
+teststring="z0123456789"
+thecell="<input type=text size=3 >"
+thelabels="</td></tr><tr><td align=center>d</td><td align=center>s</td><td align=center>p</td><td align=center>d</td></tr>"
+spacer="  "
+question=new Array("An octahedral complex of "," is formed and is found to be ")
+finishes=new Array(" weak field. "," high spin. "," strong field."," low spin. ")
+ansphrase=new Array(" is d<sup>","</sup>. Since the complex is ", " the metal electrons will be distributed as follows:<br>")
+option=choice=0
+thetable=""
+basestring=new Array("1111","11111","21111","22111","211","221","222","2221")
+themetals=new Array()
+themetals[0]=new Array("Pt",10,4)
+themetals[1]=new Array("Cr",6,2)
+themetals[2]=new Array("Mn",7,3,2)
+themetals[3]=new Array("Fe",8,3,2)
+themetals[4]=new Array("Co",9,3,2)
+themetals[5]=new Array("Ni",10,3)
+themetals[6]=new Array("Mo",6,2)
+themetals[7]=new Array("Ru",8,4,3,2)
+themetals[8]=new Array("Rh",9,2,3,4)
+themetals[9]=new Array("Pd",10,2,4)
+themetals[10]=new Array("W",6,2)
+themetals[11]=new Array("Os",8,4,3,2)
+themetals[12]=new Array("Ir",9,4,3,2)
+themetals[13]=new Array("Re",7,2)
+ansstring=""
+function cleanse(){
+	clear()
+	totl=0
+	corrt=0
+	document.forms[0].total.value=totl
+	document.forms[0].correct.value=corrt
+}
+function clear(){
+	document.forms[0].results.value=""
+	tried=0
+	attempts=0
+	clearansspot()
+}
+function startit(){
+	clear()
+	totl++
+	buildseries()
+	document.forms[0].total.value=totl
+	metal=Math.floor(Math.random()*themetals.length)
+	metal=5
+	oxstate=2+Math.floor(Math.random()*(themetals[metal].length-2))
+	metalsym=themetals[metal][0]+"<sup>"+themetals[metal][oxstate]+"+</sup>"
+	ecount=themetals[metal][1]-themetals[metal][oxstate]
+	buildquestion()
+}
+function buildquestion(){
+	option=Math.floor(4*Math.random())
+	thequest=question[0]+metalsym+question [1]+finishes[option]
+	thequest+=" Use the diagram below to present the CFT description of this complex."
+	thequest+=thetable
+	showquest(thequest)
+	buildanswer()
+}
+function buildanswer(){
+	option<2?ansstring=basestring[ecount-4]:ansstring=basestring[ecount];
+	anstable="<table cellspacing=5><tr><td>"
+	if(ansstring.length>3)anstable+=ansstring.charAt(3);
+	anstable+="</td><td>"
+	if(ansstring.length==5)anstable+=ansstring.charAt(4);
+	anstable+="</td></tr><tr></tr><tr></tr><tr><td>"
+	for(var g=0;g<3;g++)anstable+=ansstring.charAt(g)+"</td><td>";
+	anstable+="</td></tr></table>"
+	theanswer=metalsym+ansphrase[0]+ecount+ansphrase[1]+finishes[option]+ansphrase[2]+anstable
+	}
+
+
+function getstring(form){
+	thestring=""
+	thestring+=(form.elements[2].value+form.elements[3].value+form.elements[4].value+form.elements[0].value+form.elements[1].value)
+	answer(thestring)
+	}
+function buildseries(){
+	egseries="d<sub>z<sup>2</sup></sub>,d<sub>x<sup>2</sup></sub>-<sub>y<sup>2</sup></sub>"
+	tgseries="d<sub>xy</sub>,d<sub>xz</sub>,d<sub>yz</sub>"
+	for(var j=0;j<2;j++)egseries+=thecell;
+	for(var j=0;j<3;j++)tgseries+=thecell;
+ 	thetable="<form><table border=0><tr><td>"+egseries+"</td></tr><tr height=100></tr><tr><td></td></tr><tr><td></td></tr><tr></td><td>"+tgseries+"</td><td></table><input type=button value='Check Answer' onClick=getstring(this.form)></form>"
+}
+function answer(x){
+	attempts++
+	if(tried==1){alert("You've already done this problem. Get a new one!")}
+	else{
+		if(tried==2){totl++;document.forms[0].total.value=totl}
+		if(x==ansstring){
+			document.forms[0].results.value="Correct";
+			corrt++
+			document.forms[0].correct.value=corrt
+			tried=1
+		}
+		else document.forms[0].results.value="Incorrect";
+		tried=2
+		}
+	}
+
+</script>
+</head>
+<body onLoad="mainstart()">
+<h3>Crystal Field Treatment of Octahedral Compounds</h3>
+This page presents exercises in CFT diagrams for transition metal complexes. When the "New Question" button is pressed a description of the complex will be provided with sufficient information for you to distribute the metal  in the boxes provided. As you might expect, how the information is entered is critical.<ul>
+<li>Since we are only interested in complexes where there are two ways to distribute the electrons, the number of cases shown on this page is limited to d<SUP>4</SUP> to d<SUP>7</SUP>.
+<li>Getting the electron count on the metal correct is critical-do that carefully
+<li>Enter the metal electrons from the left to the right at each level. If an orbital has a single electron, enter a "1", if it has two electrons, enter a "2".
+<li>Have all the filled orbitals before the half-filled. In principle, 221 is the same as 212, but the data is much more easily checked if a uniform format is followed.
+<li>Example: a d<sup>7</sup> is high spin. This means that all five orbital will be filled as if there were of the same energy. This results is the following:
+<table cellspacing=5>
+<tr><td>1</td><td>1</td></tr>
+<tr></tr><tr></tr>
+<tr><td>2</td><td>2</td><td>1</td></tr>
+</table>
+<li>If you miss a problem three times, pressing "Show Answer" will display the complete solution and you will no longer be able submit an answer for that problem.
+
+</ul>
+<form>
+<input type="button" value="New Question" onClick="startit()"><br>
+<td><input type=button value="Show answer" onClick="showanswer()"></td>
+</tr>
+</table>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</FORM>
+<DIV ID=prespot></div>   
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/cftheorycsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:21 GMT -->
+</html>

@@ -1,0 +1,180 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/weakacidapproxcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:17 GMT -->
+<head><title>Testing the Weak Acid Approx</title>
+<style>
+#qspot {position:absolute;left:320;top:300}
+#ansspot {position:absolute;left:320;top:340;height:200}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600;height:50}
+</style>
+<script src="reflist.js"></script>
+<script src="numberconvert.js"></script>
+<script src=lecturesupportn7.js></script>
+<script language="javascript">
+thepage="Weak Acid Approx(82)"
+//updated 11/18/02-netscape 7
+//global variables
+refnumber=114
+theanswer=""
+attempts=0
+phans=0
+corrt=0
+totl=0
+which=0
+function parts(p1,p2,p3,p4,p5){
+	this.p1=p1
+	this.p2=p2
+	this.p3=p3
+	this.p4=p4
+	this.p5=p5
+}
+function data(formula,name,K){
+	this.formula=formula
+	this.name=name
+	this.K=K
+}
+checkstring="z0123456789"
+hsym="[H<sup>+</sup>]"
+avalue="(C<sub>i</sub>*K<sub>a</sub>)<sup>1/2</sup>="+hsym
+acids=new Array()
+acids[0]=new data("CH3COOH","acetic",1.8e-5)
+acids[1]=new data("C6H5COOH","benzoic",6.5e-5)
+acids[2]=new data("HClO","hypochlorous",3e-8)
+acids[3]=new data("CH2ClCOOH","chloroacetic",1.4e-3)
+acids[4]=new data("HCOOH","formic",1.8e-4)
+acids[5]=new data("HF","hydrofluoric",3.5e-4)
+acids[6]=new data("HNO2","nitrous",4.3e-4)
+acids[7]=new data("HClO2","chlorous",1e-2)
+acids[8]=new data("CH3CH(OH)COOH","lactic",8e-4)
+acids[9]=new data("HCN","hydrocyanic",4.9e-10)
+ansphrase=new Array()
+compare=new Array()
+compare[0]=new Array(" <B>less</B> "," <B>valid</B>")
+compare[1]=new Array(" <B>greater</B> "," <B>invalid</B> ")
+ansphrase[1]=new parts(" acid has a K<sub>a</sub> of ",". First, calculate the value for the weak acid approximation.<br>"," Since this is "," than 5% of the inital concentration ",",  the approximate value is ",".")
+insphrase=new Array("<br> and the answer is pH=","<br> and you must calculate the 'exact' answer using either successive approximations or the quadratic. This yields [H<sup>+</sup>]=")
+pathway=new Array()
+pathway[0]=new Array(" <B>less than</B> "," <B>valid</B> ")
+pathway[1]=new Array(" <B>greater than</B> "," <B>invalid</B> ") 
+function startit(){
+	clear()
+	totl++
+	document.forms[0].results.value=document.forms[0].theans.value=""
+	document.forms[0].total.value=totl
+	which=Math.floor(acids.length*Math.random())
+	getconc()
+}
+function getconc(){
+	first=0
+	while(first<11)first=Math.ceil(100*Math.random());
+	conc="0."+zero()+first
+	getanswer(which,conc)
+	buildquest(which,conc)
+}
+function zero(){
+	added=""
+	for(j=1;j<=Math.floor(3*Math.random());j++)added+="0";
+	return added
+}
+function getanswer(which,conc){
+	approx=Math.sqrt(conc*acids[which].K)
+	check=.05*conc
+	approx=number(approx,3,3)
+	check=number(check,3,3)
+	if(approx<check){ans=approx;vkey=0;exans=approx}
+	else{exans=(-acids[which].K+Math.sqrt(acids[which].K*acids[which].K+4*acids[which].K*conc))/2;vkey=1}
+	phans=number((-Math.log(exans)/2.302),3,3)	
+	buildanswer(which,conc,vkey,phans,exans,approx,check)
+}
+
+function buildanswer(which,conc,vkey,phans,exans,approx,check){
+	theanswer=""
+	theanswer=acids[which].name+ansphrase[1].p1+number(acids[which].K,3,2)+ansphrase[1].p2+avalue+"<br>("+conc+"*"+number(acids[which].K,3,2)+")<sup>1/2</sup>="+number(approx,3,2)
+	theanswer+=("<br>"+ansphrase[1].p3+compare[vkey][0]+ansphrase[1].p4+"("+number(check,3,2)+")"+ansphrase[1].p5+compare[vkey][1])
+	//if(vkey==0)theanswer+=phans;
+	//else theanswer=theanswer+number(exans,3,3)+" and pH="+phans;
+}
+function buildquest(){
+	thequest="Using the Weak Acid Approximation, calculate [H<sup>+</sup>] for a "+conc+"M solution of "
+	Math.random()>.5?thequest+=(acids[which].name+" acid"):thequest+=getformula();
+	thequest+=("(K<sub>a</sub>="+number(acids[which].K,3,2)+").");
+	showquest(thequest)
+}
+function answer(ans){
+	if(tried==1)alert("You've done this one. Get a new problem.")
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	attempts++
+	if(ans>.95*approx & ans<1.05*approx){
+		alert("Correct, now check if the approx is valid or invalid?")
+		tried=1
+	}
+	else{
+		alert("Incorrect. Recheck your calculation")
+		tried=2
+	}}
+}
+function checkvalid(x){
+	if(tried!=1)alert("You must get the numeric value correct first");
+	else{
+		if(x==vkey){
+			document.forms[0].results.value="correct"
+			corrt++
+			document.forms[0].correct.value=corrt
+			tried=1
+			}
+		else{
+			document.forms[0].results.value="incorrect"
+			tried=1
+			showanswer()
+			}
+	}
+}
+function getformula(){
+	theformula=""
+	teststring=acids[which].formula
+	for(j=0;j<teststring.length;j++){
+		checkstring.indexOf(teststring.charAt(j))>0?theformula+="<sub>"+teststring.charAt(j)+"</sub>":theformula+=teststring.charAt(j);
+	}
+	return theformula
+}
+		
+</script>
+</head>
+<body onLoad="mainstart()">
+<h3>Using the Weak Acid Approximation</h3>
+This page provides problems in using and testing the weak acid approximation When you press "New Problem", a question will appear to the left of the table. Calculate the [H<sup>+</sup>] of the solution, using the weak acid approx and press "Check Answer". A message will appear indicating whether your value is correct. If your [H<sup>+</sup>] is correct, determine whether the approx value meets the 5% validity criterion. Overall results are kept in the second table. On this page all of the species are weak acids.
+<ul>
+<li>To begin-press "New Problem" and a question will appear to the right of the button. 
+<li>Put the correct value into the answer cell and press "Check Answer."
+<li>If your value is correct, click on either "Valid" or "Invalid", but do not do so until your numeric answer has been deemed correct.
+<li>The results on the problem and a running total will appear in the table.
+<li>If you miss a problem three times, pressing "Show Answer" will display the complete solution and you will no longer be able submit an answer for that problem.
+</ul>
+<form>
+<input type=button value="New Problem" onClick="startit()"><br>
+<b>Enter your answer</b><input type="text" name=theans size=8><input type=button value="Check answer" onClick="answer(this.form.theans.value)"><br>
+<input type=radio name=thetest onClick=checkvalid(0)>Valid<input type=radio name=thetest onClick=checkvalid(1)>Invalid<br>
+<input type=button value="Show answer" onClick="showanswer()">
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</form>
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+<br>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/weakacidapproxcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:17 GMT -->
+</html>

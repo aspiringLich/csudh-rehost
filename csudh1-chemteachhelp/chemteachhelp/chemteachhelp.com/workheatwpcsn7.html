@@ -1,0 +1,153 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/workheatwpcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:16 GMT -->
+<head><title>Energy, heat and work</title>
+<style>
+#qspot {position:absolute;left:320;top:250}
+#ansspot {position:absolute;left:320;top:320;height:500}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:relative;width:300;height:300}
+</style>
+<script src="reflist.js"></script>
+<script src=lecturesupportn7.js></script>
+<script src="numberconvert.js"></script>
+<script src=acidlist.js></script>
+<script language="javascript">
+//updated 11/14/00-added complete solution
+thepage="Energy, heat and work-word problems(68)"
+//11/20/02-updated netscape 7
+refnumber=144
+//updated 9/7/98 added show answer
+//globals
+attempts=corrt=totl=tried=0
+theanswer=missing=0
+given=0
+alldata=0
+symbols=new Array("&Delta;U","q","w")
+equations=new Array()
+equations[0]=symbols[0]+"="+symbols[1]+"+"+symbols[2]
+equations[1]=symbols[1]+"="+symbols[0]+"-"+symbols[2]
+equations[2]=symbols[2]+"="+symbols[0]+"-"+symbols[1]
+ansphrase=new Array("The total energy change is the sum of the heat and the work.<br>","The heat is the difference between the total energy and the work.<br>","The work is the difference between the total energy and the heat.<br>")
+//This function clears all values in both tables on loading the page
+//This function clears the first table
+question=new Array()
+question[0]=new Array("What is the total energy change if a system ")
+question[1]=new Array("What is the heat change if a system ")
+question[2]=new Array("What is the work if a system ")
+//This is the function started when "New Problem" is pushed	
+//This function first clears all old values using clear()
+//The three variables(mass,moles and gfw) are then determined, using Math.random() to 
+//generate gfw and mass and a ratio to generate moles. 
+function startit(){
+	clear()
+	totl++
+	document.forms[0].total.value=totl
+	alldata=new Array()
+	for(var j=0;j<3;j++)alldata[j]=0;	
+	while(alldata[1]<50)alldata[1]=Math.round(500*Math.random());	
+	if(Math.random()>.5)alldata[1]=-alldata[1];
+	while(alldata[2]<50)alldata[2]=Math.round(500*Math.random());
+	if(Math.random()>.5)alldata[2]=-alldata[2]
+	alldata[0]=Math.round(alldata[1]+alldata[2])
+//The three variables are then converted to two significant figures.
+	//for(var j=0;j<3;j++)alldata[j]=number(alldata[j],2,3)
+	buildquestion()
+}
+//This function partially fills the table, setting the problem
+function buildquestion(){
+	missing=Math.floor(3*Math.random())
+	thequest=question[missing][0]
+	if(missing==0){
+		alldata[1]>0?thequest+=" gains ":thequest+=" loses ";
+		thequest+=Math.abs(alldata[1])+"<b>J</b> of heat while";
+		alldata[2]>0?thequest+=" the surroundings does ":thequest+=" doing ";
+		thequest+=Math.abs(alldata[2])+"<b>J</b>";
+		alldata[2]>0?thequest+=" on the system?":thequest+=" on the surroundings?";
+		
+		
+	}
+	if(missing==1){
+		alldata[0]<0?thequest+=" loses a total of ":thequest+=" gains a total of ";
+		thequest+=Math.abs(alldata[0])+"<b>J</b> while ";
+		alldata[2]>0?thequest+=" the surroundings does ":thequest+=" doing ";
+		thequest+=Math.abs(alldata[2])+"<b>J</b> of work";
+		alldata[2]>0?thequest+=" on the system?":thequest+=" on the surroundings?";
+	}
+	if(missing==2){
+		alldata[0]<0?thequest+=" loses a total of ":thequest+=" gains a total of ";
+		thequest+=Math.abs(alldata[0])+"<b>J</b> while ";
+		alldata[1]>0?thequest+=" gaining ":thequest+=" losing ";
+		thequest+=Math.abs(alldata[1])+"<b>J</b> of heat" 
+	}
+	buildanswer()
+	showquest(thequest)
+}
+function buildanswer(){
+	getsolved()
+	theanswer=ansphrase[missing]+equations[missing]+"<br>"+solved[missing]
+}
+function getsolved(){
+	solved=new Array()
+	solved[0]=alldata[1]+"+"+alldata[2]+"="+alldata[0]+"<b>J</b>"
+	solved[1]=alldata[0]+"-"+alldata[2]+"="+alldata[1]+"<b>J</b>"
+	solved[2]=alldata[0]+"-"+alldata[1]+"="+alldata[2]+"<b>J</b>"
+}
+// This is the "Check Answer Function
+//This function checks for correctness by simply seeing if a/b is within 1%
+//of c. The results are then posted to the second table. If you change the
+//relationship between a and b, above, make sure you change this also.
+function answer(ans){
+	if(tried==1)alert("You've done this one. Get a new problem!")
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	attempts++
+	if (ans==alldata[missing]){	
+		document.forms[0].results.value="correct"
+		corrt++
+		document.forms[0].correct.value=corrt
+		tried=1
+	}
+	else {
+		document.forms[0].results.value="incorrect"
+		tried=2
+		document.forms[0].elements[missing].select()
+		document.forms[0].elements[missing].focus()
+	}
+	}
+}
+</script>
+</head>
+<body onLoad="mainstart()">
+<h2>Energy, heat and work</h2>
+This page permits practice with the relationships between energy changes(&Delta;U), heat(q) and work(w).
+When you press "New Problem", a question will appear to the to the right of the table. Enter the answer in the cell and press "Check Answer". The results will appear in the second
+table.
+<h3>Hints</h3>
+<ul>
+<li>All values are in Joules and are integers for ease of use. Be careful about your signs!!
+<li>If you miss a problem three times, pressing "Show Answer" will display the complete solution and you will no longer be able submit an answer for that problem.
+</ul>
+<form>
+<input type=button value="New Problem" onClick="startit()"><br>
+<input type="text" name=theans size=8>Enter your answer here<br>
+<input type="button" value="Check Answer" onClick=answer(this.form.theans.value)>
+<input type="button" value="Show Answer" onClick=showanswer()>
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<td><input type="text" name="results" size=12></td>
+<td align=center><input type="text" name="total" size=4 ></td>
+<td align=center><input type="text" name="correct" size=4 ></td>
+</tr>
+</table>
+</form>
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/workheatwpcsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:16 GMT -->
+</html>

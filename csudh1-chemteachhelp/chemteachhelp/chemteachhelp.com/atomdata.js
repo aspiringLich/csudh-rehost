@@ -1,0 +1,45 @@
+name=sym=mass=radius=""
+atoms=new Array()
+function thedata(name,sym,mass,radius,structure){
+	this.name=name
+	this.sym=sym
+	this.mass=mass
+	this.radius=radius
+	this.structure=structure
+}
+stype=new Array("cubic","body centered","ccp","hcp")
+atoms[0]=new thedata("lithium","Li",6.94,157,1)
+atoms[1]=new thedata("beryllium","Be",9.01,112,3)
+atoms[2]=new thedata("sodium","Na",22.99,191,1)
+atoms[3]=new thedata("magnesium","Mg",24.30,160,3)
+atoms[4]=new thedata("aluminum","Al",26.98,143,2)
+atoms[5]=new thedata("potassium","K",39.10,235,1)
+atoms[6]=new thedata("calcium","Ca",40.08,197,2)
+atoms[7]=new thedata("scandium","Sc",44.96,161,3)
+atoms[8]=new thedata("titanium","Ti",47.88,145,3)
+atoms[9]=new thedata("vanadium","V",50.94,132,1)
+atoms[10]=new thedata("chromium","Cr",51.00,125,1)
+atoms[11]=new thedata("manganese","Mn",54.94,124,1)
+atoms[12]=new thedata("iron","Fe",55.85,124,1)
+atoms[13]=new thedata("cobalt","Co",58.93,125,3)
+atoms[14]=new thedata("nickel","Ni",58.69,125,2)
+atoms[15]=new thedata("copper","Cu",63.55,128,2)
+atoms[16]=new thedata("zinc","Zn",65.39,133,3)
+atoms[17]=new thedata("rubidium","Rb",85.47,250,1)
+atoms[18]=new thedata("lead","Pb",207.2,175,2)
+atoms[19]=new thedata("strontium","Sr",87.62,215,2)
+atoms[20]=new thedata("yttrium","Y",88.91,180,3)
+atoms[21]=new thedata("zirconium","Zr",91.22,160,3)
+atoms[22]=new thedata("niobium","Nb",92.91,147,1)
+atoms[23]=new thedata("molybdenum","Mo",95.94,140,1)
+atoms[24]=new thedata("ruthenium","Ru",101.1,134,3)
+atoms[25]=new thedata("rhodium","Rh",102.9,134,2)
+atoms[26]=new thedata("palladium","Pd",106.4,138,2)
+atoms[27]=new thedata("silver","Ag",47,107.9,144,2)
+atoms[28]=new thedata("cadmium","Cd",112.4,157,3)
+atoms[29]=new thedata("platinum","Pt",195.1,139,2)
+atoms[30]=new thedata("gold","Au",197.0,144,2)
+atoms[31]=new thedata("cesium","Cs",132.9,273,1)
+atoms[32]=new thedata("barium","Ba",56,137.3,224,1)
+atoms[33]=new thedata("tungsten","W",183.8,141,1)
+atoms[34]=new thedata("iridium","Ir",192.2,136,2)

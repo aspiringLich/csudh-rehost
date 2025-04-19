@@ -1,0 +1,20 @@
+HTTrack3.49-2+htsswf+htsjava launched on Wed, 03 Feb 2021 21:27:19 at http://chemteachhelp.com/ +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar
+(winhttrack -qwC2%Ps2u1%s%uN0%I0p3DaK0H0%kf2A25000%f#f -F "Mozilla/4.5 (compatible; HTTrack 3.0x; Windows 98)" -%F "<!-- Mirrored from %s%s by HTTrack Website Copier/3.x [XR&CO'2014], %s -->" -%l "en, *" http://chemteachhelp.com/ -O1 "G:\My Drive\csudh\csudh1-chemteachhelp\chemteachhelp" +*.png +*.gif +*.jpg +*.jpeg +*.css +*.js -ad.doubleclick.net/* -mime:application/foobar )
+
+Information, Warnings and Errors reported for this mirror:
+note:	the hts-log.txt file, and hts-cache folder, may contain sensitive information,
+	such as username/password authentication for websites mirrored in this project
+	do not share these files/folders if you want these information to remain private
+
+21:28:18	Error: 	"Not Found" (404) at link chemteachhelp.com/separatingionscsn7.html (from chemteachhelp.com/)
+21:28:23	Error: 	"Not Found" (404) at link chemteachhelp.com/numberconvertn7.js (from chemteachhelp.com/wavefreqcsn7.html)
+21:28:23	Error: 	"Not Found" (404) at link chemteachhelp.com/numbercomvert.js (from chemteachhelp.com/mixeddensitycsn7.html)
+21:28:23	Error: 	"Not Found" (404) at link chemteachhelp.com/limitreagentcs.html (from chemteachhelp.com/usinglimitreagentcsn7.html)
+21:28:23	Error: 	"Not Found" (404) at link chemteachhelp.com/hwsupportn7.js (from chemteachhelp.com/showbhcycles.html)
+21:28:23	Error: 	"Not Found" (404) at link chemteachhelp.com/clapt1.gif (from chemteachhelp.com/clapeyroncsn7.html)
+21:28:23	Error: 	"Not Found" (404) at link chemteachhelp.com/clapt2.gif (from chemteachhelp.com/clapeyroncsn7.html)
+21:28:23	Error: 	"Not Found" (404) at link chemteachhelp.com/clapp1.gif (from chemteachhelp.com/clapeyroncsn7.html)
+21:28:23	Error: 	"Not Found" (404) at link chemteachhelp.com/clapp2.gif (from chemteachhelp.com/clapeyroncsn7.html)
+
+HTTrack Website Copier/3.49-2 mirror complete in 1 minutes 4 seconds : 132 links scanned, 122 files written (929708 bytes overall) [421512 bytes received at 6586 bytes/sec], 868879 bytes transferred using HTTP compression in 121 files, ratio 36%, 44.0 requests per connection
+(9 errors, 0 warnings, 0 messages)

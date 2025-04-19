@@ -1,0 +1,192 @@
+<html>
+
+<!-- Mirrored from chemteachhelp.com/acidhydrolysiscsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:17 GMT -->
+<head>
+<title>Hydrolysis of acids and bases</title>
+<style>
+#qspot {position:absolute;left:350;top:500}
+#ansspot {position:absolute;left:350;top:620;height:50}
+#tspot {position:absolute;left:10;top:300}
+#refspot {position:absolute;left:10;top:600}
+</style>
+<script src=lecturesupportn7.js></script>
+<script src="numberconvert.js"></script>
+<script src="reflist.js"></script>
+<script language="javascript">
+thepage="Acid/base hydrolysis(79)"
+refnumber=123
+teststring="z0123456789"
+cell1="<input type=text size=8 name=cell1>"
+cell2="<input type=text size=8 name=cell2>"
+option=0
+thebutton="<br><input type=button value='Preview' onClick=preview(this.form)><input type=button value='Check Answer' onClick=answer(this.form)></form>"
+acids=new Array("HCl","HI","HF","HNO3","HNO2","HClO","HClO3","HClO4","HCN","H2SO4","H2CO3","H2SO3","HCO2H","CH3CO2H","C6H5CO2H","CH2ClCO2H","C6H5OH")
+bases=new Array("OH-","NH3","CH3NH2","(CH3)3N","C2H5NH2","C10H14N2","C6H5NH2","C5H5N","(CH3)2NH")
+introphrase="Complete the following hydrolysis reaction, following the conventions for entering the formulas described above. Use the <b>Preview</b> button, if you wish, before submitting your answer<br><form name=protonxfer>"
+water="H2O"
+hydronium="H3O+"
+hydroxide="OH-"
+function startit(){
+	clear()
+	tried=0
+	totl++
+	document.forms[0].total.value=totl
+	theacid=Math.floor(acids.length*Math.random())
+	thebase=Math.floor(bases.length*Math.random())
+	conbase=getconbase(theacid)
+	conacid=getconacid(thebase)
+	swtch=Math.floor(2*Math.random())
+	reverse=Math.floor(2*Math.random())
+	if(swtch==1){
+		if(reverse==0) alldata=new Array(acids[theacid],water,conbase,hydronium);
+		else alldata=new Array(conbase,hydronium,acids[theacid],water);
+	}
+	else{
+		if(reverse==0) alldata=new Array(bases[thebase],water,conacid,hydroxide);
+		else alldata=new Array(conacid,hydroxide,bases[thebase],water);
+	}
+	buildquest(alldata)
+	//showanswer()
+}
+function getconbase(x){
+	(x>8 && x<13)?conbase="H":conbase="";
+	x<13?spoint=1:spoint=0;
+	if(x>8 && x<12)spoint=2;
+	x<12?epoint=acids[x].length:epoint=(acids[x].length-1);
+	for(h=spoint;h<epoint;h++)conbase+=acids[x].charAt(h);
+	conbase+="-"
+	return conbase
+}
+function getconacid(x){
+	if(x==0)return "H2O";
+	else{
+	conacid=""
+	for(h=0;h<bases[x].length-1;h++)conacid+=bases[x].charAt(h);
+	if(bases[x].charAt(bases[x].length-1)=="H")conacid+="H2";
+	else{
+		if(teststring.indexOf(bases[x].charAt(bases[x].length-1))>0 && bases[x].charAt(bases[x].length-2)=="H")conacid+=(1*bases[x].charAt(bases[x].length-1)+1);
+		else conacid+=(bases[x].charAt(bases[x].length-1)+"H")		
+	}
+	conacid+="+"
+	return conacid
+}}
+function convertformula(x){
+	newform=x.charAt(0)
+	for(j=1;j<x.length;j++){
+		if(x.charAt(j)=="-" || x.charAt(j)=="+")newform+="<sup>"+x.charAt(j)+"</sup>";
+		else{
+			if(teststring.indexOf(x.charAt(j))>0)newform+="<sub>"+x.charAt(j)+"</sub>";
+			else newform+=x.charAt(j);
+			}
+	}
+	return newform
+}
+function buildquest(alldata){
+	thequest=introphrase
+	option=Math.floor(2*Math.random());
+	if(option==1)thequest+=convertformula(alldata[0])+"+"+convertformula(alldata[1])+"=>"+cell1+"+"+cell2+thebutton;
+	if(option==0)thequest+=cell1+"+"+cell2+"=>"+convertformula(alldata[2])+"+"+convertformula(alldata[3])+thebutton;
+	theanswer=convertformula(alldata[0])+"+"+convertformula(alldata[1])+"=>"+convertformula(alldata[2])+"+"+convertformula(alldata[3])
+	showquest(thequest)
+}
+function clear(){
+	document.forms[0].results.value=""
+	attempts=0
+	clearansspot()
+	clearpreview()
+}
+function clearpreview(){
+	if(thisbrowser=="IE"){
+		prespot.innerHTML=""
+		}
+	else{
+		if(thisbrowser=="NN4"){
+		document.prespot.document.open()
+		document.prespot.document.write("")
+		document.prespot.document.close()
+		}
+		else{
+			document.getElementById("prespot").innerHTML=""
+			}
+		}
+}
+function preview(form){
+	theequation=""
+	var cell1=convertformula(form.cell1.value)
+	var cell2=convertformula(form.cell2.value)
+	if(option==0)theequation+=cell1+"+"+cell2+"=>"+convertformula(alldata[2])+"+"+convertformula(alldata[3]);
+	if(option==1)theequation+=convertformula(alldata[0])+"+"+convertformula(alldata[1])+"=>"+cell1+"+"+cell2;
+	if(thisbrowser=="IE"){
+		prespot.innerHTML=theequation
+		}
+	else{
+		if(thisbrowser=="NN4"){
+		document.prespot.document.open()
+		document.prespot.document.write(theequation)
+		document.prespot.document.close()
+		}
+		else{
+			document.getElementById("prespot").innerHTML=theequation
+			}
+		}
+}
+				
+function answer(form){
+	if(tried==1)alert("You've done this one. Get a new problem.");
+	else{
+	if(tried==2){totl++;document.forms[0].total.value=totl}
+	attempts++
+	if(form.cell1.value==alldata[2*option] && form.cell2.value==alldata[2*option+1]){
+		document.forms[0].results.value="Correct"
+		corrt++
+		document.forms[0].correct.value=corrt
+		tried=1
+	}
+	else{
+		document.forms[0].results.value="Incorrect"
+		tried=2
+	}
+}}
+</script>
+</head>
+<body onLoad="mainstart()">
+<h3>Hydrolysis of Acids and Bases</h3>
+This page presents exercises in the completion of acid and base hydrolysis reactions. It is critical that your answers are entered in the format shown below. You should use the "Preview" button to check your answer before submitting it.<br>
+Using this page<ul>
+<li>Pressing "New Reaction" will display a partial hydrolysis reaction with two species shown and two missing. Enter the missing materials according to the following format:<br>
+<B>Inorganic Acids:</B> HA  +  H<SUB>2</SUB>O  => A<SUP>-</SUP> + H<sub>3</sub>O<SUP>+</SUP> Ex: HI + H<SUB>2</SUB>O  => I<sup>-</sup> + H<sub>3</sub>O<SUP>+</SUP><br>
+<B>Carboxylic Acids(end in CO<SUB>2</SUB>H):</B> AH  + H<SUB>2</SUB>O =>  A<SUP>-</SUP> + H<sub>3</sub>O<SUP>+</SUP></SUP>  Ex: CH<SUB>3</SUB>CO<SUB>2</SUB>H + H<SUB>2</SUB>O => CH<SUB>3</SUB>CO<SUB>2</SUB><SUP>-</SUP> + H<sub>3</sub>O<SUP>+</SUP> </center><br>
+<B>Bases:</B>B + H<SUB>2</SUB>O => BH<sup>+</sup> + OH<SUP>-</SUP> ex: NH<SUB>3</SUB> +  H<SUB>2</SUB>O => NH<SUB>4</SUB><SUP>+</SUP> + OH<SUP>-</SUP>
+<li>Make certain that the sequence above is followed and you include the charges
+<li>It is possible that the reaction will presented as the reverse of the general equations shown above and you should structure your response accordingly. ex:> CH<SUB>3</SUB>CO<SUB>2</SUB><SUP>-</SUP> + H<sub>3</sub>O<SUP>+</SUP> => CH<SUB>3</SUB>CO<SUB>2</SUB>H + H<SUB>2</SUB>O
+<li>You cannot enter subscripts or superscripts in the answer cell, so HNO<sub>3</sub> would be entered as HNO3. Also, make certain that the charge, if present is the last entry.
+<li>Be careful about capitalization.
+<li>The first time you attempt this page, use the <B>Show Answer</B> and <B>Preview</B> buttons extensively to familiarize yourself with its operation and how to input the values.
+<li>If you press "Preview" after entering the values, your proposed reaction will be displayed.
+<li>When you are certain that you have it correct, press "Check Answer" and results will appear in the table.
+<li>If you miss a problem three times, pressing "Show Answer" will display the complete solution and you will no longer be able submit an answer for that problem.	
+<form>
+<input type=button value="New Reaction" onClick="startit()">
+<input type=button value="Show Answer" onClick="showanswer()">
+<table border=4>
+<tr><td align=center><b>Results</td>
+<td align=center><b>Total Done</td>
+<td><b>Total Correct</td>
+</tr>
+<tr>
+<td><input type="text" name=results size=12></td>
+<td align=center><input type="text" name=total size=4 ></td>
+<td align=center><input type="text" name=correct size=4 ></td>
+</tr>
+<tr>
+</table>
+</form>
+<DIV ID=prespot></div>   
+<div id=qspot></div>
+<div id=ansspot></div>
+<div id=refspot></div>
+</form>
+</body>
+
+<!-- Mirrored from chemteachhelp.com/acidhydrolysiscsn7.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 04 Feb 2021 02:28:17 GMT -->
+</html>
